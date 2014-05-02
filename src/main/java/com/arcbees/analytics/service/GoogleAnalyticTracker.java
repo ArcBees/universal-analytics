@@ -1,0 +1,70 @@
+/**
+ * Copyright (c) 2014 by ArcBees Inc., All rights reserved.
+ * This source code, and resulting software, is the confidential and proprietary information
+ * ("Proprietary Information") and is the intellectual property ("Intellectual Property")
+ * of ArcBees Inc. ("The Company"). You shall not disclose such Proprietary Information and
+ * shall use it only in accordance with the terms and conditions of any and all license
+ * agreements you have entered into with The Company.
+ */
+
+package com.arcbees.analytics.service;
+
+public class GoogleAnalyticTracker {
+    private static final String PROTOCOL_VERSION = "1";
+
+    private final String appName;
+    private final String appVersion;
+    private final String trackingCode;
+    private final String clientId;
+
+    private GoogleAnalyticTracker(String clientId,
+                                  String trackingCode,
+                                  String appName,
+                                  String appVersion) {
+        this.appName = appName;
+        this.appVersion = appVersion;
+        this.trackingCode = trackingCode;
+        this.clientId = clientId;
+    }
+
+    public boolean trackEvent(String eventCategory,
+                              String eventAction) {
+        MeasureProtocolRequest measureProtocolRequest = new MeasureProtocolRequest.Builder()
+                .protocolVersion(PROTOCOL_VERSION)
+                .clientId(clientId)
+                .applicationName(appName)
+                .applicationVersion(appVersion)
+                .trackingCode(trackingCode)
+                .hitType(GaParameterConstants.EVENT_HIT_TYPE)
+                .eventCategory(eventCategory)
+                .eventAction(eventAction)
+                .build();
+
+        return measureProtocolRequest.executeRequest();
+    }
+
+    public boolean trackEvent(String eventCategory,
+                              String eventAction,
+                              String eventLabel) {
+        MeasureProtocolRequest measureProtocolRequest = new MeasureProtocolRequest.Builder()
+                .protocolVersion(PROTOCOL_VERSION)
+                .clientId(clientId)
+                .applicationName(appName)
+                .applicationVersion(appVersion)
+                .trackingCode(trackingCode)
+                .hitType(GaParameterConstants.EVENT_HIT_TYPE)
+                .eventCategory(eventCategory)
+                .eventAction(eventAction)
+                .eventLabel(eventLabel)
+                .build();
+
+        return measureProtocolRequest.executeRequest();
+    }
+
+    public static GoogleAnalyticTracker build(String clientId,
+                                       String trackingCode,
+                                       String appName,
+                                       String appVersion) {
+        return new GoogleAnalyticTracker(clientId, trackingCode, appName, appVersion);
+    }
+}
