@@ -1,5 +1,5 @@
 /**
- * Copyright 2011 ArcBees Inc.
+ * Copyright 2014 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.analytics.core;
+package com.arcbees.analytics.client;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
@@ -22,7 +22,7 @@ import com.google.gwt.dom.client.ScriptElement;
 import com.google.gwt.user.client.Window;
 
 /**
- * Default {@link com.arcbees.analytics.core.GoogleAnalytics} implementation that uses JSNI to
+ * Default {@link com.arcbees.analytics.client.GoogleAnalytics} implementation that uses JSNI to
  * expose Google Analytics javascript methods.
  *
  * @author Christian Goudreau

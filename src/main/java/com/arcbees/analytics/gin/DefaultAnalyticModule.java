@@ -1,10 +1,17 @@
 /**
- * Copyright (c) 2014 by ArcBees Inc., All rights reserved.
- * This source code, and resulting software, is the confidential and proprietary information
- * ("Proprietary Information") and is the intellectual property ("Intellectual Property")
- * of ArcBees Inc. ("The Company"). You shall not disclose such Proprietary Information and
- * shall use it only in accordance with the terms and conditions of any and all license
- * agreements you have entered into with The Company.
+ * Copyright 2014 ArcBees Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package com.arcbees.analytics.gin;
@@ -12,10 +19,10 @@ package com.arcbees.analytics.gin;
 import javax.inject.Singleton;
 
 import com.arcbees.analytics.annotation.GaAccount;
-import com.arcbees.analytics.core.AnalyticClientIdProvider;
-import com.arcbees.analytics.core.GoogleAnalytics;
-import com.arcbees.analytics.core.GoogleAnalyticsImpl;
-import com.arcbees.analytics.service.GoogleAnalyticTracker;
+import com.arcbees.analytics.client.AnalyticClientIdProvider;
+import com.arcbees.analytics.client.GoogleAnalytics;
+import com.arcbees.analytics.client.GoogleAnalyticsImpl;
+import com.arcbees.analytics.server.GoogleAnalyticTracker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
@@ -25,14 +32,40 @@ public class DefaultAnalyticModule extends AbstractModule {
     private final String applicationVersion;
     private final AnalyticClientIdProvider clientIdProvider;
 
-    public DefaultAnalyticModule(String trackingCode,
-                                 String applicationName,
-                                 String applicationVersion,
-                                 AnalyticClientIdProvider clientIdProvider) {
-        this.trackingCode = trackingCode;
-        this.applicationName = applicationName;
-        this.applicationVersion = applicationVersion;
-        this.clientIdProvider = clientIdProvider;
+    public DefaultAnalyticModule(Builder builder) {
+        this.trackingCode = builder.trackingCode;
+        this.applicationName = builder.applicationName;
+        this.applicationVersion = builder.applicationVersion;
+        this.clientIdProvider = builder.clientIdProvider;
+    }
+
+    /**
+     * A DefaultAnalyticModule builder.
+     */
+    public static class Builder {
+
+        private String trackingCode;
+        private String applicationName;
+        private String applicationVersion;
+        private AnalyticClientIdProvider clientIdProvider;
+
+        public Builder() {
+        }
+
+        public Builder with(String trackingCode,
+                            String applicationName,
+                            String applicationVersion,
+                            AnalyticClientIdProvider clientIdProvider) {
+            this.trackingCode = trackingCode;
+            this.applicationName = applicationName;
+            this.applicationVersion = applicationVersion;
+            this.clientIdProvider = clientIdProvider;
+            return this;
+        }
+
+        public DefaultAnalyticModule build() {
+            return new DefaultAnalyticModule(this);
+        }
     }
 
     @Override

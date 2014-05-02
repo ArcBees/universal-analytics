@@ -14,23 +14,22 @@
  * the License.
  */
 
-package com.arcbees.analytics.annotation;
+package com.arcbees.analytics.server;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+public class MethodParameterTuple {
+    private final String parameterName;
+    private final String parameterValue;
 
-import com.google.inject.BindingAnnotation;
+    public MethodParameterTuple(String parameterName, String parameterValue) {
+        this.parameterName = parameterName;
+        this.parameterValue = parameterValue;
+    }
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+    public String getName() {
+        return parameterName;
+    }
 
-/**
- * Bind this annotation to your Google Analytics account number.
- *
- * @author Christian Goudreau
- */
-@BindingAnnotation
-@Target(ElementType.PARAMETER)
-@Retention(RUNTIME)
-public @interface GaAccount {
+    public String getValue() {
+        return parameterValue;
+    }
 }
