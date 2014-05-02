@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.analytics.gin;
+package com.arcbees.analytics.shared;
 
 public class GoogleAnalyticConstants {
     public static final String CAT_INITIALIZATION = "Initialization";

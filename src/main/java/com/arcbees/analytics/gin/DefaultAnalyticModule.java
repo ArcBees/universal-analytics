@@ -23,6 +23,7 @@ import com.arcbees.analytics.client.AnalyticClientIdProvider;
 import com.arcbees.analytics.client.GoogleAnalytics;
 import com.arcbees.analytics.client.GoogleAnalyticsImpl;
 import com.arcbees.analytics.server.GoogleAnalyticTracker;
+import com.arcbees.analytics.shared.GoogleAnalyticConstants;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
@@ -52,13 +53,22 @@ public class DefaultAnalyticModule extends AbstractModule {
         public Builder() {
         }
 
-        public Builder with(String trackingCode,
-                            String applicationName,
-                            String applicationVersion,
-                            AnalyticClientIdProvider clientIdProvider) {
+        public Builder trackingCode(String trackingCode) {
             this.trackingCode = trackingCode;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
             this.applicationName = applicationName;
+            return this;
+        }
+
+        public Builder applicationVersion(String applicationVersion) {
             this.applicationVersion = applicationVersion;
+            return this;
+        }
+
+        public Builder analyticClientIdProvider(AnalyticClientIdProvider clientIdProvider) {
             this.clientIdProvider = clientIdProvider;
             return this;
         }
