@@ -8,5 +8,73 @@
     <artifactId>universal-analytics</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    
+    <properties>
+        <gwt.version>2.6.0</gwt.version>
+        <gin.version>2.1.2</gin.version>
+        <guice.version>3.0</guice.version>
+        <persistence-api.version>1.0</persistence-api.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <javax.inject.version>1</javax.inject.version>
+        <aopalliance.version>1.0</aopalliance.version>
+        <google-http-client-appengine.version>1.15.0-rc</google-http-client-appengine.version>
+    </properties>
+
+    <dependencies>
+        <!-- GWT -->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>${gwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${aopalliance.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-appengine</artifactId>
+            <version>${google-http-client-appengine.version}</version>
+        </dependency>
+
+        <!-- Standard Java extension jars -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${javax.inject.version}</version>
+        </dependency>
+    </dependencies>
 </project>

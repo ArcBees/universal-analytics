@@ -32,8 +32,8 @@ package com.arcbees.analytics.core;
  * <p/>
  * Inject this interface in your presenters when you need to interact with the
  * Google Analytics module, for example to log your custom event. You can
- * also configure automatic registration of navigation event using
- * {@link GoogleAnalyticsNavigationTracker}.
+ * also configure automatic registration of navigation event using a
+ * custom navigationHandler from GWTP
  * <p/>
  * Also, for more information about Event Tracking, please read:
  * <a href="http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html">Event Tracking Guide</a>
