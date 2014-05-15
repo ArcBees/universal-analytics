@@ -22,6 +22,8 @@ import com.arcbees.analytics.annotation.GaAccount;
 import com.arcbees.analytics.client.AnalyticClientIdProvider;
 import com.arcbees.analytics.client.GoogleAnalytics;
 import com.arcbees.analytics.client.GoogleAnalyticsImpl;
+import com.arcbees.analytics.client.UniversalAnalytics;
+import com.arcbees.analytics.client.UniversalAnalyticsImpl;
 import com.arcbees.analytics.server.GoogleAnalyticTracker;
 import com.arcbees.analytics.shared.GoogleAnalyticConstants;
 import com.google.inject.AbstractModule;
@@ -82,6 +84,7 @@ public class DefaultAnalyticModule extends AbstractModule {
     protected void configure() {
         bindConstant().annotatedWith(GaAccount.class).to(trackingCode);
         bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
+        bind(UniversalAnalytics.class).to(UniversalAnalyticsImpl.class).in(Singleton.class);
     }
 
     @Provides
