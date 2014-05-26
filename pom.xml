@@ -12,6 +12,7 @@
         <gwt.version>2.6.0</gwt.version>
         <gin.version>2.1.2</gin.version>
         <guice.version>3.0</guice.version>
+        <guava.version>17.0</guava.version>
         <persistence-api.version>1.0</persistence-api.version>
         <servlet-api.version>2.5</servlet-api.version>
         <javax.inject.version>1</javax.inject.version>
@@ -64,6 +65,12 @@
             <artifactId>google-http-client-appengine</artifactId>
             <version>${google-http-client-appengine.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
 
         <!-- Standard Java extension jars -->
         <dependency>

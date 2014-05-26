@@ -17,8 +17,11 @@
 package com.arcbees.analytics.server;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -27,70 +30,74 @@ import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 public class MeasureProtocolRequest {
+    private static Logger logger = Logger.getLogger(MeasureProtocolRequest.class.getName());
+
     public static class Builder {
-        private final List<MethodParameterTuple> parameterTuples = new ArrayList<MethodParameterTuple>();
+        private final Multimap<String, String> parameterTuples = ArrayListMultimap.create();
 
         public Builder() {
         }
 
         public Builder protocolVersion(String protocolVersion) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.PROTOCOL_VERSION, protocolVersion));
+            parameterTuples.put(GaParameterConstants.PROTOCOL_VERSION, protocolVersion);
 
             return this;
         }
 
         public Builder clientId(String clientId) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.CLIENT_ID, clientId));
+            parameterTuples.put(GaParameterConstants.CLIENT_ID, clientId);
 
             return this;
         }
 
         public Builder trackingCode(String trackId) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.TRACKING_ID, trackId));
+            parameterTuples.put(GaParameterConstants.TRACKING_ID, trackId);
 
             return this;
         }
 
         public Builder hitType(String hitType) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.HIT_TYPE, hitType));
+            parameterTuples.put(GaParameterConstants.HIT_TYPE, hitType);
 
             return this;
         }
 
         public Builder applicationName(String applicationName) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.APPLICATION_NAME, applicationName));
+            parameterTuples.put(GaParameterConstants.APPLICATION_NAME, applicationName);
 
             return this;
         }
 
         public Builder applicationVersion(String applicationVersion) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.APPLICATION_VERSION, applicationVersion));
+            parameterTuples.put(GaParameterConstants.APPLICATION_VERSION, applicationVersion);
 
             return this;
         }
 
         public Builder eventCategory(String category) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.EVENT_CATEGORY, category));
+            parameterTuples.put(GaParameterConstants.EVENT_CATEGORY, category);
 
             return this;
         }
 
         public Builder eventAction(String eventAction) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.EVENT_ACTION, eventAction));
+            parameterTuples.put(GaParameterConstants.EVENT_ACTION, eventAction);
 
             return this;
         }
 
         public Builder eventLabel(String eventLabel) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.EVENT_LABEL, eventLabel));
+            parameterTuples.put(GaParameterConstants.EVENT_LABEL, eventLabel);
 
             return this;
         }
 
         public Builder eventValue(String eventValue) {
-            parameterTuples.add(new MethodParameterTuple(GaParameterConstants.EVENT_VALUE, eventValue));
+            parameterTuples.put(GaParameterConstants.EVENT_VALUE, eventValue);
 
             return this;
         }
@@ -100,9 +107,9 @@ public class MeasureProtocolRequest {
         }
     }
 
-    private final List<MethodParameterTuple> methodParameterTuples;
+    private final Multimap methodParameterTuples;
 
-    MeasureProtocolRequest(List<MethodParameterTuple> methodParameterTuples) {
+    MeasureProtocolRequest(Multimap methodParameterTuples) {
         this.methodParameterTuples = methodParameterTuples;
     }
 
@@ -111,9 +118,12 @@ public class MeasureProtocolRequest {
         HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
 
         GenericUrl genericUrl = new GenericUrl(GaParameterConstants.POST_URL);
+        Iterator tupleIterator = methodParameterTuples.entries().iterator();
 
-        for (MethodParameterTuple methodParameterTuple : methodParameterTuples) {
-            genericUrl.put(methodParameterTuple.getName(), methodParameterTuple.getValue());
+        while (tupleIterator.hasNext()) {
+            String entryKey = tupleIterator.next().toString();
+            List<String> entryValues = (List<String>) methodParameterTuples.get(entryKey);
+            genericUrl.put(entryKey, entryValues);
         }
 
         try {
@@ -122,7 +132,7 @@ public class MeasureProtocolRequest {
 
             return response.getStatusCode() == HttpStatusCodes.STATUS_CODE_OK;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, e.getMessage());
         }
 
         return false;

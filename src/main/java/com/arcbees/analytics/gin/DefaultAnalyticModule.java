@@ -25,7 +25,6 @@ import com.arcbees.analytics.client.GoogleAnalyticsImpl;
 import com.arcbees.analytics.client.UniversalAnalytics;
 import com.arcbees.analytics.client.UniversalAnalyticsImpl;
 import com.arcbees.analytics.server.GoogleAnalyticTracker;
-import com.arcbees.analytics.shared.GoogleAnalyticConstants;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
@@ -90,11 +89,8 @@ public class DefaultAnalyticModule extends AbstractModule {
     @Provides
     @Singleton
     GoogleAnalyticTracker createGoogleAnalytic() {
-        GoogleAnalyticTracker googleAnalytic
-                = GoogleAnalyticTracker.build(clientIdProvider.get(), trackingCode, applicationName, applicationVersion);
-
-        googleAnalytic.trackEvent(GoogleAnalyticConstants.CAT_INITIALIZATION,
-                GoogleAnalyticConstants.APPLICATION_LOADED);
+        GoogleAnalyticTracker googleAnalytic = new GoogleAnalyticTracker(clientIdProvider, trackingCode,
+                applicationName, applicationVersion);
 
         return googleAnalytic;
     }

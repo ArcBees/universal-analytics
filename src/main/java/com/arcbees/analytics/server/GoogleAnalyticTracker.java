@@ -16,29 +16,35 @@
 
 package com.arcbees.analytics.server;
 
+import com.arcbees.analytics.client.AnalyticClientIdProvider;
+import com.arcbees.analytics.shared.GoogleAnalyticConstants;
+import com.google.inject.Inject;
+
 public class GoogleAnalyticTracker {
     private static final String PROTOCOL_VERSION = "1";
 
     private final String appName;
     private final String appVersion;
     private final String trackingCode;
-    private final String clientId;
+    private final AnalyticClientIdProvider clientIdProvider;
 
-    private GoogleAnalyticTracker(String clientId,
-                                  String trackingCode,
-                                  String appName,
-                                  String appVersion) {
+    @Inject
+    public GoogleAnalyticTracker(AnalyticClientIdProvider clientIdProvider,
+                                 String trackingCode,
+                                 String appName,
+                                 String appVersion) {
         this.appName = appName;
         this.appVersion = appVersion;
         this.trackingCode = trackingCode;
-        this.clientId = clientId;
+        this.clientIdProvider = clientIdProvider;
+
+        trackEvent(GoogleAnalyticConstants.CAT_INITIALIZATION, GoogleAnalyticConstants.APPLICATION_LOADED);
     }
 
-    public boolean trackEvent(String eventCategory,
-                              String eventAction) {
+    public boolean trackEvent(String eventCategory, String eventAction) {
         MeasureProtocolRequest measureProtocolRequest = new MeasureProtocolRequest.Builder()
                 .protocolVersion(PROTOCOL_VERSION)
-                .clientId(clientId)
+                .clientId(clientIdProvider.get())
                 .applicationName(appName)
                 .applicationVersion(appVersion)
                 .trackingCode(trackingCode)
@@ -50,12 +56,10 @@ public class GoogleAnalyticTracker {
         return measureProtocolRequest.executeRequest();
     }
 
-    public boolean trackEvent(String eventCategory,
-                              String eventAction,
-                              String eventLabel) {
+    public boolean trackEvent(String eventCategory, String eventAction, String eventLabel) {
         MeasureProtocolRequest measureProtocolRequest = new MeasureProtocolRequest.Builder()
                 .protocolVersion(PROTOCOL_VERSION)
-                .clientId(clientId)
+                .clientId(clientIdProvider.get())
                 .applicationName(appName)
                 .applicationVersion(appVersion)
                 .trackingCode(trackingCode)
@@ -66,12 +70,5 @@ public class GoogleAnalyticTracker {
                 .build();
 
         return measureProtocolRequest.executeRequest();
-    }
-
-    public static GoogleAnalyticTracker build(String clientId,
-                                       String trackingCode,
-                                       String appName,
-                                       String appVersion) {
-        return new GoogleAnalyticTracker(clientId, trackingCode, appName, appVersion);
     }
 }
