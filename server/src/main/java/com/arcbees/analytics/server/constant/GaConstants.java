@@ -14,9 +14,10 @@
  * the License.
  */
 
-package com.arcbees.analytics.client;
+package com.arcbees.analytics.server.constant;
 
-import com.google.inject.Provider;
+public class GaConstants {
+    public static final String CAT_INITIALIZATION = "Initialization";
 
-public interface AnalyticClientIdProvider extends Provider<String> {
+    public static final String APPLICATION_LOADED = "Application Loaded";
 }

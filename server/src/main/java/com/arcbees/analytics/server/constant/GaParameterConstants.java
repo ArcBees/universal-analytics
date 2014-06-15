@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.analytics.server;
+package com.arcbees.analytics.server.constant;
 
 public class GaParameterConstants {
     public static final String POST_URL = "http://www.google-analytics.com/collect";

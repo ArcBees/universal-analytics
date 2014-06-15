@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.analytics.annotation;
+package com.arcbees.analytics.client.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -26,8 +26,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Bind this annotation to your Google Analytics account number.
- *
- * @author Christian Goudreau
  */
 @BindingAnnotation
 @Target(ElementType.PARAMETER)

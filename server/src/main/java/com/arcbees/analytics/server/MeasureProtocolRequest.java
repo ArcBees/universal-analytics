@@ -16,8 +16,9 @@
 
 package com.arcbees.analytics.server;
 
+import com.arcbees.analytics.server.constant.GaParameterConstants;
+
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -118,7 +119,7 @@ public class MeasureProtocolRequest {
         HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
 
         GenericUrl genericUrl = new GenericUrl(GaParameterConstants.POST_URL);
-        Iterator tupleIterator = methodParameterTuples.entries().iterator();
+        Iterator tupleIterator = methodParameterTuples.keys().iterator();
 
         while (tupleIterator.hasNext()) {
             String entryKey = tupleIterator.next().toString();

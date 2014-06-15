@@ -14,42 +14,38 @@
  * the License.
  */
 
-package com.arcbees.analytics.gin;
+package com.arcbees.analytics.server;
 
-import javax.inject.Singleton;
-
-import com.arcbees.analytics.annotation.GaAccount;
-import com.arcbees.analytics.client.AnalyticClientIdProvider;
-import com.arcbees.analytics.client.GoogleAnalytics;
-import com.arcbees.analytics.client.GoogleAnalyticsImpl;
-import com.arcbees.analytics.client.UniversalAnalytics;
-import com.arcbees.analytics.client.UniversalAnalyticsImpl;
-import com.arcbees.analytics.server.GoogleAnalyticTracker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+
+import javax.inject.Singleton;
 
 public class DefaultAnalyticModule extends AbstractModule {
     private final String trackingCode;
     private final String applicationName;
     private final String applicationVersion;
-    private final AnalyticClientIdProvider clientIdProvider;
+    private final String clientId;
 
     public DefaultAnalyticModule(Builder builder) {
         this.trackingCode = builder.trackingCode;
         this.applicationName = builder.applicationName;
         this.applicationVersion = builder.applicationVersion;
-        this.clientIdProvider = builder.clientIdProvider;
+        this.clientId = builder.clientId;
+    }
+
+    public DefaultAnalyticModule() {
+        this(new Builder());
     }
 
     /**
      * A DefaultAnalyticModule builder.
      */
     public static class Builder {
-
         private String trackingCode;
         private String applicationName;
         private String applicationVersion;
-        private AnalyticClientIdProvider clientIdProvider;
+        private String clientId;
 
         public Builder() {
         }
@@ -69,8 +65,8 @@ public class DefaultAnalyticModule extends AbstractModule {
             return this;
         }
 
-        public Builder analyticClientIdProvider(AnalyticClientIdProvider clientIdProvider) {
-            this.clientIdProvider = clientIdProvider;
+        public Builder clientId(String clientId) {
+            this.clientId = clientId;
             return this;
         }
 
@@ -81,15 +77,12 @@ public class DefaultAnalyticModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bindConstant().annotatedWith(GaAccount.class).to(trackingCode);
-        bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
-        bind(UniversalAnalytics.class).to(UniversalAnalyticsImpl.class).in(Singleton.class);
     }
 
     @Provides
     @Singleton
     GoogleAnalyticTracker createGoogleAnalytic() {
-        GoogleAnalyticTracker googleAnalytic = new GoogleAnalyticTracker(clientIdProvider, trackingCode,
+        GoogleAnalyticTracker googleAnalytic = new GoogleAnalyticTracker(clientId, trackingCode,
                 applicationName, applicationVersion);
 
         return googleAnalytic;

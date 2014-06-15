@@ -37,8 +37,6 @@ package com.arcbees.analytics.client;
  * <p/>
  * Also, for more information about Event Tracking, please read:
  * <a href="http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html">Event Tracking Guide</a>
- *
- * @author Christian Goudreau
  */
 public interface GoogleAnalytics {
 

@@ -16,9 +16,8 @@
 
 package com.arcbees.analytics.server;
 
-import com.arcbees.analytics.client.AnalyticClientIdProvider;
-import com.arcbees.analytics.shared.GoogleAnalyticConstants;
-import com.google.inject.Inject;
+import com.arcbees.analytics.server.constant.GaConstants;
+import com.arcbees.analytics.server.constant.GaParameterConstants;
 
 public class GoogleAnalyticTracker {
     private static final String PROTOCOL_VERSION = "1";
@@ -26,25 +25,24 @@ public class GoogleAnalyticTracker {
     private final String appName;
     private final String appVersion;
     private final String trackingCode;
-    private final AnalyticClientIdProvider clientIdProvider;
+    private final String clientId;
 
-    @Inject
-    public GoogleAnalyticTracker(AnalyticClientIdProvider clientIdProvider,
-                                 String trackingCode,
-                                 String appName,
-                                 String appVersion) {
+    GoogleAnalyticTracker(String clientId,
+                          String trackingCode,
+                          String appName,
+                          String appVersion) {
         this.appName = appName;
         this.appVersion = appVersion;
         this.trackingCode = trackingCode;
-        this.clientIdProvider = clientIdProvider;
+        this.clientId = clientId;
 
-        trackEvent(GoogleAnalyticConstants.CAT_INITIALIZATION, GoogleAnalyticConstants.APPLICATION_LOADED);
+        trackEvent(GaConstants.CAT_INITIALIZATION, GaConstants.APPLICATION_LOADED);
     }
 
     public boolean trackEvent(String eventCategory, String eventAction) {
         MeasureProtocolRequest measureProtocolRequest = new MeasureProtocolRequest.Builder()
                 .protocolVersion(PROTOCOL_VERSION)
-                .clientId(clientIdProvider.get())
+                .clientId(clientId)
                 .applicationName(appName)
                 .applicationVersion(appVersion)
                 .trackingCode(trackingCode)
@@ -59,7 +57,7 @@ public class GoogleAnalyticTracker {
     public boolean trackEvent(String eventCategory, String eventAction, String eventLabel) {
         MeasureProtocolRequest measureProtocolRequest = new MeasureProtocolRequest.Builder()
                 .protocolVersion(PROTOCOL_VERSION)
-                .clientId(clientIdProvider.get())
+                .clientId(clientId)
                 .applicationName(appName)
                 .applicationVersion(appVersion)
                 .trackingCode(trackingCode)
