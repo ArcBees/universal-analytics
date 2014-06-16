@@ -73,7 +73,6 @@ public interface UniversalAnalytics {
      *                 commonly used to define the type of user interaction for the web
      *                 object.
      */
-
     void trackEvent(String category, String action);
 
     /**

@@ -28,8 +28,7 @@ import com.google.gwt.user.client.Window;
 public class GoogleAnalyticsImpl implements GoogleAnalytics {
     @Override
     public void init(String userAccount) {
-        Element firstScript = Document.get().getElementsByTagName("script").getItem(
-                0);
+        Element firstScript = Document.get().getElementsByTagName("script").getItem(0);
 
         ScriptElement config = Document.get().createScriptElement(
                 "var _gaq = _gaq || [];_gaq.push(['_setAccount', '" + userAccount

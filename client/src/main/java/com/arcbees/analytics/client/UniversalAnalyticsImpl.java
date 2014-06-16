@@ -27,8 +27,7 @@ import com.google.gwt.dom.client.ScriptElement;
 public class UniversalAnalyticsImpl implements UniversalAnalytics {
     @Override
     public void init(String userAccount) {
-        Element firstScript = Document.get().getElementsByTagName("script").getItem(
-                0);
+        Element firstScript = Document.get().getElementsByTagName("script").getItem(0);
 
         ScriptElement config = Document.get().createScriptElement(
                 "var _gaq = _gaq || []; _gaq.push(arguments); _gaq.l = (new Date()).getTime();" +
