@@ -82,8 +82,8 @@ public class DefaultAnalyticModule extends AbstractModule {
     @Provides
     @Singleton
     GoogleAnalyticTracker createGoogleAnalytic() {
-        GoogleAnalyticTracker googleAnalytic = new GoogleAnalyticTracker(clientId, trackingCode,
-                applicationName, applicationVersion);
+        GoogleAnalyticTracker googleAnalytic = new GoogleAnalyticTracker(clientId, trackingCode, applicationName,
+                applicationVersion);
 
         return googleAnalytic;
     }
