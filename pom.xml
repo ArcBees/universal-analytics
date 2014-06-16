@@ -7,38 +7,28 @@
     <groupId>com.arcbees.analytics</groupId>
     <artifactId>universal-analytics</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>client</module>
+        <module>server</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <properties>
-        <gwt.version>2.6.0</gwt.version>
+        <gwt.version>2.6.1</gwt.version>
+        <gwtmaven>2.6.1</gwtmaven>
         <gin.version>2.1.2</gin.version>
         <guice.version>3.0</guice.version>
+        <guava.version>17.0</guava.version>
         <persistence-api.version>1.0</persistence-api.version>
         <servlet-api.version>2.5</servlet-api.version>
         <javax.inject.version>1</javax.inject.version>
         <aopalliance.version>1.0</aopalliance.version>
         <google-http-client-appengine.version>1.15.0-rc</google-http-client-appengine.version>
+
+        <target.jdk>1.7</target.jdk>
     </properties>
 
     <dependencies>
-        <!-- GWT -->
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-dev</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
@@ -64,6 +54,12 @@
             <artifactId>google-http-client-appengine</artifactId>
             <version>${google-http-client-appengine.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
 
         <!-- Standard Java extension jars -->
         <dependency>
@@ -77,4 +73,35 @@
             <version>${javax.inject.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <configuration>
+                        <targetJdk>${target.jdk}</targetJdk>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <preparationGoals>clean install</preparationGoals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${target.jdk}</source>
+                    <target>${target.jdk}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

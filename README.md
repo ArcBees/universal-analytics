@@ -1,2 +1,2 @@
 #Universal Analytics
-This is a universal google analytics tracking mechanism provider.
+A universal analytics implementation and service provider.
