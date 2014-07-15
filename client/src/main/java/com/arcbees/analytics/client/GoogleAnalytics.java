@@ -31,9 +31,7 @@ package com.arcbees.analytics.client;
  * types of interaction with your web page objects.
  * <p/>
  * Inject this interface in your presenters when you need to interact with the
- * Google Analytics module, for example to log your custom event. You can
- * also configure automatic registration of navigation event using
- * {@link GoogleAnalyticsNavigationTracker}.
+ * Google Analytics module, for example to log your custom event.
  * <p/>
  * Also, for more information about Event Tracking, please read:
  * <a href="http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html">Event Tracking Guide</a>
