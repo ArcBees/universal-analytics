@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 ArcBees Inc.
+ * Copyright 2011 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,15 +20,21 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.ScriptElement;
 import com.google.gwt.user.client.Window;
+import com.google.inject.Inject;
 
 /**
- * Default {@link com.arcbees.analytics.client.GoogleAnalytics} implementation that uses JSNI to
+ * Default {@link GoogleAnalytics} implementation that uses JSNI to
  * expose Google Analytics javascript methods.
  */
 public class GoogleAnalyticsImpl implements GoogleAnalytics {
-    @Override
-    public void init(String userAccount) {
-        Element firstScript = Document.get().getElementsByTagName("script").getItem(0);
+    @Inject
+    GoogleAnalyticsImpl(@GaAccount String userAccount) {
+        init(userAccount);
+    }
+
+    private void init(String userAccount) {
+        Element firstScript = Document.get().getElementsByTagName("script").getItem(
+                0);
 
         ScriptElement config = Document.get().createScriptElement(
                 "var _gaq = _gaq || [];_gaq.push(['_setAccount', '" + userAccount

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 ArcBees Inc.
+ * Copyright 2011 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -32,20 +32,13 @@ package com.arcbees.analytics.client;
  * <p/>
  * Inject this interface in your presenters when you need to interact with the
  * Google Analytics module, for example to log your custom event. You can
- * also configure automatic registration of navigation event using a
- * custom navigationHandler from GWTP
+ * also configure automatic registration of navigation event using
+ * {@link GoogleAnalyticsNavigationTracker}.
  * <p/>
  * Also, for more information about Event Tracking, please read:
  * <a href="http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html">Event Tracking Guide</a>
  */
 public interface GoogleAnalytics {
-
-    /**
-     * Initializes the script for Google Analytics for a specific userAccount.
-     *
-     * @param userAccount The Google Analytics account. (i.e. {@code UA-12345678-1})
-     */
-    void init(String userAccount);
 
     /**
      * Given that you already have initialized your default Google account with
@@ -55,28 +48,8 @@ public interface GoogleAnalytics {
      * @param trackerName A user-defined tracker name.
      * @param userAccount The Google Analytics account. (i.e. {@code UA-12345678-1})
      */
+    @Deprecated
     void addAccount(String trackerName, String userAccount);
-
-    /**
-     * Tracks the root of your application.
-     */
-    void trackPageview();
-
-    /**
-     * Tracks a page given a specific page name.
-     *
-     * @param pageName The page name to track.
-     */
-    void trackPageview(String pageName);
-
-    /**
-     * Tracks a page given a specific page name on a user defined tracker
-     * name. See {@link #addAccount(String, String)}.
-     *
-     * @param trackerName A user defined tracker name.
-     * @param pageName    The page name to track.
-     */
-    void trackPageview(String trackerName, String pageName);
 
     /**
      * Tracks an event in Google analytics.
@@ -87,7 +60,56 @@ public interface GoogleAnalytics {
      *                 commonly used to define the type of user interaction for the web
      *                 object.
      */
+    @Deprecated
     void trackEvent(String category, String action);
+
+    /**
+     * Tracks an event in Google analytics, attaching a label and value.
+     *
+     * @param category The name you supply for the group of objects you want to
+     *                 track.
+     * @param action   A string that is uniquely paired with each category, and
+     *                 commonly used to define the type of user interaction for the web
+     *                 object.
+     * @param optLabel An string to provide additional dimensions to the event
+     *                 data.
+     */
+    @Deprecated
+    void trackEvent(String category, String action, String optLabel);
+
+    /**
+     * Tracks an event in Google analytics, attaching a label and value.
+     *
+     * @param category The name you supply for the group of objects you want to
+     *                 track.
+     * @param action   A string that is uniquely paired with each category, and
+     *                 commonly used to define the type of user interaction for the web
+     *                 object.
+     * @param optLabel An string to provide additional dimensions to the event
+     *                 data.
+     * @param optValue An integer that you can use to provide numerical data about
+     *                 the user event.
+     */
+    @Deprecated
+    void trackEvent(String category, String action, String optLabel, int optValue);
+
+    /**
+     * Tracks an event in Google analytics, attaching a label and value.
+     *
+     * @param category          The name you supply for the group of objects you want to
+     *                          track.
+     * @param action            A string that is uniquely paired with each category, and
+     *                          commonly used to define the type of user interaction for the web
+     *                          object.
+     * @param optLabel          An string to provide additional dimensions to the event
+     *                          data.
+     * @param optValue          An integer that you can use to provide numerical data about
+     *                          the user event.
+     * @param optNonInteraction A boolean that when set to true, indicates that the event hit
+     *                          will not be used in bounce-rate calculation.
+     */
+    @Deprecated
+    void trackEvent(String category, String action, String optLabel, int optValue, boolean optNonInteraction);
 
     /**
      * Tracks an event in Google analytics on a user defined tracker name.
@@ -99,22 +121,10 @@ public interface GoogleAnalytics {
      *                 commonly used to define the type of user interaction for the web
      *                 object.
      */
+    @Deprecated
     void trackEventWithTracker(String trackerName, String category, String action);
 
     /**
-     * Tracks an event in Google analytics, attaching a label and value.
-     *
-     * @param category The name you supply for the group of objects you want to
-     *                 track.
-     * @param action   A string that is uniquely paired with each category, and
-     *                 commonly used to define the type of user interaction for the web
-     *                 object.
-     * @param optLabel An string to provide additional dimensions to the event
-     *                 data.
-     */
-    void trackEvent(String category, String action, String optLabel);
-
-    /**
      * Tracks an event in Google analytics, attaching a label and value on a user
      * defined tracker name. See {@link #addAccount(String, String)}.
      *
@@ -126,23 +136,9 @@ public interface GoogleAnalytics {
      * @param optLabel An string to provide additional dimensions to the event
      *                 data.
      */
+    @Deprecated
     void trackEventWithTracker(String trackerName, String category, String action,
-                               String optLabel);
-
-    /**
-     * Tracks an event in Google analytics, attaching a label and value.
-     *
-     * @param category The name you supply for the group of objects you want to
-     *                 track.
-     * @param action   A string that is uniquely paired with each category, and
-     *                 commonly used to define the type of user interaction for the web
-     *                 object.
-     * @param optLabel An string to provide additional dimensions to the event
-     *                 data.
-     * @param optValue An integer that you can use to provide numerical data about
-     *                 the user event.
-     */
-    void trackEvent(String category, String action, String optLabel, int optValue);
+            String optLabel);
 
     /**
      * Tracks an event in Google analytics, attaching a label and value on a user
@@ -158,25 +154,9 @@ public interface GoogleAnalytics {
      * @param optValue An integer that you can use to provide numerical data about
      *                 the user event.
      */
+    @Deprecated
     void trackEventWithTracker(String trackerName, String category, String action,
-                               String optLabel, int optValue);
-
-    /**
-     * Tracks an event in Google analytics, attaching a label and value.
-     *
-     * @param category          The name you supply for the group of objects you want to
-     *                          track.
-     * @param action            A string that is uniquely paired with each category, and
-     *                          commonly used to define the type of user interaction for the web
-     *                          object.
-     * @param optLabel          An string to provide additional dimensions to the event
-     *                          data.
-     * @param optValue          An integer that you can use to provide numerical data about
-     *                          the user event.
-     * @param optNonInteraction A boolean that when set to true, indicates that the event hit
-     *                          will not be used in bounce-rate calculation.
-     */
-    void trackEvent(String category, String action, String optLabel, int optValue, boolean optNonInteraction);
+            String optLabel, int optValue);
 
     /**
      * Tracks an event in Google analytics, attaching a label and value on a user
@@ -194,6 +174,31 @@ public interface GoogleAnalytics {
      * @param optNonInteraction A boolean that when set to true, indicates that the event hit
      *                          will not be used in bounce-rate calculation.
      */
+    @Deprecated
     void trackEventWithTracker(String trackerName, String category, String action,
-                               String optLabel, int optValue, boolean optNonInteraction);
+            String optLabel, int optValue, boolean optNonInteraction);
+
+    /**
+     * Tracks the root of your application.
+     */
+    @Deprecated
+    void trackPageview();
+
+    /**
+     * Tracks a page given a specific page name.
+     *
+     * @param pageName The page name to track.
+     */
+    @Deprecated
+    void trackPageview(String pageName);
+
+    /**
+     * Tracks a page given a specific page name on a user defined tracker
+     * name. See {@link #addAccount(String, String)}.
+     *
+     * @param trackerName A user defined tracker name.
+     * @param pageName    The page name to track.
+     */
+    @Deprecated
+    void trackPageview(String trackerName, String pageName);
 }

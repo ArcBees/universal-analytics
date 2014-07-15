@@ -13,22 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+package com.arcbees.analytics.client.universalanalytics;
 
-package com.arcbees.analytics.client.annotation;
+public enum AnalyticsPlugin {
+    DISPLAY("displayfeatures");
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+    private final String fieldName;
 
-import com.google.inject.BindingAnnotation;
+    AnalyticsPlugin(final String fieldName) {
+        this.fieldName = fieldName;
+    }
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-/**
- * Bind this annotation to your Google Analytics account number.
- */
-@BindingAnnotation
-@Target(ElementType.PARAMETER)
-@Retention(RUNTIME)
-public @interface GaAccount {
+    public String getFieldName() {
+        return fieldName;
+    }
 }
