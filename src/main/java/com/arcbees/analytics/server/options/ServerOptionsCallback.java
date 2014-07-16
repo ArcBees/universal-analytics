@@ -77,7 +77,6 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         protocolMap.put("metric", "cm[1-9][0-9]*");
         protocolMap.put("expId", "xid");
         protocolMap.put("expVar", "xvar");
-
     }
 
     private final static Logger logger = Logger.getLogger(ServerOptionsCallback.class.getName());
