@@ -79,5 +79,5 @@ pom.xml.next
 release.properties
 
 .classpath
-gwt
+.gwt
 .project
