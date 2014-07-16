@@ -127,6 +127,5 @@ public class ClientAnalytics extends AnalyticsImpl {
     @Override
     public void startTimingEvent(final String timingCategory, final String timingVariableName) {
         timingEvents.put(timingCategory + ":" + timingVariableName, Duration.currentTimeMillis());
-
     }
 }
