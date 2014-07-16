@@ -19,7 +19,6 @@ package com.arcbees.analytics.shared.options;
 public class ExceptionOptions extends AnalyticsOptions {
     ExceptionOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
-
     }
 
     /**

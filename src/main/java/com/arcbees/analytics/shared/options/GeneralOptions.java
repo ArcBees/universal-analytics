@@ -19,7 +19,6 @@ package com.arcbees.analytics.shared.options;
 public class GeneralOptions extends AnalyticsOptions {
     GeneralOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
-
     }
 
     /**
