@@ -43,7 +43,6 @@ public class AnalyticsModule extends AbstractGinModule {
         public AnalyticsModule build() {
             return new AnalyticsModule(userAccount, autoCreate);
         }
-
     }
 
     private final String userAccount;
