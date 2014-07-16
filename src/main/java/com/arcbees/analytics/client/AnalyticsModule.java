@@ -60,6 +60,5 @@ public class AnalyticsModule extends AbstractGinModule {
         bindConstant().annotatedWith(Names.named("uaAutoCreate")).to(autoCreate);
         bind(ClientAnalytics.class).asEagerSingleton();
         bind(Analytics.class).to(ClientAnalytics.class);
-
     }
 }
