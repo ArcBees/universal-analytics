@@ -1,5 +1,9 @@
 *.class
-
+target
+.project
+*.iml
+.settings
+.idea
 # Package Files #
 *.jar
 *.war
@@ -75,4 +79,5 @@ pom.xml.next
 release.properties
 
 .classpath
+gwt
 .project
