@@ -100,7 +100,6 @@ public class ClientAnalytics extends AnalyticsImpl {
         $wnd.__ua.apply(null, params);
     }-*/;
 
-
     @Override
     public AnalyticsOptions send(final String trackerName, final HitType hitType) {
         return new AnalyticsOptions(new JSONOptionsCallback() {
@@ -111,7 +110,6 @@ public class ClientAnalytics extends AnalyticsImpl {
                         new JSONString(hitType.getFieldName()), options);
             }
         });
-
     }
 
     @Override

@@ -50,7 +50,6 @@
                     <strict>true</strict>
                     <modules>
                         <module>com.arcbees.analytics.Analytics</module>
-
                     </modules>
                 </configuration>
                 <executions>
@@ -62,8 +61,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-
     </build>
 
     <dependencies>
@@ -103,13 +100,11 @@
             <artifactId>guice-servlet</artifactId>
             <version>${guice.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-assistedinject</artifactId>
             <version>${guice.version}</version>
         </dependency>
-
-
-
     </dependencies>
 </project>

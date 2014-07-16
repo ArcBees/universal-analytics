@@ -19,7 +19,6 @@ package com.arcbees.analytics.shared.options;
 public class TrafficsourcesOptions extends AnalyticsOptions {
     TrafficsourcesOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
-
     }
 
     /**

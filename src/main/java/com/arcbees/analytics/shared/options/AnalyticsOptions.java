@@ -18,10 +18,6 @@ package com.arcbees.analytics.shared.options;
 
 import com.arcbees.analytics.shared.HitCallback;
 
-/**
- * @author Richard
- *
- */
 public class AnalyticsOptions {
     private final OptionsCallback<?> optionsCallback;
 

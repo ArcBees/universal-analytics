@@ -20,13 +20,13 @@ import com.arcbees.analytics.shared.HitCallback;
 
 public abstract class OptionsCallback<T> {
     public abstract void addHitCallback(HitCallback hitCallback);
-    void doCallback() {
-        onCallback(getOptions());
-    }
     public abstract T getOptions();
     public abstract void onCallback(T options);
     public abstract void putBoolean(String fieldName, boolean value);
     public abstract void putNumber(String fieldName, double value);
-
     public abstract void putText(String fieldName, String value);
+    
+    void doCallback() {
+        onCallback(getOptions());
+    }
 }

@@ -19,7 +19,6 @@ package com.arcbees.analytics.shared.options;
 public class ApptrackingOptions extends AnalyticsOptions {
     ApptrackingOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
-
     }
 
     /**

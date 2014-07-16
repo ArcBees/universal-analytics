@@ -42,6 +42,5 @@ public class GuaranteedHitCallback implements HitCallback {
             hasRun = true;
             callback.onCallback();
         }
-
     }
 }
