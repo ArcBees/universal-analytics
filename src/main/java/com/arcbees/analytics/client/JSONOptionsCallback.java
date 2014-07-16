@@ -49,18 +49,15 @@ public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
     @Override
     public void putBoolean(final String fieldName, final boolean value) {
         jsonObject.put(fieldName, JSONBoolean.getInstance(value));
-
     }
 
     @Override
     public void putNumber(final String fieldName, final double value) {
         jsonObject.put(fieldName, new JSONNumber(value));
-
     }
 
     @Override
     public void putText(final String fieldName, final String value) {
         jsonObject.put(fieldName, new JSONString(value));
-
     }
 }
