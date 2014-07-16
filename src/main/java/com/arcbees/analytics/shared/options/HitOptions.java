@@ -16,8 +16,7 @@
 package com.arcbees.analytics.shared.options;
 
 public class HitOptions extends AnalyticsOptions {
-
-    HitOptions(OptionsCallback<?> optionsCallback) {
+    HitOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
@@ -28,7 +27,7 @@ public class HitOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>pageview</code>
     **/
-    public HitOptions HitType(String HitType) {
+    public HitOptions HitType(final String HitType) {
         putText("hitType", HitType);
         return this;
     }
@@ -40,9 +39,8 @@ public class HitOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>true</code>
     **/
-    public HitOptions NonInteractionHit(boolean NonInteractionHit) {
+    public HitOptions NonInteractionHit(final boolean NonInteractionHit) {
         putBoolean("nonInteraction", NonInteractionHit);
         return this;
     }
-
 }

@@ -35,7 +35,6 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class ClientAnalytics extends AnalyticsImpl {
-
     private final Map<String, Double> timingEvents = new HashMap<>();
 
     @Inject
@@ -130,6 +129,4 @@ public class ClientAnalytics extends AnalyticsImpl {
         timingEvents.put(timingCategory + ":" + timingVariableName, Duration.currentTimeMillis());
 
     }
-
-
 }

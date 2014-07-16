@@ -23,7 +23,6 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 
 public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
-
     private JSONObject jsonObject;
 
     public JSONOptionsCallback() {
@@ -63,5 +62,4 @@ public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
         jsonObject.put(fieldName, new JSONString(value));
 
     }
-
 }

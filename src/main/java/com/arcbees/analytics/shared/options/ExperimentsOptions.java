@@ -16,8 +16,7 @@
 package com.arcbees.analytics.shared.options;
 
 public class ExperimentsOptions extends AnalyticsOptions {
-
-    ExperimentsOptions(OptionsCallback<?> optionsCallback) {
+    ExperimentsOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
@@ -28,7 +27,7 @@ public class ExperimentsOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>Qp0gahJ3RAO3DJ18b0XoUQ</code>
     **/
-    public ExperimentsOptions ExperimentId(String ExperimentId) {
+    public ExperimentsOptions ExperimentId(final String ExperimentId) {
         putText("expId", ExperimentId);
         return this;
     }
@@ -40,9 +39,8 @@ public class ExperimentsOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>1</code>
     **/
-    public ExperimentsOptions ExperimentVariant(String ExperimentVariant) {
+    public ExperimentsOptions ExperimentVariant(final String ExperimentVariant) {
         putText("expVar", ExperimentVariant);
         return this;
     }
-
 }

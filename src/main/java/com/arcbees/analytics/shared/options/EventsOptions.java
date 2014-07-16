@@ -16,7 +16,6 @@
 package com.arcbees.analytics.shared.options;
 
 public class EventsOptions extends AnalyticsOptions {
-
     EventsOptions(final OptionsCallback<?> optionsCallback, final String EventCategory, final String EventAction) {
         super(optionsCallback);
         putText("eventCategory", EventCategory);
@@ -46,5 +45,4 @@ public class EventsOptions extends AnalyticsOptions {
         putNumber("eventValue", EventValue);
         return this;
     }
-
 }

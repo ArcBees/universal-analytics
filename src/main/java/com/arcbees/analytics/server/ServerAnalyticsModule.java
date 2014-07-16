@@ -23,7 +23,6 @@ import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.ServletModule;
 
 public class ServerAnalyticsModule extends ServletModule {
-
     private final String userAccount;
 
     public ServerAnalyticsModule(final String userAccount) {
@@ -37,5 +36,4 @@ public class ServerAnalyticsModule extends ServletModule {
         bind(Analytics.class).to(ServerAnalytics.class).in(Singleton.class);
         filter("/*").through(ServerOptionsCallbackProvider.class);
     }
-
 }

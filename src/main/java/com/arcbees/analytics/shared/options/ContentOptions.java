@@ -16,21 +16,8 @@
 package com.arcbees.analytics.shared.options;
 
 public class ContentOptions extends AnalyticsOptions {
-
-    ContentOptions(OptionsCallback<?> optionsCallback) {
+    ContentOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
-    }
-
-    /**
-    * Optional.
-    * </p>
-    * <p>Specifies the full URL (excluding anchor) of the page. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>http://foo.com/home?a=b</code>
-    **/
-    public ContentOptions DocumentLocationUrl(String DocumentLocationUrl) {
-        putText("location", DocumentLocationUrl);
-        return this;
     }
 
     /**
@@ -40,8 +27,20 @@ public class ContentOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>foo.com</code>
     **/
-    public ContentOptions DocumentHostName(String DocumentHostName) {
+    public ContentOptions DocumentHostName(final String DocumentHostName) {
         putText("hostname", DocumentHostName);
+        return this;
+    }
+
+    /**
+    * Optional.
+    * </p>
+    * <p>Specifies the full URL (excluding anchor) of the page. This field is initialized by the create command.</p>
+    * Default Value: None<br>
+    * Example Value: <code>http://foo.com/home?a=b</code>
+    **/
+    public ContentOptions DocumentLocationUrl(final String DocumentLocationUrl) {
+        putText("location", DocumentLocationUrl);
         return this;
     }
 
@@ -52,7 +51,7 @@ public class ContentOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>/foo</code>
     **/
-    public ContentOptions DocumentPath(String DocumentPath) {
+    public ContentOptions DocumentPath(final String DocumentPath) {
         putText("page", DocumentPath);
         return this;
     }
@@ -64,20 +63,8 @@ public class ContentOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>Settings</code>
     **/
-    public ContentOptions DocumentTitle(String DocumentTitle) {
+    public ContentOptions DocumentTitle(final String DocumentTitle) {
         putText("title", DocumentTitle);
-        return this;
-    }
-
-    /**
-    * Optional.
-    * </p>
-    * <p>If not specified, this will default to the unique URL of the page by either using the &amp;dl parameter as-is or assembling it from &amp;dh and &amp;dp. App tracking makes use of this for the &#39;Screen Name&#39; of the screenview hit.</p>
-    * Default Value: None<br>
-    * Example Value: <code>High Scores</code>
-    **/
-    public ContentOptions ScreenName(String ScreenName) {
-        putText("screenName", ScreenName);
         return this;
     }
 
@@ -88,9 +75,20 @@ public class ContentOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>nav_bar</code>
     **/
-    public ContentOptions LinkId(String LinkId) {
+    public ContentOptions LinkId(final String LinkId) {
         putText("linkid", LinkId);
         return this;
     }
 
+    /**
+    * Optional.
+    * </p>
+    * <p>If not specified, this will default to the unique URL of the page by either using the &amp;dl parameter as-is or assembling it from &amp;dh and &amp;dp. App tracking makes use of this for the &#39;Screen Name&#39; of the screenview hit.</p>
+    * Default Value: None<br>
+    * Example Value: <code>High Scores</code>
+    **/
+    public ContentOptions ScreenName(final String ScreenName) {
+        putText("screenName", ScreenName);
+        return this;
+    }
 }

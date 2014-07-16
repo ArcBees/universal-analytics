@@ -16,8 +16,7 @@
 package com.arcbees.analytics.shared.options;
 
 public class GeneralOptions extends AnalyticsOptions {
-
-    GeneralOptions(OptionsCallback<?> optionsCallback) {
+    GeneralOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
@@ -28,7 +27,7 @@ public class GeneralOptions extends AnalyticsOptions {
     * Default Value: None<br>
     * Example Value: <code>true</code>
     **/
-    public GeneralOptions AnonymizeIp(boolean AnonymizeIp) {
+    public GeneralOptions AnonymizeIp(final boolean AnonymizeIp) {
         putBoolean("anonymizeIp", AnonymizeIp);
         return this;
     }
@@ -40,9 +39,8 @@ public class GeneralOptions extends AnalyticsOptions {
     * Default Value: false<br>
     * Example Value: <code>true</code>
     **/
-    public GeneralOptions ForceSsl(boolean ForceSsl) {
+    public GeneralOptions ForceSsl(final boolean ForceSsl) {
         putBoolean("forceSSL", ForceSsl);
         return this;
     }
-
 }

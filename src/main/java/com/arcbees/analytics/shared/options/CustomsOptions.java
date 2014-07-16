@@ -16,7 +16,6 @@
 package com.arcbees.analytics.shared.options;
 
 public class CustomsOptions extends AnalyticsOptions {
-
     CustomsOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
@@ -44,5 +43,4 @@ public class CustomsOptions extends AnalyticsOptions {
         putNumber("metric", CustomMetric);
         return this;
     }
-
 }

@@ -35,23 +35,18 @@ import com.google.inject.name.Named;
 
 @Singleton
 public class ServerAnalytics extends AnalyticsImpl {
+    private final static Logger logger = Logger.getLogger(ServerAnalytics.class.getName());
 
     private final Provider<ServerOptionsCallback> serverOptionsCallbackProvider;
-
     private final Map<String, Long> timingEvents = new HashMap<>();
-
     private final Map<String, String> trackerNames = new HashMap<>();
-
-    private final static Logger logger = Logger.getLogger(ServerAnalytics.class.getName());
 
     @Inject
     ServerAnalytics(final Provider<ServerOptionsCallback> serverOptionsCallbackProvider,
             @Named("gaAccount") final String userAccount) {
         super(userAccount);
         this.serverOptionsCallbackProvider = serverOptionsCallbackProvider;
-
     }
-
 
     @Override
     public CreateOptions create(final String userAccount) {
@@ -68,9 +63,7 @@ public class ServerAnalytics extends AnalyticsImpl {
     @Override
     public void enablePlugin(final AnalyticsPlugin plugin) {
         // Noop this has no affect on the server
-
     }
-
 
     @Override
     public TimingOptions endTimingEvent(final String trackerName, final String timingCategory,
@@ -89,6 +82,7 @@ public class ServerAnalytics extends AnalyticsImpl {
             }
         }).timingOptions(timingCategory, timingVariableName, 0);
     }
+
     @Override
     public AnalyticsOptions send(final String trackerName, final HitType hitType) {
         final ServerOptionsCallback options = serverOptionsCallbackProvider.get();
@@ -115,5 +109,4 @@ public class ServerAnalytics extends AnalyticsImpl {
         timingEvents.put(timingCategory + ":" + timingVariableName, System.currentTimeMillis());
 
     }
-
 }

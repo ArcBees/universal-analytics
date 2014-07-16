@@ -20,9 +20,7 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 
 public class GuaranteedHitCallback implements HitCallback {
-
     private final HitCallback callback;
-
     private boolean hasRun;
 
     public GuaranteedHitCallback(final HitCallback callback) {
@@ -37,7 +35,6 @@ public class GuaranteedHitCallback implements HitCallback {
         }, 350);
     }
 
-
     @Override
     public void onCallback() {
         if (!hasRun) {
@@ -46,5 +43,4 @@ public class GuaranteedHitCallback implements HitCallback {
         }
 
     }
-
 }

@@ -36,7 +36,6 @@ import com.google.inject.name.Named;
 
 @Singleton
 public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOptionsCallback> {
-
     private final static int ANALYTICS_VERSION = 1;
     private final String userAccount;
     private String cookieValue;
@@ -49,8 +48,7 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
 
     @Override
     public void destroy() {
-        // TODO Auto-generated method stub
-
+        //nothing to destoy
     }
 
     @Override
@@ -61,7 +59,6 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
         } else {
             chain.doFilter(request, response);
         }
-
     }
 
     private void doHttpFilter(final HttpServletRequest request, final HttpServletResponse response,
@@ -91,7 +88,6 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
         }
 
         chain.doFilter(request, response);
-
     }
 
     @Override
@@ -106,8 +102,6 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
 
     @Override
     public void init(final FilterConfig config) throws ServletException {
-        // TODO Auto-generated method stub
-
+        //nothing to init
     }
-
 }

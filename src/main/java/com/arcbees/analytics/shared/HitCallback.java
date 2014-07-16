@@ -17,6 +17,5 @@ package com.arcbees.analytics.shared;
 
 
 public interface HitCallback {
-
     void onCallback();
 }

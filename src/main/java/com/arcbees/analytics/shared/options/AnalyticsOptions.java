@@ -18,7 +18,6 @@ package com.arcbees.analytics.shared.options;
 import com.arcbees.analytics.shared.HitCallback;
 
 public class AnalyticsOptions {
-
     private final OptionsCallback<?> optionsCallback;
 
     public AnalyticsOptions(final OptionsCallback<?> optionsCallback) {
@@ -104,5 +103,4 @@ public class AnalyticsOptions {
     public TrafficsourcesOptions trafficsourcesOptions() {
         return new TrafficsourcesOptions(getOptionsCallback());
     };
-
 }

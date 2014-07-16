@@ -24,7 +24,6 @@ import com.arcbees.analytics.shared.options.SocialOptions;
 import com.arcbees.analytics.shared.options.TimingOptions;
 
 public interface Analytics {
-
     /**
      * Create a new tracker using the user id bound to GaAccount.<br>
      * Example: create().go();<br>
@@ -173,5 +172,4 @@ public interface Analytics {
      * @param timingVariableName
      */
     void startTimingEvent(String timingCategory, String timingVariableName);
-
 }

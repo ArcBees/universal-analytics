@@ -29,11 +29,6 @@ import com.arcbees.analytics.shared.HitCallback;
 import com.arcbees.analytics.shared.options.OptionsCallback;
 
 public class ServerOptionsCallback extends OptionsCallback<String> {
-
-    private final static Logger logger = Logger.getLogger(ServerOptionsCallback.class.getName());
-
-    private static final String POST_URL = "http://www.google-analytics.com/collect";
-
     private static final Map<String, String> protocolMap = new HashMap<>();
 
     static {
@@ -86,6 +81,9 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
 
     }
 
+    private final static Logger logger = Logger.getLogger(ServerOptionsCallback.class.getName());
+    private static final String POST_URL = "http://www.google-analytics.com/collect";
+
     private Map<String, String> options = new HashMap<>();
 
     @Override
@@ -120,24 +118,20 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         } catch (final IOException e) {
             logger.severe(e.getMessage());
         }
-
     }
 
     @Override
     public void putBoolean(final String fieldName, final boolean value) {
         putText(fieldName, value ? "1" :"0");
-
     }
 
     @Override
     public void putNumber(final String fieldName, final double value) {
         putText(fieldName, value + "");
-
     }
 
     @Override
     public void putText(final String fieldName, final String value) {
         options.put(getProtocolFieldName(fieldName), value);
     }
-
 }
