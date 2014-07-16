@@ -110,6 +110,6 @@ public class ServerAnalytics extends AnalyticsImpl {
 
     @Override
     public void startTimingEvent(final String timingCategory, final String timingVariableName) {
-        timingEvents.put(timingCategory + ":" + timingVariableName, System.currentTimeMillis());
+        timingEvents.put(getTimingKey(timingCategory, timingVariableName), System.currentTimeMillis());
     }
 }
