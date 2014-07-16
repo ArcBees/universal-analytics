@@ -18,87 +18,88 @@ package com.arcbees.analytics.shared.options;
 public class SystemOptions extends AnalyticsOptions {
     SystemOptions(final OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
+
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies the character set used to encode the page / document. This field is initialized by the create command.</p>
-    * Default Value: UTF-8<br>
-    * Example Value: <code>UTF-8</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies the character set used to encode the page / document. This field is initialized by the create command.</p>
+     * Default Value: UTF-8<br>
+     * Example Value: <code>UTF-8</code>
+     **/
     public SystemOptions DocumentEncoding(final String DocumentEncoding) {
         putText("encoding", DocumentEncoding);
         return this;
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies the flash version. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>10 1 r103</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies the flash version. This field is initialized by the create command.</p>
+     * Default Value: None<br>
+     * Example Value: <code>10 1 r103</code>
+     **/
     public SystemOptions FlashVersion(final String FlashVersion) {
         putText("flashVersion", FlashVersion);
         return this;
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies whether Java was enabled. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>true</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies whether Java was enabled. This field is initialized by the create command.</p>
+     * Default Value: None<br>
+     * Example Value: <code>true</code>
+     **/
     public SystemOptions JavaEnabled(final boolean JavaEnabled) {
         putBoolean("javaEnabled", JavaEnabled);
         return this;
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies the screen color depth. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>24-bits</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies the screen color depth. This field is initialized by the create command.</p>
+     * Default Value: None<br>
+     * Example Value: <code>24-bits</code>
+     **/
     public SystemOptions ScreenColors(final String ScreenColors) {
         putText("screenColors", ScreenColors);
         return this;
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies the screen resolution. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>800x600</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies the screen resolution. This field is initialized by the create command.</p>
+     * Default Value: None<br>
+     * Example Value: <code>800x600</code>
+     **/
     public SystemOptions ScreenResolution(final String ScreenResolution) {
         putText("screenResolution", ScreenResolution);
         return this;
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies the language. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>en-us</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies the language. This field is initialized by the create command.</p>
+     * Default Value: None<br>
+     * Example Value: <code>en-us</code>
+     **/
     public SystemOptions UserLanguage(final String UserLanguage) {
         putText("language", UserLanguage);
         return this;
     }
 
     /**
-    * Optional.
-    * </p>
-    * <p>Specifies the viewable area of the browser / device. This field is initialized by the create command.</p>
-    * Default Value: None<br>
-    * Example Value: <code>123x456</code>
-    **/
+     * Optional.
+     * </p>
+     * <p>Specifies the viewable area of the browser / device. This field is initialized by the create command.</p>
+     * Default Value: None<br>
+     * Example Value: <code>123x456</code>
+     **/
     public SystemOptions ViewportSize(final String ViewportSize) {
         putText("viewportSize", ViewportSize);
         return this;

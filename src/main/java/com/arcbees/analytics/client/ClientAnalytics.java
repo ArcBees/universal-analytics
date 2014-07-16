@@ -41,6 +41,7 @@ public class ClientAnalytics extends AnalyticsImpl {
     ClientAnalytics(@Named("gaAccount") final String userAccount,
             @Named("uaAutoCreate") final boolean autoCreate) {
         super(userAccount);
+
         init();
         if (autoCreate) {
             create().go();

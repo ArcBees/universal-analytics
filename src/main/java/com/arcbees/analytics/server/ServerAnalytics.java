@@ -45,6 +45,7 @@ public class ServerAnalytics extends AnalyticsImpl {
     ServerAnalytics(final Provider<ServerOptionsCallback> serverOptionsCallbackProvider,
             @Named("gaAccount") final String userAccount) {
         super(userAccount);
+
         this.serverOptionsCallbackProvider = serverOptionsCallbackProvider;
     }
 
@@ -73,6 +74,7 @@ public class ServerAnalytics extends AnalyticsImpl {
             return sendTiming(trackerName, timingCategory, timingVariableName,
                     (int) (System.currentTimeMillis() - timingEvents.remove(key)));
         }
+
         logger.severe("Timing Event Ended before it was started: " + key);
         return new AnalyticsOptions(new TrackerNameOptionsCallback() {
 
@@ -90,6 +92,7 @@ public class ServerAnalytics extends AnalyticsImpl {
             options.putText("tid", trackerNames.get(trackerName));
         }
         options.putText("hitType", hitType.getFieldName());
+
         return new AnalyticsOptions(options);
     }
 
@@ -107,6 +110,5 @@ public class ServerAnalytics extends AnalyticsImpl {
     @Override
     public void startTimingEvent(final String timingCategory, final String timingVariableName) {
         timingEvents.put(timingCategory + ":" + timingVariableName, System.currentTimeMillis());
-
     }
 }

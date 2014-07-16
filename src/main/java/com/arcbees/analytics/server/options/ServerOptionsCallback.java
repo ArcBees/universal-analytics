@@ -16,7 +16,6 @@
 package com.arcbees.analytics.server.options;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,8 +112,6 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         try {
             final URL url = new URL(POST_URL + options);
             IOUtils.toString(url);
-        } catch (final MalformedURLException e) {
-            logger.severe(e.getMessage());
         } catch (final IOException e) {
             logger.severe(e.getMessage());
         }

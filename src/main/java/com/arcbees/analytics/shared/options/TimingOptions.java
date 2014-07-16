@@ -19,6 +19,7 @@ public class TimingOptions extends AnalyticsOptions {
     TimingOptions(final OptionsCallback<?> optionsCallback, final String UserTimingCategory,
             final String UserTimingVariableName, final int UserTimingTime) {
         super(optionsCallback);
+
         putText("timingCategory", UserTimingCategory);
         putText("timingVar", UserTimingVariableName);
         putNumber("timingValue", UserTimingTime);

@@ -36,7 +36,7 @@ import com.google.inject.name.Named;
 
 @Singleton
 public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOptionsCallback> {
-    private final static int ANALYTICS_VERSION = 1;
+    private static final int ANALYTICS_VERSION = 1;
     private final String userAccount;
     private String cookieValue;
     private final Random random = new Random();
@@ -75,8 +75,8 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
                 }
             }
         }
-        final boolean createCookie = cookieValue == null;
-        if (createCookie) {
+
+        if (cookieValue == null) {
             final int hostLevel = request.getServerName().split("\\.").length;
             cookieValue = "GA" + ANALYTICS_VERSION + "." + hostLevel + "." + random.nextInt(Integer.MAX_VALUE) + "."
                     + (System.currentTimeMillis() / 1000);

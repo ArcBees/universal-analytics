@@ -15,7 +15,11 @@
  */
 package com.arcbees.analytics.shared;
 
-
+/**
+ * Pass a hitcallback to the go() method to get a response once the analytics call is made.
+ * On the server this will return immediately.
+ * On the client this is guaranteed to return within 350ms whether or not the call is successful or complete.
+ */
 public interface HitCallback {
     void onCallback();
 }

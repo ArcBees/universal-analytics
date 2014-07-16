@@ -18,15 +18,14 @@ package com.arcbees.analytics.shared.options;
 import com.arcbees.analytics.shared.HitCallback;
 
 public abstract class OptionsCallback<T> {
-    abstract public void addHitCallback(HitCallback hitCallback);
-
+    public abstract void addHitCallback(HitCallback hitCallback);
+    public abstract T getOptions();
+    public abstract void onCallback(T options);
+    public abstract void putBoolean(String fieldName, boolean value);
+    public abstract void putNumber(String fieldName, double value);
+    public abstract void putText(String fieldName, String value);
+    
     void doCallback() {
         onCallback(getOptions());
     }
-
-    public abstract T getOptions();
-    public abstract void onCallback(T options);
-    abstract public void putBoolean(String fieldName, boolean value);
-    abstract public void putNumber(String fieldName, double value);
-    abstract public void putText(String fieldName, String value);
 }

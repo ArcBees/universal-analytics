@@ -42,6 +42,7 @@ public interface Analytics {
      * Enable an analytics plugin.  This must be called immediately after create();
      * If you are using plugins you should probably turn off autoCreate when building the
      * UniversalAnalyticsModule and create your tracker manually in your bootstrapper or EntryPoint.
+     * 
      * @param plugin
      */
     void enablePlugin(AnalyticsPlugin plugin);
@@ -51,6 +52,7 @@ public interface Analytics {
      * Call endTimingEvent with the same timingCategory and timingVariableName as you used in startTimingEvent()
      * to fire the event.
      * Calling this method before calling startTimingEvent will silently fail.
+     * 
      * @param timingCategory
      * @param timingVariableName
      */
@@ -61,6 +63,7 @@ public interface Analytics {
      * Call endTimingEvent with the same timingCategory and timingVariableName as you used in startTimingEvent()
      * to fire the event.
      * Calling this method before calling startTimingEvent will silently fail.
+     * 
      * @param timingCategory
      * @param timingVariableName
      */
@@ -68,6 +71,7 @@ public interface Analytics {
 
     /**
      * send a specific HitType.
+     * 
      * @param hitType
      * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#hit
      * Example: send(HitType.PAGE_VIEW).go();
@@ -76,6 +80,7 @@ public interface Analytics {
 
     /**
      * send a specific HitType to a specific tracker.
+     * 
      * @param trackerName the name of the tracker
      * @param hitType
      * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#hit
@@ -85,6 +90,7 @@ public interface Analytics {
 
     /**
      * send an event.
+     * 
      * @param category  the event category
      * @param action the event action<br>
      * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#events
@@ -94,6 +100,7 @@ public interface Analytics {
 
     /**
      * send an event to a specific tracker.
+     * 
      * @param trackerName the name of the tracker
      * @param category  the event category
      * @param action the event action<br>
@@ -111,6 +118,7 @@ public interface Analytics {
 
     /**
      * send a pageview to a specific tracker.
+     * 
      * @param trackerName the name of the tracker
      * Example: sendPageView();<br>
      * sendPageView().documentPath("/foo").go(); //send a pageview for /foo
@@ -119,6 +127,7 @@ public interface Analytics {
 
     /**
      * send a social event.
+     * 
      * @param socialNetwork the social network
      * @param socialAction the action taken
      * @param socialTarget the target of the action
@@ -128,6 +137,7 @@ public interface Analytics {
 
     /**
      * send a social event to a specific tracker.
+     * 
      * @param trackerName the name of the tracker
      * @param socialNetwork the social network
      * @param socialAction the action taken
@@ -139,6 +149,7 @@ public interface Analytics {
     /**
      * send user timing information to the default tracker.
      * this is used to analyze page speed.
+     * 
      * @param timingCategory - a category used to group related timing data
      * @param timingVar - a string to identify the variable being recorded
      * @param timingValue - the number of milliseconds of elapsed time.
@@ -149,6 +160,7 @@ public interface Analytics {
     /**
      * send user timing information to a specific tracker.
      * this is used to analyze page speed.
+     * 
      * @param trackerName - the name of the tracker
      * @param timingCategory - a category used to group related timing data
      * @param timingVar - a string to identify the variable being recorded
@@ -168,6 +180,7 @@ public interface Analytics {
      * A handy shortcut for setting up an event you want to time.
      * On its own this method does nothing.
      * Call endTimingEvent with the same timingCategory and timingVariableName to fire the event.
+     * 
      * @param timingCategory
      * @param timingVariableName
      */
