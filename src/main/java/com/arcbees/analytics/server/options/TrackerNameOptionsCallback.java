@@ -13,6 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.arcbees.analytics.server.options;
 
 import java.util.HashMap;
