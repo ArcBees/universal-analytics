@@ -53,7 +53,7 @@ public class ContentOptions extends AnalyticsOptions {
      * Example Value: <code>/foo</code>
      **/
     public ContentOptions documentPath(final String documentPath) {
-        putText("page", documentPath);
+        putText("page", documentPath.startsWith("/") ? documentPath : "/" + documentPath);
         return this;
     }
 
