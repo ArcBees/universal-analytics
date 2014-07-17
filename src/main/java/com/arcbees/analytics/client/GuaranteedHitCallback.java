@@ -20,11 +20,11 @@ import com.arcbees.analytics.shared.HitCallback;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 
-public class GuaranteedHitCallback implements HitCallback {
+class GuaranteedHitCallback implements HitCallback {
     private final HitCallback callback;
     private boolean hasRun;
 
-    public GuaranteedHitCallback(final HitCallback callback) {
+    GuaranteedHitCallback(final HitCallback callback) {
         this.callback = callback;
         Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
 
