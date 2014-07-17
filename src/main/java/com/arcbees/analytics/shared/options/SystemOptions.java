@@ -28,8 +28,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: UTF-8<br>
      * Example Value: <code>UTF-8</code>
      **/
-    public SystemOptions DocumentEncoding(final String DocumentEncoding) {
-        putText("encoding", DocumentEncoding);
+    public SystemOptions documentEncoding(final String documentEncoding) {
+        putText("encoding", documentEncoding);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>10 1 r103</code>
      **/
-    public SystemOptions FlashVersion(final String FlashVersion) {
-        putText("flashVersion", FlashVersion);
+    public SystemOptions flashVersion(final String flashVersion) {
+        putText("flashVersion", flashVersion);
         return this;
     }
 
@@ -52,8 +52,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
-    public SystemOptions JavaEnabled(final boolean JavaEnabled) {
-        putBoolean("javaEnabled", JavaEnabled);
+    public SystemOptions javaEnabled(final boolean javaEnabled) {
+        putBoolean("javaEnabled", javaEnabled);
         return this;
     }
 
@@ -64,8 +64,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>24-bits</code>
      **/
-    public SystemOptions ScreenColors(final String ScreenColors) {
-        putText("screenColors", ScreenColors);
+    public SystemOptions screenColors(final String screenColors) {
+        putText("screenColors", screenColors);
         return this;
     }
 
@@ -76,8 +76,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>800x600</code>
      **/
-    public SystemOptions ScreenResolution(final String ScreenResolution) {
-        putText("screenResolution", ScreenResolution);
+    public SystemOptions screenResolution(final String screenResolution) {
+        putText("screenResolution", screenResolution);
         return this;
     }
 
@@ -88,8 +88,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>en-us</code>
      **/
-    public SystemOptions UserLanguage(final String UserLanguage) {
-        putText("language", UserLanguage);
+    public SystemOptions userLanguage(final String userLanguage) {
+        putText("language", userLanguage);
         return this;
     }
 
@@ -100,8 +100,8 @@ public class SystemOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>123x456</code>
      **/
-    public SystemOptions ViewportSize(final String ViewportSize) {
-        putText("viewportSize", ViewportSize);
+    public SystemOptions viewportSize(final String viewportSize) {
+        putText("viewportSize", viewportSize);
         return this;
     }
 }

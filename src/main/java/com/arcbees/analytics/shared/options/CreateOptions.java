@@ -29,8 +29,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: true<br>
      * Example Value: <code>false</code>
      **/
-    public CreateOptions AllowAnchorParameters(final boolean AllowAnchorParameters) {
-        putBoolean("allowAnchor", AllowAnchorParameters);
+    public CreateOptions allowAnchorParameters(final boolean allowAnchorParameters) {
+        putBoolean("allowAnchor", allowAnchorParameters);
         return this;
     }
 
@@ -42,8 +42,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: false<br>
      * Example Value: <code>true</code>
      **/
-    public CreateOptions AllowLinkerParameters(final boolean AllowLinkerParameters) {
-        putBoolean("allowLinker", AllowLinkerParameters);
+    public CreateOptions allowLinkerParameters(final boolean allowLinkerParameters) {
+        putBoolean("allowLinker", allowLinkerParameters);
         return this;
     }
 
@@ -55,8 +55,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: false<br>
      * Example Value: <code>true</code>
      **/
-    public CreateOptions AlwaysSendReferrer(final boolean AlwaysSendReferrer) {
-        putBoolean("alwaysSendReferrer", AlwaysSendReferrer);
+    public CreateOptions alwaysSendReferrer(final boolean alwaysSendReferrer) {
+        putBoolean("alwaysSendReferrer", alwaysSendReferrer);
         return this;
     }
 
@@ -67,8 +67,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: Randomly Generated<br>
      * Example Value: <code>35009a79-1a05-49d7-b876-2b884d0f825b</code>
      **/
-    public CreateOptions ClientId(final String ClientId) {
-        putText("clientId", ClientId);
+    public CreateOptions clientId(final String clientId) {
+        putText("clientId", clientId);
         return this;
     }
 
@@ -80,8 +80,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: document.location.hostname (normalized)<br>
      * Example Value: <code>example.com</code>
      **/
-    public CreateOptions CookieDomain(final String CookieDomain) {
-        putText("cookieDomain", CookieDomain);
+    public CreateOptions cookieDomain(final String cookieDomain) {
+        putText("cookieDomain", cookieDomain);
         return this;
     }
 
@@ -93,8 +93,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: 63072000 (two years)<br>
      * Example Value: <code>86400</code>
      **/
-    public CreateOptions CookieExpiration(final int CookieExpiration) {
-        putNumber("cookieExpires", CookieExpiration);
+    public CreateOptions cookieExpiration(final int cookieExpiration) {
+        putNumber("cookieExpires", cookieExpiration);
         return this;
     }
 
@@ -106,8 +106,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: _ga<br>
      * Example Value: <code>gaCookie</code>
      **/
-    public CreateOptions CookieName(final String CookieName) {
-        putText("cookieName", CookieName);
+    public CreateOptions cookieName(final String cookieName) {
+        putText("cookieName", cookieName);
         return this;
     }
 
@@ -119,8 +119,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>store.example.com</code>
      **/
-    public CreateOptions LegacyCookieDomain(final String LegacyCookieDomain) {
-        putText("legacyCookieDomain", LegacyCookieDomain);
+    public CreateOptions legacyCookieDomain(final String legacyCookieDomain) {
+        putText("legacyCookieDomain", legacyCookieDomain);
         return this;
     }
 
@@ -132,8 +132,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: 100<br>
      * Example Value: <code>5</code>
      **/
-    public CreateOptions SampleRate(final float SampleRate) {
-        putNumber("sampleRate", SampleRate);
+    public CreateOptions sampleRate(final float sampleRate) {
+        putNumber("sampleRate", sampleRate);
         return this;
     }
 
@@ -145,8 +145,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: 1<br>
      * Example Value: <code>50</code>
      **/
-    public CreateOptions SiteSpeedSampleRate(final int SiteSpeedSampleRate) {
-        putNumber("siteSpeedSampleRate", SiteSpeedSampleRate);
+    public CreateOptions siteSpeedSampleRate(final int siteSpeedSampleRate) {
+        putNumber("siteSpeedSampleRate", siteSpeedSampleRate);
         return this;
     }
 
@@ -158,8 +158,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: t0<br>
      * Example Value: <code>myTracker</code>
      **/
-    public CreateOptions TrackerName(final String TrackerName) {
-        putText("name", TrackerName);
+    public CreateOptions trackerName(final String trackerName) {
+        putText("name", trackerName);
         return this;
     }
 
@@ -171,8 +171,8 @@ public class CreateOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>as8eknlll</code>
      **/
-    public CreateOptions UserId(final String UserId) {
-        putText("userId", UserId);
+    public CreateOptions userId(final String userId) {
+        putText("userId", userId);
         return this;
     }
 }

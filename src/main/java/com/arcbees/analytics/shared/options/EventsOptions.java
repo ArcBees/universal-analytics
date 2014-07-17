@@ -17,11 +17,11 @@
 package com.arcbees.analytics.shared.options;
 
 public class EventsOptions extends AnalyticsOptions {
-    EventsOptions(final OptionsCallback<?> optionsCallback, final String EventCategory, final String EventAction) {
+    EventsOptions(final OptionsCallback<?> optionsCallback, final String eventCategory, final String eventAction) {
         super(optionsCallback);
 
-        putText("eventCategory", EventCategory);
-        putText("eventAction", EventAction);
+        putText("eventCategory", eventCategory);
+        putText("eventAction", eventAction);
     }
 
     /**
@@ -31,8 +31,8 @@ public class EventsOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>Label</code>
      **/
-    public EventsOptions EventLabel(final String EventLabel) {
-        putText("eventLabel", EventLabel);
+    public EventsOptions eventLabel(final String eventLabel) {
+        putText("eventLabel", eventLabel);
         return this;
     }
 
@@ -43,8 +43,8 @@ public class EventsOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>55</code>
      **/
-    public EventsOptions EventValue(final int EventValue) {
-        putNumber("eventValue", EventValue);
+    public EventsOptions eventValue(final int eventValue) {
+        putNumber("eventValue", eventValue);
         return this;
     }
 }

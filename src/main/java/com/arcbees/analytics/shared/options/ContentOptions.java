@@ -28,8 +28,8 @@ public class ContentOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>foo.com</code>
      **/
-    public ContentOptions DocumentHostName(final String DocumentHostName) {
-        putText("hostname", DocumentHostName);
+    public ContentOptions documentHostName(final String documentHostName) {
+        putText("hostname", documentHostName);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class ContentOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>http://foo.com/home?a=b</code>
      **/
-    public ContentOptions DocumentLocationUrl(final String DocumentLocationUrl) {
-        putText("location", DocumentLocationUrl);
+    public ContentOptions documentLocationUrl(final String documentLocationUrl) {
+        putText("location", documentLocationUrl);
         return this;
     }
 
@@ -52,8 +52,8 @@ public class ContentOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>/foo</code>
      **/
-    public ContentOptions DocumentPath(final String DocumentPath) {
-        putText("page", DocumentPath);
+    public ContentOptions documentPath(final String documentPath) {
+        putText("page", documentPath);
         return this;
     }
 
@@ -64,8 +64,8 @@ public class ContentOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>Settings</code>
      **/
-    public ContentOptions DocumentTitle(final String DocumentTitle) {
-        putText("title", DocumentTitle);
+    public ContentOptions documentTitle(final String documentTitle) {
+        putText("title", documentTitle);
         return this;
     }
 
@@ -76,8 +76,8 @@ public class ContentOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>nav_bar</code>
      **/
-    public ContentOptions LinkId(final String LinkId) {
-        putText("linkid", LinkId);
+    public ContentOptions linkId(final String linkId) {
+        putText("linkid", linkId);
         return this;
     }
 
@@ -88,8 +88,8 @@ public class ContentOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>High Scores</code>
      **/
-    public ContentOptions ScreenName(final String ScreenName) {
-        putText("screenName", ScreenName);
+    public ContentOptions screenName(final String screenName) {
+        putText("screenName", screenName);
         return this;
     }
 }

@@ -28,8 +28,8 @@ public class ExceptionOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>DatabaseError</code>
      **/
-    public ExceptionOptions ExceptionDescription(final String ExceptionDescription) {
-        putText("exDescription", ExceptionDescription);
+    public ExceptionOptions exceptionDescription(final String exceptionDescription) {
+        putText("exDescription", exceptionDescription);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class ExceptionOptions extends AnalyticsOptions {
      * Default Value: 1<br>
      * Example Value: <code>true</code>
      **/
-    public ExceptionOptions IsExceptionFatal(final boolean IsExceptionFatal) {
-        putBoolean("exFatal", IsExceptionFatal);
+    public ExceptionOptions isExceptionFatal(final boolean isExceptionFatal) {
+        putBoolean("exFatal", isExceptionFatal);
         return this;
     }
 }

@@ -28,8 +28,8 @@ public class GeneralOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
-    public GeneralOptions AnonymizeIp(final boolean AnonymizeIp) {
-        putBoolean("anonymizeIp", AnonymizeIp);
+    public GeneralOptions anonymizeIp(final boolean anonymizeIp) {
+        putBoolean("anonymizeIp", anonymizeIp);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class GeneralOptions extends AnalyticsOptions {
      * Default Value: false<br>
      * Example Value: <code>true</code>
      **/
-    public GeneralOptions ForceSsl(final boolean ForceSsl) {
-        putBoolean("forceSSL", ForceSsl);
+    public GeneralOptions forceSsl(final boolean forceSsl) {
+        putBoolean("forceSSL", forceSsl);
         return this;
     }
 }

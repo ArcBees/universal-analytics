@@ -28,8 +28,8 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>com.company.app</code>
      **/
-    public ApptrackingOptions ApplicationId(final String ApplicationId) {
-        putText("appId", ApplicationId);
+    public ApptrackingOptions applicationId(final String applicationId) {
+        putText("appId", applicationId);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>com.platform.vending</code>
      **/
-    public ApptrackingOptions ApplicationInstallerId(final String ApplicationInstallerId) {
-        putText("appInstallerId", ApplicationInstallerId);
+    public ApptrackingOptions applicationInstallerId(final String applicationInstallerId) {
+        putText("appInstallerId", applicationInstallerId);
         return this;
     }
 
@@ -52,8 +52,8 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>My App</code>
      **/
-    public ApptrackingOptions ApplicationName(final String ApplicationName) {
-        putText("appName", ApplicationName);
+    public ApptrackingOptions applicationName(final String applicationName) {
+        putText("appName", applicationName);
         return this;
     }
 
@@ -64,8 +64,8 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>1.2</code>
      **/
-    public ApptrackingOptions ApplicationVersion(final String ApplicationVersion) {
-        putText("appVersion", ApplicationVersion);
+    public ApptrackingOptions applicationVersion(final String applicationVersion) {
+        putText("appVersion", applicationVersion);
         return this;
     }
 }

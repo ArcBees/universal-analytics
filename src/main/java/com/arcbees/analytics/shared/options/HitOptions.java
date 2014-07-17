@@ -28,8 +28,8 @@ public class HitOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>pageview</code>
      **/
-    public HitOptions HitType(final String HitType) {
-        putText("hitType", HitType);
+    public HitOptions hitType(final String hitType) {
+        putText("hitType", hitType);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class HitOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
-    public HitOptions NonInteractionHit(final boolean NonInteractionHit) {
-        putBoolean("nonInteraction", NonInteractionHit);
+    public HitOptions nonInteractionHit(final boolean nonInteractionHit) {
+        putBoolean("nonInteraction", nonInteractionHit);
         return this;
     }
 }

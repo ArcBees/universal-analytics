@@ -28,8 +28,8 @@ public class ExperimentsOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>Qp0gahJ3RAO3DJ18b0XoUQ</code>
      **/
-    public ExperimentsOptions ExperimentId(final String ExperimentId) {
-        putText("expId", ExperimentId);
+    public ExperimentsOptions experimentId(final String experimentId) {
+        putText("expId", experimentId);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class ExperimentsOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>1</code>
      **/
-    public ExperimentsOptions ExperimentVariant(final String ExperimentVariant) {
-        putText("expVar", ExperimentVariant);
+    public ExperimentsOptions experimentVariant(final String experimentVariant) {
+        putText("expVar", experimentVariant);
         return this;
     }
 }

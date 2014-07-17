@@ -28,8 +28,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>content</code>
      **/
-    public TrafficsourcesOptions CampaignContent(final String CampaignContent) {
-        putText("campaignContent", CampaignContent);
+    public TrafficsourcesOptions campaignContent(final String campaignContent) {
+        putText("campaignContent", campaignContent);
         return this;
     }
 
@@ -40,8 +40,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>ID</code>
      **/
-    public TrafficsourcesOptions CampaignId(final String CampaignId) {
-        putText("campaignId", CampaignId);
+    public TrafficsourcesOptions campaignId(final String campaignId) {
+        putText("campaignId", campaignId);
         return this;
     }
 
@@ -52,8 +52,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>Blue Shoes</code>
      **/
-    public TrafficsourcesOptions CampaignKeyword(final String CampaignKeyword) {
-        putText("campaignKeyword", CampaignKeyword);
+    public TrafficsourcesOptions campaignKeyword(final String campaignKeyword) {
+        putText("campaignKeyword", campaignKeyword);
         return this;
     }
 
@@ -64,8 +64,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>organic</code>
      **/
-    public TrafficsourcesOptions CampaignMedium(final String CampaignMedium) {
-        putText("campaignMedium", CampaignMedium);
+    public TrafficsourcesOptions campaignMedium(final String campaignMedium) {
+        putText("campaignMedium", campaignMedium);
         return this;
     }
 
@@ -76,8 +76,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>(direct)</code>
      **/
-    public TrafficsourcesOptions CampaignName(final String CampaignName) {
-        putText("campaignName", CampaignName);
+    public TrafficsourcesOptions campaignName(final String campaignName) {
+        putText("campaignName", campaignName);
         return this;
     }
 
@@ -88,8 +88,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>(direct)</code>
      **/
-    public TrafficsourcesOptions CampaignSource(final String CampaignSource) {
-        putText("campaignSource", CampaignSource);
+    public TrafficsourcesOptions campaignSource(final String campaignSource) {
+        putText("campaignSource", campaignSource);
         return this;
     }
 
@@ -100,8 +100,8 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: document.referrer<br>
      * Example Value: <code>http://example.com</code>
      **/
-    public TrafficsourcesOptions DocumentReferrer(final String DocumentReferrer) {
-        putText("referrer", DocumentReferrer);
+    public TrafficsourcesOptions documentReferrer(final String documentReferrer) {
+        putText("referrer", documentReferrer);
         return this;
     }
 }
