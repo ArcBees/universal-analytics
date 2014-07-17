@@ -74,8 +74,6 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         protocolMap.put("timingLabel", "utl");
         protocolMap.put("exDescription", "exd");
         protocolMap.put("exFatal", "exf");
-        protocolMap.put("dimension", "cd[1-9][0-9]*");
-        protocolMap.put("metric", "cm[1-9][0-9]*");
         protocolMap.put("expId", "xid");
         protocolMap.put("expVar", "xvar");
     }
@@ -101,10 +99,15 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     }
 
     private String getProtocolFieldName(final String fieldName) {
-        if (protocolMap.containsKey(fieldName)) {
+        if (fieldName.startsWith("metric")) {
+            return "cm" + fieldName.substring("metric".length());
+        } else if (fieldName.startsWith("dimension")) {
+            return "cd" + fieldName.substring("dimension".length());
+        } else if (protocolMap.containsKey(fieldName)) {
             return protocolMap.get(fieldName);
+        } else {
+            return fieldName;
         }
-        return fieldName;
     }
 
     @Override
