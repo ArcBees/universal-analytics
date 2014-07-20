@@ -18,6 +18,7 @@ package com.arcbees.analytics.client;
 
 import com.arcbees.analytics.shared.HitCallback;
 import com.arcbees.analytics.shared.options.OptionsCallback;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
@@ -32,11 +33,11 @@ public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
 
     @Override
     public void addHitCallback(final HitCallback callback) {
-        addHitCallback(jsonObject, new GuaranteedHitCallback(callback));
+        addHitCallback(jsonObject.getJavaScriptObject(), new GuaranteedHitCallback(callback));
     }
 
-    private native void addHitCallback(JSONObject jsonObject, HitCallback callback) /*-{
-        jsonObject.hitCallback = function() {
+    private native void addHitCallback(JavaScriptObject jsObject, HitCallback callback) /*-{
+        jsObject.hitCallback = function() {
             callback.@com.arcbees.analytics.shared.HitCallback::onCallback()();
         }
     }-*/;
