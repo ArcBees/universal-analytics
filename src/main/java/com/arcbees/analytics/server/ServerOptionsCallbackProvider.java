@@ -38,13 +38,16 @@ import com.google.inject.name.Named;
 @Singleton
 public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOptionsCallback> {
     private static final int ANALYTICS_VERSION = 1;
+    private static final String COOKIE_VALUE_KEY = "_uaCookie";
     private final String userAccount;
-    private String cookieValue;
     private final Random random = new Random();
+    private final Provider<HttpServletRequest> requestProvider;
 
     @Inject
-    ServerOptionsCallbackProvider(@Named("gaAccount") final String userAccount) {
+    ServerOptionsCallbackProvider(@Named("gaAccount") final String userAccount,
+            final Provider<HttpServletRequest> requestProvider) {
         this.userAccount = userAccount;
+        this.requestProvider = requestProvider;
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
 
     private void doHttpFilter(final HttpServletRequest request, final HttpServletResponse response,
             final FilterChain chain) throws IOException, ServletException {
-        cookieValue = null;
+        String cookieValue = null;
         final Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (final Cookie cookie : cookies) {
@@ -87,7 +90,7 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
             cookie.setMaxAge(63072000);
             response.addCookie(cookie);
         }
-
+        request.setAttribute(COOKIE_VALUE_KEY, cookieValue);
         chain.doFilter(request, response);
     }
 
@@ -96,7 +99,7 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
         final ServerOptionsCallback result = new ServerOptionsCallback();
         result.putText("v", ANALYTICS_VERSION + "");
         result.putText("tid", userAccount);
-        final String[] split = cookieValue.split("\\.");
+        final String[] split = ((String) requestProvider.get().getAttribute(COOKIE_VALUE_KEY)).split("\\.");
         result.putText("cid", split[2] + "." + split[3]);
         return result;
     }
