@@ -51,7 +51,7 @@ public class ClientAnalytics extends AnalyticsImpl {
 
     private void call(final JSONValue... params) {
         final JSONArray aryParams = new JSONArray();
-        for (final JSONValue p:params) {
+        for (final JSONValue p : params) {
             aryParams.set(aryParams.size(), p);
         }
         nativeCall(aryParams.getJavaScriptObject());
@@ -74,7 +74,8 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
-    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory, final String timingVariableName) {
+    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory, 
+            final String timingVariableName) {
         final String key = getTimingKey(timingCategory, timingVariableName);
         if (timingEvents.containsKey(key)) {
             return sendTiming(trackerName, timingCategory, timingVariableName,

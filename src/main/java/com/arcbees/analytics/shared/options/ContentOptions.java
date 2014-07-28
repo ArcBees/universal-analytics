@@ -72,7 +72,8 @@ public class ContentOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>The ID of a clicked DOM element, used to disambiguate multiple links to the same URL in In-Page Analytics reports when Enhanced Link Attribution is enabled for the property.</p>
+     * <p>The ID of a clicked DOM element, used to disambiguate multiple links to the same URL
+     * in In-Page Analytics reports when Enhanced Link Attribution is enabled for the property.</p>
      * Default Value: None<br>
      * Example Value: <code>nav_bar</code>
      **/
@@ -84,7 +85,9 @@ public class ContentOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>If not specified, this will default to the unique URL of the page by either using the &amp;dl parameter as-is or assembling it from &amp;dh and &amp;dp. App tracking makes use of this for the &#39;Screen Name&#39; of the screenview hit.</p>
+     * <p>If not specified, this will default to the unique URL of the page by either using the &amp;dl
+     * parameter as-is or assembling it from &amp;dh and &amp;dp. App tracking makes use of this for the
+     * &#39;Screen Name&#39; of the screenview hit.</p>
      * Default Value: None<br>
      * Example Value: <code>High Scores</code>
      **/

@@ -24,7 +24,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies the character set used to encode the page / document. This field is initialized by the create command.</p>
+     * <p>Specifies the character set used to encode the page / document.
+     * This field is initialized by the create command.</p>
      * Default Value: UTF-8<br>
      * Example Value: <code>UTF-8</code>
      **/
@@ -36,7 +37,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies the flash version. This field is initialized by the create command.</p>
+     * <p>Specifies the flash version.
+     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>10 1 r103</code>
      **/
@@ -48,7 +50,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies whether Java was enabled. This field is initialized by the create command.</p>
+     * <p>Specifies whether Java was enabled.
+     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
@@ -60,7 +63,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies the screen color depth. This field is initialized by the create command.</p>
+     * <p>Specifies the screen color depth.
+     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>24-bits</code>
      **/
@@ -72,7 +76,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies the screen resolution. This field is initialized by the create command.</p>
+     * <p>Specifies the screen resolution.
+     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>800x600</code>
      **/
@@ -84,7 +89,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies the language. This field is initialized by the create command.</p>
+     * <p>Specifies the language.
+     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>en-us</code>
      **/
@@ -96,7 +102,8 @@ public class SystemOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies the viewable area of the browser / device. This field is initialized by the create command.</p>
+     * <p>Specifies the viewable area of the browser / device.
+     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>123x456</code>
      **/

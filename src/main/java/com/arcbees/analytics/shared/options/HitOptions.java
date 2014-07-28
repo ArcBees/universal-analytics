@@ -24,7 +24,10 @@ public class HitOptions extends AnalyticsOptions {
     /**
      * <strong>Required for all hit types.</strong>
      * </p>
-     * <p>The type of hit. Must be one of &#39;pageview&#39;, &#39;screenview&#39;, &#39;event&#39;, &#39;transaction&#39;, &#39;item&#39;, &#39;social&#39;, &#39;exception&#39;, &#39;timing&#39;.</p>
+     * <p>The type of hit. Must be one of &#39;pageview&#39;,
+     * &#39;screenview&#39;, &#39;event&#39;, &#39;transaction&#39;,
+     * &#39;item&#39;, &#39;social&#39;, &#39;exception&#39;,
+     * &#39;timing&#39;.</p>
      * Default Value: None<br>
      * Example Value: <code>pageview</code>
      **/

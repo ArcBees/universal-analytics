@@ -96,7 +96,11 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Specifies which referral source brought traffic to a website. This value is also used to compute the traffic source. The format of this value is a URL. This field is initialized by the create command and is only set when the current hostname differs from the referrer hostname, unless the &#39;alwaysSendReferrer&#39; field is set to true.</p>
+     * <p>Specifies which referral source brought traffic to a website.
+     * This value is also used to compute the traffic source.
+     * The format of this value is a URL.
+     * This field is initialized by the create command and is only set when the current
+     * hostname differs from the referrer hostname, unless the &#39;alwaysSendReferrer&#39; field is set to true.</p>
      * Default Value: document.referrer<br>
      * Example Value: <code>http://example.com</code>
      **/

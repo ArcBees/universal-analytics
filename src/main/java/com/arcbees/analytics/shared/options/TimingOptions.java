@@ -17,8 +17,10 @@
 package com.arcbees.analytics.shared.options;
 
 public class TimingOptions extends AnalyticsOptions {
-    TimingOptions(final OptionsCallback<?> optionsCallback, final String UserTimingCategory,
-            final String userTimingVariableName, final int userTimingTime) {
+    TimingOptions(final OptionsCallback<?> optionsCallback,
+            final String UserTimingCategory,
+            final String userTimingVariableName,
+            final int userTimingTime) {
         super(optionsCallback);
 
         putText("timingCategory", UserTimingCategory);

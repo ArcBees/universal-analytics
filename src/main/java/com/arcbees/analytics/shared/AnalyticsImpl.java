@@ -70,12 +70,14 @@ public abstract class AnalyticsImpl implements Analytics {
     }
 
     @Override
-    public SocialOptions sendSocial(final String socialNetwork, final String socialAction, final String socialTarget) {
+    public SocialOptions sendSocial(final String socialNetwork, final String socialAction, 
+            final String socialTarget) {
         return sendSocial(null, socialNetwork, socialAction, socialTarget);
     }
 
     @Override
-    public SocialOptions sendSocial(final String trackerName, final String socialNetwork, final String socialAction, final String socialTarget) {
+    public SocialOptions sendSocial(final String trackerName, final String socialNetwork, 
+            final String socialAction, final String socialTarget) {
         return send(trackerName, HitType.SOCIAL).socialOptions(socialNetwork, socialAction, socialTarget);
     }
 

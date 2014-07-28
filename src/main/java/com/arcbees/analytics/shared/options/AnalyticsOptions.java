@@ -40,7 +40,8 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Allows you to set options for create calls.  The options in this category will have no effect on non create calls.
+     * Allows you to set options for create calls.
+     * The options in this category will have no effect on non create calls.
      */
     public CreateOptions createOptions() {
         return new CreateOptions(getOptionsCallback());
@@ -54,7 +55,8 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Set Options for an event call.  In general you should let the analytics class set this up for you with the sendEvent() method.
+     * Set Options for an event call.
+     * In general you should let the analytics class set this up for you with the sendEvent() method.
      */
     public EventsOptions eventsOptions(final String eventCategory, final String eventAction) {
         return new EventsOptions(getOptionsCallback(), eventCategory, eventAction);
@@ -104,7 +106,8 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Allows you to set options related to the type of hit. eg. NonInteractionHit for events not initiated by the user.
+     * Allows you to set options related to the type of hit.
+     * eg. NonInteractionHit for events not initiated by the user.
      */
     public HitOptions hitOptions() {
         return new HitOptions(getOptionsCallback());
@@ -123,9 +126,11 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Set Options for tracking a social event.  In general you should let the analytics class set this up for you with the sendSocial() method.
+     * Set Options for tracking a social event.
+     * In general you should let the analytics class set this up for you with the sendSocial() method.
      */
-    public SocialOptions socialOptions(final String socialNetwork, final String socialAction, final String socialTarget) {
+    public SocialOptions socialOptions(final String socialNetwork, final String socialAction, 
+            final String socialTarget) {
         return new SocialOptions(getOptionsCallback(), socialNetwork, socialAction, socialTarget);
     }
 
@@ -137,7 +142,8 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Set Options for tracking a timing event.  In general you should let the analytics class set this up for you with the sendTiming() method.
+     * Set Options for tracking a timing event.
+     * In general you should let the analytics class set this up for you with the sendTiming() method.
      */
     public TimingOptions timingOptions(final String timingCategory, final String timingVar, final int timingValue) {
         return new TimingOptions(getOptionsCallback(), timingCategory, timingVar, timingValue);

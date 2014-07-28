@@ -37,7 +37,7 @@ public abstract class TrackerNameOptionsCallback extends OptionsCallback<String>
 
     @Override
     public void putBoolean(final String fieldName, final boolean value) {
-        putText(fieldName, value ? "1" :"0");
+        putText(fieldName, value ? "1" : "0");
     }
 
     @Override

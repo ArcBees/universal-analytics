@@ -36,7 +36,9 @@ public class GeneralOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>By default, tracking beacons sent from https pages will be sent using https while beacons sent from http pages will be sent using http. Setting forceSSL to true will force http pages to also send all beacons using https.</p>
+     * <p>By default, tracking beacons sent from https pages will be sent using https
+     * while beacons sent from http pages will be sent using http.
+     * Setting forceSSL to true will force http pages to also send all beacons using https.</p>
      * Default Value: false<br>
      * Example Value: <code>true</code>
      **/

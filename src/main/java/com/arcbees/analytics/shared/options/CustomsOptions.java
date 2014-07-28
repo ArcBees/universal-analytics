@@ -24,7 +24,9 @@ public class CustomsOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Each custom dimension has an associated index. There is a maximum of 20 custom dimensions (200 for Premium accounts). The name suffix must be a positive integer between 1 and 200, inclusive.</p>
+     * <p>Each custom dimension has an associated index.
+     * There is a maximum of 20 custom dimensions (200 for Premium accounts).
+     * The name suffix must be a positive integer between 1 and 200, inclusive.</p>
      * Default Value: None<br>
      * Example Usage: <code>CustomDimension(14, Sports)</code>
      **/
@@ -36,7 +38,9 @@ public class CustomsOptions extends AnalyticsOptions {
     /**
      * Optional.
      * </p>
-     * <p>Each custom metric has an associated index. There is a maximum of 20 custom metrics (200 for Premium accounts). The name suffix must be a positive integer between 1 and 200, inclusive.</p>
+     * <p>Each custom metric has an associated index.
+     * There is a maximum of 20 custom metrics (200 for Premium accounts).
+     * The name suffix must be a positive integer between 1 and 200, inclusive.</p>
      * Default Value: None<br>
      * Example Usage: <code>CustomMetric(7, 47)</code>
      **/
