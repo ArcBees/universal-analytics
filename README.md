@@ -57,13 +57,13 @@ Analytics uses a version of the builder pattern where you call the type of track
 eg:
 ```
 analytics.sendPageView().go(); //track a pageview
-analytics.sendPageView().DocumentPath("/foo").go(); //track a pageview for page /foo
-analytics.sendEvent("button", "click").EventLabel("my label").go(); //send event with label
+analytics.sendPageView().documentPath("/foo").go(); //track a pageview for page /foo
+analytics.sendEvent("button", "click").eventLabel("my label").go(); //send event with label
 ```
 
 If you want to change the global settings call setGlobalSettings in the same way. 
 ```
-analytics.setGlobalSettings().AnonymizeIp(true).go(); //anonymize ips
+analytics.setGlobalSettings().anonymizeIp(true).go(); //anonymize ips
 ```
 
 ##Server Side
@@ -82,7 +82,7 @@ A filter will automatically fill out the Measurement Protocol required fields fo
 
 `setGlobalOptions()` and `enablePlugin()` have no effect on server calls.
 
-If you're using multiple trackers then you should call `create().TrackerName("My Tracker").go()` to create your tracker before making the tracker call.  All other options sent to create() on the server will be ignored.
+If you're using multiple trackers then you should call `create().trackerName("My Tracker").go()` to create your tracker before making the tracker call.  All other options sent to create() on the server will be ignored.
 
 If you're using SetCookieName() on the client then the automatic filter will not be able to keep the server and client in sync since it assumes that the cookie name is : _ga.  Raise an issue on this project if you need to set the cookie name for some reason.
 
@@ -95,7 +95,7 @@ analytics.startTimingEvent("My Category", "My Timing Variable Name");
 Then to end it call.
 
 ```
-analytics.endTimingEvent("My Category", "My Timing Variable Name").UserTimingLabel("My Label").go();
+analytics.endTimingEvent("My Category", "My Timing Variable Name").userTimingLabel("My Label").go();
 ```
 
 This will automatically create a timing event marking the difference between when the start and end calls are made.
