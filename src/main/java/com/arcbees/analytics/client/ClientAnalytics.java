@@ -28,6 +28,7 @@ import com.arcbees.analytics.shared.options.GeneralOptions;
 import com.arcbees.analytics.shared.options.TimingOptions;
 import com.google.gwt.core.client.Duration;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
@@ -58,6 +59,19 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
+    protected Throwable clipUmbrellaExceptions(final Throwable throwable) {
+        Throwable result = throwable;
+        while (true) {
+            if (result instanceof UmbrellaException) {
+                result = ((UmbrellaException) result).getCauses().iterator().next();
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Override
     public CreateOptions create(final String userAccount) {
         return new AnalyticsOptions(new JSONOptionsCallback() {
 
@@ -74,7 +88,7 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
-    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory, 
+    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory,
             final String timingVariableName) {
         final String key = getTimingKey(timingCategory, timingVariableName);
         if (timingEvents.containsKey(key)) {
@@ -112,6 +126,8 @@ public class ClientAnalytics extends AnalyticsImpl {
             }
         });
     }
+
+
 
     @Override
     public GeneralOptions setGlobalSettings() {

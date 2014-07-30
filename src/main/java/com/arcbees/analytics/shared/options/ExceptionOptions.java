@@ -37,7 +37,7 @@ public class ExceptionOptions extends AnalyticsOptions {
      * Optional.
      * </p>
      * <p>Specifies whether the exception was fatal.</p>
-     * Default Value: 1<br>
+     * Default Value: true<br>
      * Example Value: <code>true</code>
      **/
     public ExceptionOptions isExceptionFatal(final boolean isExceptionFatal) {

@@ -97,6 +97,7 @@ public class ServerAnalytics extends AnalyticsImpl {
         return new AnalyticsOptions(options);
     }
 
+
     @Override
     public GeneralOptions setGlobalSettings() {
         return new AnalyticsOptions(new TrackerNameOptionsCallback() {
