@@ -61,12 +61,8 @@ public class ClientAnalytics extends AnalyticsImpl {
     @Override
     protected Throwable clipUmbrellaExceptions(final Throwable throwable) {
         Throwable result = throwable;
-        while (true) {
-            if (result instanceof UmbrellaException) {
-                result = ((UmbrellaException) result).getCauses().iterator().next();
-            } else {
-                break;
-            }
+        while (result instanceof UmbrellaException) {
+            result = ((UmbrellaException) result).getCauses().iterator().next();
         }
         return result;
     }
