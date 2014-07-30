@@ -63,7 +63,8 @@ public class AnalyticsModule extends AbstractGinModule {
     private final boolean trackUncaughtExceptions;
 
     private AnalyticsModule(final String userAccount,
- final boolean autoCreate, final boolean trackUncaughtExceptions) {
+        final boolean autoCreate,
+        final boolean trackUncaughtExceptions) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
         this.trackUncaughtExceptions = trackUncaughtExceptions;
