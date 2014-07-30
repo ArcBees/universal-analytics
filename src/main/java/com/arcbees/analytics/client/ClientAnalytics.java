@@ -28,13 +28,13 @@ import com.arcbees.analytics.shared.options.GeneralOptions;
 import com.arcbees.analytics.shared.options.TimingOptions;
 import com.google.gwt.core.client.Duration;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.google.web.bindery.event.shared.UmbrellaException;
 
 public class ClientAnalytics extends AnalyticsImpl {
     private final Map<String, Double> timingEvents = new HashMap<>();
