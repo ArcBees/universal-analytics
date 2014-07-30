@@ -75,8 +75,8 @@ public abstract class AnalyticsImpl implements Analytics {
 
     @Override
     public ExceptionOptions sendException(final String trackerName, final Throwable e) {
-
-        return send(trackerName, HitType.EXCEPTION).exceptionOptions().exceptionDescription(getExceptionStackTraceAsString(e));
+        return send(trackerName, HitType.EXCEPTION).exceptionOptions()
+                .exceptionDescription(getExceptionStackTraceAsString(e));
     }
 
     @Override
@@ -101,8 +101,8 @@ public abstract class AnalyticsImpl implements Analytics {
     }
 
     @Override
-    public SocialOptions sendSocial(final String trackerName, final String socialNetwork, final String socialAction,
-            final String socialTarget) {
+    public SocialOptions sendSocial(final String trackerName, final String socialNetwork,
+            final String socialAction, final String socialTarget) {
         return send(trackerName, HitType.SOCIAL).socialOptions(socialNetwork, socialAction, socialTarget);
     }
 
