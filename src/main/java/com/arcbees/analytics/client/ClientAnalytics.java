@@ -123,8 +123,6 @@ public class ClientAnalytics extends AnalyticsImpl {
         });
     }
 
-
-
     @Override
     public GeneralOptions setGlobalSettings() {
         return new AnalyticsOptions(new JSONOptionsCallback() {
