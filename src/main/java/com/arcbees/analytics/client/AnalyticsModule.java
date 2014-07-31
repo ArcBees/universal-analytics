@@ -55,7 +55,6 @@ public class AnalyticsModule extends AbstractGinModule {
             this.trackUncaughtExceptions = trackUncaughtExceptions;
             return this;
         }
-
     }
 
     private final String userAccount;
