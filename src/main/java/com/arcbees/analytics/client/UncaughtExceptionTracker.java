@@ -22,7 +22,6 @@ import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.inject.Inject;
 
 public class UncaughtExceptionTracker implements UncaughtExceptionHandler {
-
     private final Analytics analytics;
 
     @Inject
@@ -35,5 +34,4 @@ public class UncaughtExceptionTracker implements UncaughtExceptionHandler {
     public void onUncaughtException(final Throwable e) {
         analytics.sendException(e).go();
     }
-
 }
