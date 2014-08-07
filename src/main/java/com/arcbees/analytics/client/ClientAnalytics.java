@@ -45,6 +45,7 @@ public class ClientAnalytics extends AnalyticsImpl {
         super(userAccount);
 
         init();
+
         if (autoCreate) {
             create().go();
         }
@@ -74,8 +75,9 @@ public class ClientAnalytics extends AnalyticsImpl {
             @Override
             public void onCallback(final JSONObject options) {
                 call(new JSONString("create"), new JSONString(userAccount), options);
+                setGlobalSettings().forceSsl(true).go();
             }
-        }).generalOptions().forceSsl(true).createOptions();
+        }).createOptions();
     }
 
     @Override
