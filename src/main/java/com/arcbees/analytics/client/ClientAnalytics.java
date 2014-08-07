@@ -45,6 +45,7 @@ public class ClientAnalytics extends AnalyticsImpl {
         super(userAccount);
 
         init();
+
         if (autoCreate) {
             create().go();
         }
@@ -74,6 +75,7 @@ public class ClientAnalytics extends AnalyticsImpl {
             @Override
             public void onCallback(final JSONObject options) {
                 call(new JSONString("create"), new JSONString(userAccount), options);
+                setGlobalSettings().forceSsl(true).go();
             }
         }).createOptions();
     }
@@ -107,7 +109,7 @@ public class ClientAnalytics extends AnalyticsImpl {
         })($wnd,$doc,'script','//www.google-analytics.com/analytics.js','__ua');
     }-*/;
 
-    private native void nativeCall(JavaScriptObject params) /*-{
+    private native void nativeCall(final JavaScriptObject params) /*-{
         $wnd.__ua.apply(null, params);
     }-*/;
 

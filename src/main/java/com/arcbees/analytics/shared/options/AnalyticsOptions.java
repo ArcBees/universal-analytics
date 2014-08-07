@@ -16,9 +16,13 @@
 
 package com.arcbees.analytics.shared.options;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.arcbees.analytics.shared.HitCallback;
 
 public class AnalyticsOptions {
+    private final static Logger logger = Logger.getLogger("Universal Analytics");
     private final OptionsCallback<?> optionsCallback;
 
     public AnalyticsOptions(final OptionsCallback<?> optionsCallback) {
@@ -106,6 +110,16 @@ public class AnalyticsOptions {
     }
 
     /**
+     * Perform the call and log it, useful for debugging
+     * or for example if you want to see a timing event in your console.
+     * @param level
+     */
+    public void goAndLog(final Level level) {
+        logger.log(level, optionsCallback.getOptions().toString());
+        go();
+    }
+
+    /**
      * Allows you to set options related to the type of hit.
      * eg. NonInteractionHit for events not initiated by the user.
      */
@@ -129,7 +143,7 @@ public class AnalyticsOptions {
      * Set Options for tracking a social event.
      * In general you should let the analytics class set this up for you with the sendSocial() method.
      */
-    public SocialOptions socialOptions(final String socialNetwork, final String socialAction, 
+    public SocialOptions socialOptions(final String socialNetwork, final String socialAction,
             final String socialTarget) {
         return new SocialOptions(getOptionsCallback(), socialNetwork, socialAction, socialTarget);
     }
