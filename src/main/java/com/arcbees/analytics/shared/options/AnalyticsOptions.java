@@ -110,8 +110,8 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Perform the call and log it, useful for debugging.
-     * Or for example if you want to see a timing event in your console.
+     * Perform the call and log it, useful for debugging
+     * or for example if you want to see a timing event in your console.
      * @param level
      */
     public void goAndLog(final Level level) {
