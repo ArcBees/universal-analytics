@@ -16,6 +16,8 @@
 
 package com.arcbees.analytics.shared;
 
+import java.util.logging.Logger;
+
 import com.arcbees.analytics.shared.options.AnalyticsOptions;
 import com.arcbees.analytics.shared.options.ContentOptions;
 import com.arcbees.analytics.shared.options.CreateOptions;
@@ -25,6 +27,7 @@ import com.arcbees.analytics.shared.options.SocialOptions;
 import com.arcbees.analytics.shared.options.TimingOptions;
 
 public abstract class AnalyticsImpl implements Analytics {
+    private final static Logger logger = Logger.getLogger(AnalyticsImpl.class.getName());
     private final String userAccount;
 
     protected AnalyticsImpl(final String userAccount) {
@@ -51,7 +54,9 @@ public abstract class AnalyticsImpl implements Analytics {
         for (final StackTraceElement ste: exceptionToTrack.getStackTrace()) {
             sb.append(ste.toString()).append("\n");
         }
-        return sb.toString();
+        final String result = sb.toString();
+        logger.severe(result);
+        return result;
     }
 
     protected String getTimingKey(final String timingCategory, final String timingVariableName) {
