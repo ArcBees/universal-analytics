@@ -34,6 +34,7 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.google.web.bindery.event.shared.UmbrellaException;
 
 public class ClientAnalytics extends AnalyticsImpl {
     private final Map<String, Double> timingEvents = new HashMap<>();
@@ -58,6 +59,15 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
+    protected Throwable clipUmbrellaExceptions(final Throwable throwable) {
+        Throwable result = throwable;
+        while (result instanceof UmbrellaException) {
+            result = ((UmbrellaException) result).getCauses().iterator().next();
+        }
+        return result;
+    }
+
+    @Override
     public CreateOptions create(final String userAccount) {
         return new AnalyticsOptions(new JSONOptionsCallback() {
 
@@ -74,7 +84,7 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
-    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory, 
+    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory,
             final String timingVariableName) {
         final String key = getTimingKey(timingCategory, timingVariableName);
         if (timingEvents.containsKey(key)) {

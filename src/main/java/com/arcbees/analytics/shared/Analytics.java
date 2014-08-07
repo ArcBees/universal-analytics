@@ -20,6 +20,7 @@ import com.arcbees.analytics.shared.options.AnalyticsOptions;
 import com.arcbees.analytics.shared.options.ContentOptions;
 import com.arcbees.analytics.shared.options.CreateOptions;
 import com.arcbees.analytics.shared.options.EventsOptions;
+import com.arcbees.analytics.shared.options.ExceptionOptions;
 import com.arcbees.analytics.shared.options.GeneralOptions;
 import com.arcbees.analytics.shared.options.SocialOptions;
 import com.arcbees.analytics.shared.options.TimingOptions;
@@ -109,6 +110,25 @@ public interface Analytics {
      * Example: sendEvent("button", "click").go();
      */
     EventsOptions sendEvent(String trackerName, String category, String action);
+
+    /**
+     * Track an exception to a specific tracker.
+     * By default the description
+     * will be filled out with the exception's stack trace.
+     * @param trackerName
+     * @param e - the exception to track
+     * @return
+     */
+    ExceptionOptions sendException(String trackerName, Throwable e);
+
+    /**
+     * Track an exception.
+     * By default the description
+     * will be filled out with the exception's stack trace.
+     * @param e - the exception to track
+     * @return
+     */
+    ExceptionOptions sendException(Throwable e);
 
     /**
      * send a pageview to a specific tracker.
