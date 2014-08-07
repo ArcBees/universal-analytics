@@ -75,7 +75,7 @@ public class ClientAnalytics extends AnalyticsImpl {
             public void onCallback(final JSONObject options) {
                 call(new JSONString("create"), new JSONString(userAccount), options);
             }
-        }).createOptions();
+        }).generalOptions().forceSsl(true).createOptions();
     }
 
     @Override
@@ -107,7 +107,7 @@ public class ClientAnalytics extends AnalyticsImpl {
         })($wnd,$doc,'script','//www.google-analytics.com/analytics.js','__ua');
     }-*/;
 
-    private native void nativeCall(JavaScriptObject params) /*-{
+    private native void nativeCall(final JavaScriptObject params) /*-{
         $wnd.__ua.apply(null, params);
     }-*/;
 

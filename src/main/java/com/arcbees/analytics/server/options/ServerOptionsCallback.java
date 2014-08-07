@@ -79,7 +79,7 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     }
 
     private final static Logger logger = Logger.getLogger(ServerOptionsCallback.class.getName());
-    private static final String POST_URL = "http://www.google-analytics.com/collect";
+    private static final String POST_URL = "https://www.google-analytics.com/collect";
 
     private Map<String, String> options = new HashMap<>();
 
