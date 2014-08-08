@@ -24,7 +24,7 @@ public class AnalyticsModule extends AbstractGinModule {
     public static class Builder {
         private final String userAccount;
         private boolean autoCreate = true;
-        private boolean trackUncaughtExceptions = true;
+        private boolean trackUncaughtExceptions = false;
 
         public Builder(final String userAccount) {
             this.userAccount = userAccount;
@@ -46,8 +46,7 @@ public class AnalyticsModule extends AbstractGinModule {
         }
 
         /**
-         * By default all uncaught exceptions will be tracked
-         * Set this to false if you want to use a custom UncaughtExceptionHandler
+         * Set this to true if you want uncaught exceptions to be tracked.
          * @param trackUncaughtExceptions
          * @return
          */
@@ -62,8 +61,8 @@ public class AnalyticsModule extends AbstractGinModule {
     private final boolean trackUncaughtExceptions;
 
     private AnalyticsModule(final String userAccount,
-        final boolean autoCreate,
-        final boolean trackUncaughtExceptions) {
+            final boolean autoCreate,
+            final boolean trackUncaughtExceptions) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
         this.trackUncaughtExceptions = trackUncaughtExceptions;

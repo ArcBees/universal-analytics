@@ -34,7 +34,6 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.google.web.bindery.event.shared.UmbrellaException;
 
 public class ClientAnalytics extends AnalyticsImpl {
     private final Map<String, Double> timingEvents = new HashMap<>();
@@ -57,15 +56,6 @@ public class ClientAnalytics extends AnalyticsImpl {
             aryParams.set(aryParams.size(), p);
         }
         nativeCall(aryParams.getJavaScriptObject());
-    }
-
-    @Override
-    protected Throwable clipUmbrellaExceptions(final Throwable throwable) {
-        Throwable result = throwable;
-        while (result instanceof UmbrellaException) {
-            result = ((UmbrellaException) result).getCauses().iterator().next();
-        }
-        return result;
     }
 
     @Override
