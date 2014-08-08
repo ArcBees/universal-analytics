@@ -16,8 +16,6 @@
 
 package com.arcbees.analytics.shared;
 
-import java.util.logging.Logger;
-
 import com.arcbees.analytics.shared.options.AnalyticsOptions;
 import com.arcbees.analytics.shared.options.ContentOptions;
 import com.arcbees.analytics.shared.options.CreateOptions;
@@ -27,15 +25,10 @@ import com.arcbees.analytics.shared.options.SocialOptions;
 import com.arcbees.analytics.shared.options.TimingOptions;
 
 public abstract class AnalyticsImpl implements Analytics {
-    private final static Logger logger = Logger.getLogger(AnalyticsImpl.class.getName());
     private final String userAccount;
 
     protected AnalyticsImpl(final String userAccount) {
         this.userAccount = userAccount;
-    }
-
-    protected Throwable clipUmbrellaExceptions(final Throwable e) {
-        return e;
     }
 
     @Override
@@ -46,17 +39,6 @@ public abstract class AnalyticsImpl implements Analytics {
     @Override
     public TimingOptions endTimingEvent(final String timingCategory, final String timingVariableName) {
         return endTimingEvent(null, timingCategory, timingVariableName);
-    }
-
-    private String getExceptionStackTraceAsString(final Throwable e) {
-        final Throwable exceptionToTrack = clipUmbrellaExceptions(e);
-        final StringBuilder sb = new StringBuilder();
-        for (final StackTraceElement ste: exceptionToTrack.getStackTrace()) {
-            sb.append(ste.toString()).append("\n");
-        }
-        final String result = sb.toString();
-        logger.severe(result);
-        return result;
     }
 
     protected String getTimingKey(final String timingCategory, final String timingVariableName) {
@@ -79,14 +61,13 @@ public abstract class AnalyticsImpl implements Analytics {
     }
 
     @Override
-    public ExceptionOptions sendException(final String trackerName, final Throwable e) {
-        return send(trackerName, HitType.EXCEPTION).exceptionOptions()
-                .exceptionDescription(getExceptionStackTraceAsString(e));
+    public ExceptionOptions sendException() {
+        return sendException(null);
     }
 
     @Override
-    public ExceptionOptions sendException(final Throwable e) {
-        return sendException(null, e);
+    public ExceptionOptions sendException(final String trackerName) {
+        return send(trackerName, HitType.EXCEPTION).exceptionOptions();
     }
 
     @Override
