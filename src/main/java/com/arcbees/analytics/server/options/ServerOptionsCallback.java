@@ -17,7 +17,9 @@
 package com.arcbees.analytics.server.options;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -78,7 +80,7 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         protocolMap.put("expVar", "xvar");
     }
 
-    private final static Logger logger = Logger.getLogger(ServerOptionsCallback.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ServerOptionsCallback.class.getName());
     private static final String POST_URL = "https://www.google-analytics.com/collect";
 
     private Map<String, String> options = new HashMap<>();
@@ -90,11 +92,15 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
 
     @Override
     public String getOptions() {
-        final StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder();
 
-        for (final Entry<String, String> entry : options.entrySet()) {
-            result.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+        for (Entry<String, String> entry : options.entrySet()) {
+            String key = entry.getKey();
+            String value = encodeQueryParam(entry.getValue());
+
+            result.append("&").append(key).append("=").append(value);
         }
+
         return "?" + result.toString().substring(1);
     }
 
@@ -116,7 +122,7 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
             final URL url = new URL(POST_URL + options);
             IOUtils.toString(url);
         } catch (final IOException e) {
-            logger.severe(e.getMessage());
+            LOGGER.severe(e.getMessage());
         }
     }
 
@@ -133,5 +139,13 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     @Override
     public void putText(final String fieldName, final String value) {
         options.put(getProtocolFieldName(fieldName), value);
+    }
+
+    private String encodeQueryParam(String value) {
+        try {
+            return URLEncoder.encode(value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return value;
+        }
     }
 }
