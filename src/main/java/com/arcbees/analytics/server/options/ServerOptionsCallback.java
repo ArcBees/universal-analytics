@@ -23,6 +23,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
@@ -145,6 +146,9 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         try {
             return URLEncoder.encode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
+            LOGGER.log(Level.WARNING,
+                    "Unable to encode the analytics parameters to UTF-8. Falling back to no encoding.", e);
+
             return value;
         }
     }
