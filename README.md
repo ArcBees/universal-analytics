@@ -12,7 +12,7 @@ Add the following to your pom
 	  <dependency>
 			<groupId>com.arcbees</groupId>
 			<artifactId>universal-analytics</artifactId>
-			<version>2.0-SNAPSHOT</version>
+			<version>2.0</version>
 		</dependency>
 ```
 
