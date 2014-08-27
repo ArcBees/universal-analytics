@@ -6,8 +6,6 @@ See his repo here https://github.com/rdwallis/gwt-universal-analytics
 
 ##Install
 
-Checkout this project, and then run `mvn install`
-
 Add the following to your pom
 
 ```
