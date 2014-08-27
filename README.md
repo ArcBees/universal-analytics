@@ -6,15 +6,13 @@ See his repo here https://github.com/rdwallis/gwt-universal-analytics
 
 ##Install
 
-Checkout this project, and then run `mvn install`
-
 Add the following to your pom
 
 ```
 	  <dependency>
 			<groupId>com.arcbees</groupId>
 			<artifactId>universal-analytics</artifactId>
-			<version>2.0-SNAPSHOT</version>
+			<version>2.0</version>
 		</dependency>
 ```
 
