@@ -20,6 +20,7 @@ import com.arcbees.analytics.shared.HitCallback;
 import com.arcbees.analytics.shared.options.OptionsCallback;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONBoolean;
+import com.google.gwt.json.client.JSONNull;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
@@ -59,6 +60,6 @@ public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
 
     @Override
     public void putText(final String fieldName, final String value) {
-        jsonObject.put(fieldName, new JSONString(value));
+        jsonObject.put(fieldName, value == null ? JSONNull.getInstance(): new JSONString(value));
     }
 }
