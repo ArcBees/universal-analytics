@@ -139,7 +139,11 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
 
     @Override
     public void putText(final String fieldName, final String value) {
-        options.put(getProtocolFieldName(fieldName), value);
+        if (value == null) {
+            options.remove(getProtocolFieldName(fieldName));
+        } else {
+            options.put(getProtocolFieldName(fieldName), value);
+        }
     }
 
     private String encodeQueryParam(String value) {
