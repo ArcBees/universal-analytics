@@ -168,5 +168,5 @@ public class AnalyticsOptions {
      */
     public TrafficsourcesOptions trafficsourcesOptions() {
         return new TrafficsourcesOptions(getOptionsCallback());
-    };
+    }
 }
