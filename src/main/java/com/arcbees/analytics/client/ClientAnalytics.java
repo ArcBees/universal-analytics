@@ -72,7 +72,11 @@ public class ClientAnalytics extends AnalyticsImpl {
 
     @Override
     public void enablePlugin(final AnalyticsPlugin plugin) {
-        call(new JSONString("require"), new JSONString(plugin.getFieldName()));
+        if (plugin.getJsName() != null) {
+            call(new JSONString("require"), new JSONString(plugin.getFieldName()), new JSONString(plugin.getJsName()));
+        } else {
+            call(new JSONString("require"), new JSONString(plugin.getFieldName()));
+        }
     }
 
     @Override
