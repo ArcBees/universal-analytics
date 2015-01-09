@@ -19,7 +19,7 @@ Add the following to your pom
 Add the following to your gwt.xml
 
 ```
-	<inherits name="com.arcbees.analytics.Analytics"/>
+<inherits name="com.arcbees.analytics.Analytics"/>
 ```
 
 Then in your gin module:
