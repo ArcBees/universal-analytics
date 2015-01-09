@@ -10,7 +10,7 @@ Add the following to your pom
 
 ```
 <dependency>
-	<groupId>com.arcbees</groupId>
+	<groupId>com.arcbees.analytics</groupId>
 	<artifactId>universal-analytics</artifactId>
 	<version>2.1</version>
 </dependency>
