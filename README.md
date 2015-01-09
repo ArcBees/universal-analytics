@@ -9,11 +9,11 @@ See his repo here https://github.com/rdwallis/gwt-universal-analytics
 Add the following to your pom
 
 ```
-	  <dependency>
-			<groupId>com.arcbees</groupId>
-			<artifactId>universal-analytics</artifactId>
-			<version>2.0</version>
-		</dependency>
+<dependency>
+	<groupId>com.arcbees</groupId>
+	<artifactId>universal-analytics</artifactId>
+	<version>2.1</version>
+</dependency>
 ```
 
 Add the following to your gwt.xml
