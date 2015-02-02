@@ -18,13 +18,13 @@ package com.arcbees.analytics.client;
 
 import com.arcbees.analytics.shared.Analytics;
 import com.google.gwt.inject.client.AbstractGinModule;
-import com.google.inject.name.Names;
 
 public class AnalyticsModule extends AbstractGinModule {
     public static class Builder {
         private final String userAccount;
         private boolean autoCreate = true;
         private boolean trackUncaughtExceptions = false;
+        private boolean trackInitialPageView = true;
 
         public Builder(final String userAccount) {
             this.userAccount = userAccount;
@@ -32,23 +32,39 @@ public class AnalyticsModule extends AbstractGinModule {
 
         /**
          * Set this to false if you want to create the universal analytics tracker with custom options.
-         * You can manually create the tracker by calling analytics.create() from your bootstrapper;
+         * You can manually create the tracker by calling
+         * <pre> {@code 
+         * analytics.create().go()
+         * analytics.sendPageView().go();
+         * } </pre>
+         * from your bootstrapper or entrypoint.
+         * 
          * @param autoCreate
-         * @return
+         * @return Builder
          */
         public Builder autoCreate(final boolean autoCreate) {
             this.autoCreate = autoCreate;
             return this;
         }
-
+        
+        /**
+         * By default the initial page view will be tracked.
+         * @param trackInitialPageView
+         * @return Builder
+         */
+        public Builder trackInitialPageView(final boolean trackInitialPageView) {
+        	this.trackInitialPageView = trackInitialPageView;
+        	return this;
+        }
+        
         public AnalyticsModule build() {
-            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions);
+            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions, trackInitialPageView);
         }
 
         /**
          * Set this to true if you want uncaught exceptions to be tracked.
          * @param trackUncaughtExceptions
-         * @return
+         * @return Builder
          */
         public Builder trackUncaughtExceptions(final boolean trackUncaughtExceptions) {
             this.trackUncaughtExceptions = trackUncaughtExceptions;
@@ -59,19 +75,23 @@ public class AnalyticsModule extends AbstractGinModule {
     private final String userAccount;
     private final boolean autoCreate;
     private final boolean trackUncaughtExceptions;
+	private final boolean trackInitialPageView;
 
     private AnalyticsModule(final String userAccount,
             final boolean autoCreate,
-            final boolean trackUncaughtExceptions) {
+            final boolean trackUncaughtExceptions,
+            final boolean trackInitialPageView) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
         this.trackUncaughtExceptions = trackUncaughtExceptions;
+        this.trackInitialPageView = trackInitialPageView;
     }
 
     @Override
     protected void configure() {
-        bindConstant().annotatedWith(Names.named("gaAccount")).to(userAccount);
-        bindConstant().annotatedWith(Names.named("uaAutoCreate")).to(autoCreate);
+        bindConstant().annotatedWith(GaAccount.class).to(userAccount);
+        bindConstant().annotatedWith(AutoCreate.class).to(autoCreate);
+        bindConstant().annotatedWith(TrackInitialPageView.class).to(trackInitialPageView);
         bind(ClientAnalytics.class).asEagerSingleton();
         bind(Analytics.class).to(ClientAnalytics.class);
         if (trackUncaughtExceptions) {

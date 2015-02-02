@@ -33,20 +33,23 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 public class ClientAnalytics extends AnalyticsImpl {
     private final Map<String, Double> timingEvents = new HashMap<>();
 
     @Inject
-    ClientAnalytics(@Named("gaAccount") final String userAccount,
-            @Named("uaAutoCreate") final boolean autoCreate) {
+    ClientAnalytics(@GaAccount final String userAccount,
+            @AutoCreate final boolean autoCreate, 
+            @TrackInitialPageView final boolean trackInitialPageView) {
         super(userAccount);
 
         init();
 
         if (autoCreate) {
             create().go();
+            if (trackInitialPageView) {
+            	sendPageView().go();
+            }
         }
     }
 
