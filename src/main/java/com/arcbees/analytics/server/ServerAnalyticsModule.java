@@ -35,6 +35,7 @@ public class ServerAnalyticsModule extends ServletModule {
         bindConstant().annotatedWith(Names.named("gaAccount")).to(userAccount);
         bind(ServerOptionsCallback.class).toProvider(ServerOptionsCallbackProvider.class).in(RequestScoped.class);
         bind(Analytics.class).to(ServerAnalytics.class).in(Singleton.class);
+        serve("/collect*").with(AnalyticsProxyServlet.class);
         filter("/*").through(ServerOptionsCallbackProvider.class);
     }
 }
