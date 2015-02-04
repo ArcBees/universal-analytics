@@ -99,10 +99,31 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
         final ServerOptionsCallback result = new ServerOptionsCallback();
         result.putText("v", ANALYTICS_VERSION + "");
         result.putText("tid", userAccount);
+        result.putText("uip", getClientIpAddr(requestProvider.get()));
         final String[] split = ((String) requestProvider.get().getAttribute(COOKIE_VALUE_KEY)).split("\\.");
         result.putText("cid", split[2] + "." + split[3]);
         return result;
     }
+    
+    private static String getClientIpAddr(HttpServletRequest request) {  
+        String ip = request.getHeader("X-Forwarded-For");  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("Proxy-Client-IP");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("WL-Proxy-Client-IP");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("HTTP_CLIENT_IP");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getRemoteAddr();  
+        }  
+        return ip;  
+    }  
 
     @Override
     public void init(final FilterConfig config) throws ServletException {
