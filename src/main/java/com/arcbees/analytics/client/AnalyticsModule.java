@@ -17,6 +17,7 @@
 package com.arcbees.analytics.client;
 
 import com.arcbees.analytics.shared.Analytics;
+import com.arcbees.analytics.shared.GaAccount;
 import com.google.gwt.inject.client.AbstractGinModule;
 
 public class AnalyticsModule extends AbstractGinModule {

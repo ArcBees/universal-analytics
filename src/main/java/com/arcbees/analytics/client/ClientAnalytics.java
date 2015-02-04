@@ -21,6 +21,7 @@ import java.util.Map;
 
 import com.arcbees.analytics.shared.AnalyticsImpl;
 import com.arcbees.analytics.shared.AnalyticsPlugin;
+import com.arcbees.analytics.shared.GaAccount;
 import com.arcbees.analytics.shared.HitType;
 import com.arcbees.analytics.shared.options.AnalyticsOptions;
 import com.arcbees.analytics.shared.options.CreateOptions;

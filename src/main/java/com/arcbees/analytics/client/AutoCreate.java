@@ -13,6 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.arcbees.analytics.client;
 
 import static java.lang.annotation.ElementType.PARAMETER;
@@ -27,5 +28,4 @@ import com.google.inject.BindingAnnotation;
 @Target({PARAMETER})
 @Retention(RUNTIME)
 @interface AutoCreate {
-
 }
