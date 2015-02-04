@@ -25,6 +25,7 @@ public class AnalyticsModule extends AbstractGinModule {
         private boolean autoCreate = true;
         private boolean trackUncaughtExceptions = false;
         private boolean trackInitialPageView = true;
+        private String fallbackPath = "";
 
         public Builder(final String userAccount) {
             this.userAccount = userAccount;
@@ -57,8 +58,26 @@ public class AnalyticsModule extends AbstractGinModule {
         	return this;
         }
         
+        /**
+         * Analytics needs to load the script from www.google-analytics.com/analytics.js.<p>
+         * 
+         * This call can fail relatively often eg: because the user is in a country that blocks google,
+         * or if the user is running an extension that blocks third party scripts.<p>
+         * 
+         * Set the fallbackPath to automatically proxy the analytics calls via your own server.<p>
+         * 
+         * For this to work you must set up a proxy on your server using:
+         * {@link com.arcbees.analytics.server.AnalyticsProxyModule}
+         * @param fallbackPath
+         * @return Builder
+         */
+        public Builder setFallbackPath(final String fallbackPath) {
+            this.fallbackPath = fallbackPath;
+            return this;
+        }
+        
         public AnalyticsModule build() {
-            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions, trackInitialPageView);
+            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions, trackInitialPageView, fallbackPath);
         }
 
         /**
@@ -76,15 +95,17 @@ public class AnalyticsModule extends AbstractGinModule {
     private final boolean autoCreate;
     private final boolean trackUncaughtExceptions;
 	private final boolean trackInitialPageView;
+	private final String fallbackPath;
 
     private AnalyticsModule(final String userAccount,
             final boolean autoCreate,
             final boolean trackUncaughtExceptions,
-            final boolean trackInitialPageView) {
+            final boolean trackInitialPageView, final String fallbackPath) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
         this.trackUncaughtExceptions = trackUncaughtExceptions;
         this.trackInitialPageView = trackInitialPageView;
+        this.fallbackPath = fallbackPath;
     }
 
     @Override
@@ -92,6 +113,7 @@ public class AnalyticsModule extends AbstractGinModule {
         bindConstant().annotatedWith(GaAccount.class).to(userAccount);
         bindConstant().annotatedWith(AutoCreate.class).to(autoCreate);
         bindConstant().annotatedWith(TrackInitialPageView.class).to(trackInitialPageView);
+        bindConstant().annotatedWith(FallbackPath.class).to(fallbackPath);
         bind(ClientAnalytics.class).asEagerSingleton();
         bind(Analytics.class).to(ClientAnalytics.class);
         if (trackUncaughtExceptions) {

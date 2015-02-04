@@ -30,8 +30,8 @@ import com.arcbees.analytics.shared.options.TimingOptions;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.Duration;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.core.client.JsArray;
+import com.google.gwt.core.client.JsArrayMixed;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -44,18 +44,20 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
 public class ClientAnalytics extends AnalyticsImpl {
     private final Map<String, Double> timingEvents = new HashMap<>();
-
-    @Inject
+    private final String fallbackPath;
+    
+     @Inject
     ClientAnalytics(@GaAccount final String userAccount,
             @AutoCreate final boolean autoCreate, 
-            @TrackInitialPageView final boolean trackInitialPageView) {
+            @TrackInitialPageView final boolean trackInitialPageView,
+            @FallbackPath final String fallbackPath) {
         super(userAccount);
+        
+        this.fallbackPath = fallbackPath;
 
         init();
 
@@ -126,21 +128,19 @@ public class ClientAnalytics extends AnalyticsImpl {
 			
 			@Override
 			public void onFailure(Exception reason) {
-				loadFallback();
+			    if (!fallbackPath.isEmpty()) {
+			        loadFallback();
+			    }
 			}
 		}).inject();
     }
     
-    private boolean firstRun = true;
-    
-    public void fallback(String commandName, String command, String options) {
-    	
-    	
-    	if ("send".equals(commandName)) {
-    		JSONObject jsonOptions = JSONParser.parseStrict(options).isObject();
+    public void fallback(JsArrayMixed arguments) {
+    	if ("send".equals(arguments.getString(0))) {
+    		JSONObject jsonOptions = new JSONObject(arguments.getObject(arguments.length() - 1));
     		StringBuilder url = new StringBuilder();
-    		url.append("/collect?");
-    		url.append(ProtocolTranslator.getFieldName("hitType")).append("=").append(URL.encodeQueryString(command));
+    		url.append(fallbackPath).append("?");
+    		url.append(ProtocolTranslator.getFieldName("hitType")).append("=").append(URL.encodeQueryString(arguments.getString(1)));
     		
     		for (String key: jsonOptions.keySet()) {
     			if (!"hitCallback".equals(key)) {
@@ -184,11 +184,7 @@ public class ClientAnalytics extends AnalyticsImpl {
     	var preCalled = $wnd[name].q;
     	var that = this;
     	$wnd[name] = $entry(function() {
-    		var commandName = arguments[0];
-    		var command = arguments.length > 2 ? arguments[1]: null;
-    		var options = arguments[arguments.length - 1];
-    		
-          	that.@com.arcbees.analytics.client.ClientAnalytics::fallback(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(commandName, command, JSON.stringify(options));
+          	that.@com.arcbees.analytics.client.ClientAnalytics::fallback(Lcom/google/gwt/core/client/JsArrayMixed;)(arguments);
         });
     	for (var i =0; i < preCalled.length; i++) {
     		$wnd[name].apply(null, preCalled[i]);
