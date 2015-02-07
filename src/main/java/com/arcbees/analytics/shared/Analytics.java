@@ -44,7 +44,13 @@ public interface Analytics {
      * Enable an analytics plugin.  This must be called immediately after create();
      * If you are using plugins you should probably turn off autoCreate when building the
      * UniversalAnalyticsModule and create your tracker manually in your bootstrapper or EntryPoint.
-     *
+     * eg:
+     * <pre> {@code 
+     * analytics.create().go()
+     * analytics.enablePlugin(AnalyticsPlugin.DISPLAY);
+     * analytics.enablePlugin(AnalyticsPlugin.ENHANCED_LINK_ATTRIBUTION);
+     * analytics.sendPageView().go();
+     * } </pre>
      * @param plugin
      */
     void enablePlugin(final AnalyticsPlugin plugin);

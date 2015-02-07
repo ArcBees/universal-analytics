@@ -36,8 +36,6 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
 
     static {
         protocolMap.put("anonymizeIp", "aip");
-        protocolMap.put("forceSSL", "None");
-        protocolMap.put("hitCallback", "None");
         protocolMap.put("referrer", "dr");
         protocolMap.put("campaignName", "cn");
         protocolMap.put("campaignSource", "cs");
