@@ -28,5 +28,4 @@ import com.google.inject.BindingAnnotation;
 @Target({PARAMETER})
 @Retention(RUNTIME)
 @interface GaAccount {
-
 }
