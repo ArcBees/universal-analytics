@@ -38,8 +38,8 @@ Then in your entry point or bootstrapper(GWTP) call the following:
 
 ```
 analytics.create().go();
-analytics.enablePlugin(AnalyticsPlugin.DISPLAY); //Provides demographics information.
-analytics.sendPageView().go(); //track the initial pageview
+analytics.enablePlugin(AnalyticsPlugin.DISPLAY); // (optional) Provides demographics information.
+analytics.sendPageView().go(); // (recommended) track the initial pageview
 ```
 
 ##Basic Usage
