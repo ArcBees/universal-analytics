@@ -26,14 +26,15 @@ import com.google.inject.servlet.ServletModule;
 public class ServerAnalyticsModule extends ServletModule {
     private final String userAccount;
 
-    public ServerAnalyticsModule(final String userAccount) {
+    public ServerAnalyticsModule(String userAccount) {
         this.userAccount = userAccount;
     }
 
     @Override
     protected void configureServlets() {
         bindConstant().annotatedWith(Names.named("gaAccount")).to(userAccount);
-        bind(ServerOptionsCallback.class).toProvider(ServerOptionsCallbackProvider.class).in(RequestScoped.class);
+        bind(ServerOptionsCallback.class).toProvider(ServerOptionsCallbackProvider.class).in(
+                RequestScoped.class);
         bind(Analytics.class).to(ServerAnalytics.class).in(Singleton.class);
         filter("/*").through(ServerOptionsCallbackProvider.class);
     }

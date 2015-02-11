@@ -17,32 +17,34 @@
 package com.arcbees.analytics.shared.options;
 
 public class GeneralOptions extends AnalyticsOptions {
-    GeneralOptions(final OptionsCallback<?> optionsCallback) {
+    GeneralOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * When present, the IP address of the sender will be anonymized.
      * </p>
-     * <p>When present, the IP address of the sender will be anonymized.</p>
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
-    public GeneralOptions anonymizeIp(final boolean anonymizeIp) {
+    public GeneralOptions anonymizeIp(boolean anonymizeIp) {
         putBoolean("anonymizeIp", anonymizeIp);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * By default, tracking beacons sent from https pages will be sent using https while beacons
+     * sent from http pages will be sent using http. Setting forceSSL to true will force http pages
+     * to also send all beacons using https.
      * </p>
-     * <p>By default, tracking beacons sent from https pages will be sent using https
-     * while beacons sent from http pages will be sent using http.
-     * Setting forceSSL to true will force http pages to also send all beacons using https.</p>
      * Default Value: true<br>
      * Example Value: <code>true</code>
      **/
-    public GeneralOptions forceSsl(final boolean forceSsl) {
+    public GeneralOptions forceSsl(boolean forceSsl) {
         putBoolean("forceSSL", forceSsl);
         return this;
     }

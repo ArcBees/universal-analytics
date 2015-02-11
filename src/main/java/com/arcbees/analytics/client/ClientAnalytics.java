@@ -48,19 +48,20 @@ public class ClientAnalytics extends AnalyticsImpl {
     private static final Logger LOGGER = Logger.getLogger(ClientAnalytics.class.getName());
     private final Map<String, Double> timingEvents = new HashMap<>();
     private final String fallbackPath;
-    private final Timer fallbackInitTimer = new Timer() {
 
+    private final Timer fallbackInitTimer = new Timer() {
         @Override
         public void run() {
             if (loadFallback()) {
-                LOGGER.info("Universal analytics not loaded after 10 seconds, using fallback");    
+                LOGGER.info("Universal analytics not loaded after 10 seconds, using fallback");
             }
         }
-        
     };
 
     @Inject
-    ClientAnalytics(@GaAccount final String userAccount, @AutoCreate final boolean autoCreate, @TrackInitialPageView final boolean trackInitialPageView, @FallbackPath final String fallbackPath) {
+    ClientAnalytics(@GaAccount String userAccount, @AutoCreate boolean autoCreate,
+            @TrackInitialPageView boolean trackInitialPageView,
+            @FallbackPath String fallbackPath) {
         super(userAccount);
 
         this.fallbackPath = fallbackPath;
@@ -75,9 +76,9 @@ public class ClientAnalytics extends AnalyticsImpl {
         }
     }
 
-    private void call(final JSONValue... params) {
+    private void call(JSONValue... params) {
         final JSONArray aryParams = new JSONArray();
-        for (final JSONValue p : params) {
+        for (JSONValue p : params) {
             aryParams.set(aryParams.size(), p);
         }
         nativeCall(aryParams.getJavaScriptObject());
@@ -85,10 +86,10 @@ public class ClientAnalytics extends AnalyticsImpl {
 
     @Override
     public CreateOptions create(final String userAccount) {
-        return new AnalyticsOptions(new JSONOptionsCallback() {
+        return new AnalyticsOptions(new JsonOptionsCallback() {
 
             @Override
-            public void onCallback(final JSONObject options) {
+            public void onCallback(JSONObject options) {
                 call(new JSONString("create"), new JSONString(userAccount), options);
                 setGlobalSettings().forceSsl(true).go();
             }
@@ -96,24 +97,27 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
-    public void enablePlugin(final AnalyticsPlugin plugin) {
+    public void enablePlugin(AnalyticsPlugin plugin) {
         if (plugin.getJsName() != null) {
-            call(new JSONString("require"), new JSONString(plugin.getFieldName()), new JSONString(plugin.getJsName()));
+            call(new JSONString("require"), new JSONString(plugin.getFieldName()), new JSONString(
+                    plugin.getJsName()));
         } else {
             call(new JSONString("require"), new JSONString(plugin.getFieldName()));
         }
     }
 
     @Override
-    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory, final String timingVariableName) {
+    public TimingOptions endTimingEvent(String trackerName, String timingCategory,
+            String timingVariableName) {
         final String key = getTimingKey(timingCategory, timingVariableName);
         if (timingEvents.containsKey(key)) {
-            return sendTiming(trackerName, timingCategory, timingVariableName, (int) (Duration.currentTimeMillis() - timingEvents.remove(key)));
+            return sendTiming(trackerName, timingCategory, timingVariableName,
+                    (int) (Duration.currentTimeMillis() - timingEvents.remove(key)));
         }
-        return new AnalyticsOptions(new JSONOptionsCallback() {
+        return new AnalyticsOptions(new JsonOptionsCallback() {
 
             @Override
-            public void onCallback(final JSONObject options) {
+            public void onCallback(JSONObject options) {
                 // Do nothing a timing event was ended before it was started.
                 // This is here just to stop a crash.
             }
@@ -132,7 +136,8 @@ public class ClientAnalytics extends AnalyticsImpl {
             JSONObject jsonOptions = new JSONObject(arguments.getObject(arguments.length() - 1));
             StringBuilder url = new StringBuilder();
             url.append(fallbackPath).append("?");
-            url.append(ProtocolTranslator.getFieldName("hitType")).append("=").append(URL.encodeQueryString(arguments.getString(1)));
+            url.append(ProtocolTranslator.getFieldName("hitType")).append("=")
+                    .append(URL.encodeQueryString(arguments.getString(1)));
 
             for (String key : jsonOptions.keySet()) {
                 if (!"hitCallback".equals(key)) {
@@ -145,83 +150,84 @@ public class ClientAnalytics extends AnalyticsImpl {
                     } else if (jsonValue.isString() != null) {
                         strValue = jsonValue.isString().stringValue();
                     }
-                    url.append("&").append(ProtocolTranslator.getFieldName(key)).append("=").append(URL.encodeQueryString(strValue));
+                    url.append("&").append(ProtocolTranslator.getFieldName(key)).append("=")
+                            .append(URL.encodeQueryString(strValue));
                 }
             }
             try {
-                RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, url.toString());
+                RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET,
+                        url.toString());
                 requestBuilder.setCallback(new RequestCallback() {
 
                     @Override
                     public void onResponseReceived(Request request, Response response) {
                         // TODO call hitcallback if needed.
-
                     }
 
                     @Override
                     public void onError(Request request, Throwable exception) {
                         // TODO Auto-generated method stub
-
                     }
                 });
                 requestBuilder.send();
             } catch (RequestException e) {
             }
-
         }
     }
-    
+
     private native boolean loadFallback() /*-{
-		var name = $wnd['GoogleAnalyticsObject'];
-		var preCalled = $wnd[name].q;
-		if (preCalled !== undefined) {
-    		var that = this;
-    		$wnd[name] = function() {
-    			$entry(that.@com.arcbees.analytics.client.ClientAnalytics::fallback(Lcom/google/gwt/core/client/JsArrayMixed;)(arguments));
-    		};
-    		for (var i = 0; i < preCalled.length; i++) {
-    			$wnd[name].apply(null, preCalled[i]);
-    		}
-    		return true;
-		} 
-		return false;
+        var name = $wnd['GoogleAnalyticsObject'];
+        var preCalled = $wnd[name].q;
+        if (preCalled !== undefined) {
+            var that = this;
+            $wnd[name] = function() {
+                $entry(that.@com.arcbees.analytics.client
+                    .ClientAnalytics::fallback(Lcom/google/gwt/core/client/JsArrayMixed;)(arguments));
+            };
+            for (var i = 0; i < preCalled.length; i++) {
+                $wnd[name].apply(null, preCalled[i]);
+            }
+            return true;
+        }
+        return false;
     }-*/;
 
     private native void nativeInit()/*-{
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})($wnd, $doc, 'script', '//www.google-analytics.com/analytics.js',
-				'__ua');
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })($wnd, $doc, 'script', '//www.google-analytics.com/analytics.js',
+                '__ua');
     }-*/;
 
-    private native void nativeCall(final JavaScriptObject params) /*-{
-		$wnd.__ua.apply(null, params);
+    private native void nativeCall(JavaScriptObject params) /*-{
+        $wnd.__ua.apply(null, params);
     }-*/;
 
     @Override
     public AnalyticsOptions send(final String trackerName, final HitType hitType) {
-        return new AnalyticsOptions(new JSONOptionsCallback() {
+        return new AnalyticsOptions(new JsonOptionsCallback() {
 
             @Override
-            public void onCallback(final JSONObject options) {
-                call(new JSONString(trackerName == null ? "send" : trackerName + ".send"), new JSONString(hitType.getFieldName()), options);
+            public void onCallback(JSONObject options) {
+                call(new JSONString(trackerName == null ? "send" : trackerName + ".send"),
+                        new JSONString(hitType.getFieldName()), options);
             }
         });
     }
 
     @Override
     public GeneralOptions setGlobalSettings() {
-        return new AnalyticsOptions(new JSONOptionsCallback() {
+        return new AnalyticsOptions(new JsonOptionsCallback() {
 
             @Override
-            public void onCallback(final JSONObject options) {
+            public void onCallback(JSONObject options) {
                 call(new JSONString("set"), options);
             }
 
@@ -229,7 +235,8 @@ public class ClientAnalytics extends AnalyticsImpl {
     }
 
     @Override
-    public void startTimingEvent(final String timingCategory, final String timingVariableName) {
-        timingEvents.put(getTimingKey(timingCategory, timingVariableName), Duration.currentTimeMillis());
+    public void startTimingEvent(String timingCategory, String timingVariableName) {
+        timingEvents.put(getTimingKey(timingCategory, timingVariableName),
+                Duration.currentTimeMillis());
     }
 }

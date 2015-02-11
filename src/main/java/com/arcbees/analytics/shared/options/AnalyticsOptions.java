@@ -22,47 +22,47 @@ import java.util.logging.Logger;
 import com.arcbees.analytics.shared.HitCallback;
 
 public class AnalyticsOptions {
-    private final static Logger logger = Logger.getLogger("Universal Analytics");
+    private static final Logger LOGGER = Logger.getLogger("Universal Analytics");
     private final OptionsCallback<?> optionsCallback;
 
-    public AnalyticsOptions(final OptionsCallback<?> optionsCallback) {
+    public AnalyticsOptions(OptionsCallback<?> optionsCallback) {
         this.optionsCallback = optionsCallback;
     }
 
     /**
-     * Allows you to set options in the AppTracking Category
+     * Allows you to set options in the AppTracking Category.
      */
     public ApptrackingOptions apptrackingOptions() {
         return new ApptrackingOptions(getOptionsCallback());
     }
 
     /**
-     * Allows you to set options in the Content Category
+     * Allows you to set options in the Content Category.
      */
     public ContentOptions contentOptions() {
         return new ContentOptions(getOptionsCallback());
     }
 
     /**
-     * Allows you to set options for create calls.
-     * The options in this category will have no effect on non create calls.
+     * Allows you to set options for create calls. The options in this category will have no effect
+     * on non create calls.
      */
     public CreateOptions createOptions() {
         return new CreateOptions(getOptionsCallback());
     }
 
     /**
-     * Allows you to set options for custom metrics
+     * Allows you to set options for custom metrics.
      */
-    public CustomsOptions customsOptions() {
-        return new CustomsOptions(getOptionsCallback());
+    public CustomOptions customsOptions() {
+        return new CustomOptions(getOptionsCallback());
     }
 
     /**
-     * Set Options for an event call.
-     * In general you should let the analytics class set this up for you with the sendEvent() method.
+     * Set Options for an event call. In general you should let the analytics class set this up for
+     * you with the sendEvent() method.
      */
-    public EventsOptions eventsOptions(final String eventCategory, final String eventAction) {
+    public EventsOptions eventsOptions(String eventCategory, String eventAction) {
         return new EventsOptions(getOptionsCallback(), eventCategory, eventAction);
     }
 
@@ -81,7 +81,7 @@ public class AnalyticsOptions {
     }
 
     /**
-     * General options eg. anonymize ip.  forceSSL etc.
+     * General options eg. anonymize ip. forceSSL etc.
      */
     public GeneralOptions generalOptions() {
         return new GeneralOptions(getOptionsCallback());
@@ -92,59 +92,61 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Perform the call
+     * Perform the call.
      **/
     public void go() {
         this.optionsCallback.doCallback();
     }
 
     /**
-     * Perform the call and then return to the hitcallback when finished.
-     * On the server the hitcallback will return before the call is made.
-     * On the client the hitcallback is guaranteed to return within 350ms whether or not the call has completed.
+     * Perform the call and then return to the hitcallback when finished. On the server the
+     * hitcallback will return before the call is made. On the client the hitcallback is guaranteed
+     * to return within 350ms whether or not the call has completed.
+     * 
      * @param hitCallback
      */
-    public void go(final HitCallback hitCallback) {
+    public void go(HitCallback hitCallback) {
         optionsCallback.addHitCallback(hitCallback);
         go();
     }
 
     /**
-     * Perform the call and log it, useful for debugging
-     * or for example if you want to see a timing event in your console.
+     * Perform the call and log it, useful for debugging or for example if you want to see a timing
+     * event in your console.
+     * 
      * @param level
      */
-    public void goAndLog(final Level level) {
-        logger.log(level, optionsCallback.getOptions().toString());
+    public void goAndLog(Level level) {
+        LOGGER.log(level, optionsCallback.getOptions().toString());
         go();
     }
 
     /**
-     * Allows you to set options related to the type of hit.
-     * eg. NonInteractionHit for events not initiated by the user.
+     * Allows you to set options related to the type of hit. eg. NonInteractionHit for events not
+     * initiated by the user.
      */
     public HitOptions hitOptions() {
         return new HitOptions(getOptionsCallback());
     }
 
-    void putBoolean(final String fieldName, final boolean value) {
+    void putBoolean(String fieldName, boolean value) {
         optionsCallback.putBoolean(fieldName, value);
     }
 
-    void putNumber(final String fieldName, final double value) {
+    void putNumber(String fieldName, double value) {
         optionsCallback.putNumber(fieldName, value);
     }
 
-    void putText(final String fieldName, final String value) {
+    void putText(String fieldName, String value) {
         optionsCallback.putText(fieldName, value);
     }
 
     /**
-     * Set Options for tracking a social event.
-     * In general you should let the analytics class set this up for you with the sendSocial() method.
+     * Set Options for tracking a social event. In general you should let the analytics class set
+     * this up for you with the sendSocial() method.
      */
-    public SocialOptions socialOptions(final String socialNetwork, final String socialAction,
-            final String socialTarget) {
+    public SocialOptions socialOptions(String socialNetwork, String socialAction,
+            String socialTarget) {
         return new SocialOptions(getOptionsCallback(), socialNetwork, socialAction, socialTarget);
     }
 
@@ -156,15 +158,17 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Set Options for tracking a timing event.
-     * In general you should let the analytics class set this up for you with the sendTiming() method.
+     * Set Options for tracking a timing event. In general you should let the analytics class set
+     * this up for you with the sendTiming() method.
      */
-    public TimingOptions timingOptions(final String timingCategory, final String timingVar, final int timingValue) {
+    public TimingOptions timingOptions(String timingCategory, String timingVar,
+            int timingValue) {
         return new TimingOptions(getOptionsCallback(), timingCategory, timingVar, timingValue);
     }
 
     /**
-     * Set Options for tracking a traffic sources.  This can be used to track the source of user traffic.
+     * Set Options for tracking a traffic sources. This can be used to track the source of user
+     * traffic.
      */
     public TrafficsourcesOptions trafficsourcesOptions() {
         return new TrafficsourcesOptions(getOptionsCallback());

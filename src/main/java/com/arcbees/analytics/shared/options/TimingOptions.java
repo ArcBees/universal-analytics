@@ -17,25 +17,24 @@
 package com.arcbees.analytics.shared.options;
 
 public class TimingOptions extends AnalyticsOptions {
-    TimingOptions(final OptionsCallback<?> optionsCallback,
-            final String UserTimingCategory,
-            final String userTimingVariableName,
-            final int userTimingTime) {
+    TimingOptions(OptionsCallback<?> optionsCallback, String userTimingCategory,
+            String userTimingVariableName, int userTimingTime) {
         super(optionsCallback);
 
-        putText("timingCategory", UserTimingCategory);
+        putText("timingCategory", userTimingCategory);
         putText("timingVar", userTimingVariableName);
         putNumber("timingValue", userTimingTime);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the user timing label.
      * </p>
-     * <p>Specifies the user timing label.</p>
      * Default Value: None<br>
      * Example Value: <code>label</code>
      **/
-    public TimingOptions userTimingLabel(final String userTimingLabel) {
+    public TimingOptions userTimingLabel(String userTimingLabel) {
         putText("timingLabel", userTimingLabel);
         return this;
     }

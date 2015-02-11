@@ -17,30 +17,32 @@
 package com.arcbees.analytics.shared.options;
 
 public class ExceptionOptions extends AnalyticsOptions {
-    ExceptionOptions(final OptionsCallback<?> optionsCallback) {
+    ExceptionOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the description of an exception.
      * </p>
-     * <p>Specifies the description of an exception.</p>
      * Default Value: None<br>
      * Example Value: <code>DatabaseError</code>
      **/
-    public ExceptionOptions exceptionDescription(final String exceptionDescription) {
+    public ExceptionOptions exceptionDescription(String exceptionDescription) {
         putText("exDescription", exceptionDescription);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies whether the exception was fatal.
      * </p>
-     * <p>Specifies whether the exception was fatal.</p>
      * Default Value: true<br>
      * Example Value: <code>true</code>
      **/
-    public ExceptionOptions isExceptionFatal(final boolean isExceptionFatal) {
+    public ExceptionOptions isExceptionFatal(boolean isExceptionFatal) {
         putBoolean("exFatal", isExceptionFatal);
         return this;
     }

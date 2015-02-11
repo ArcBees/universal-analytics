@@ -20,8 +20,8 @@ import com.google.inject.servlet.ServletModule;
 
 public class AnalyticsProxyModule extends ServletModule {
     private final String path;
-    
-    public AnalyticsProxyModule(final String path) {
+
+    public AnalyticsProxyModule(String path) {
         this.path = path;
     }
 

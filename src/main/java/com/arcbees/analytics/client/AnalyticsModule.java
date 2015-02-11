@@ -23,7 +23,7 @@ public class AnalyticsModule extends AbstractGinModule {
     public static class Builder {
         private final String userAccount;
         private boolean autoCreate = true;
-        private boolean trackUncaughtExceptions = false;
+        private boolean trackUncaughtExceptions;
         private boolean trackInitialPageView = true;
         private String fallbackPath = "";
 
@@ -32,12 +32,16 @@ public class AnalyticsModule extends AbstractGinModule {
         }
 
         /**
-         * Set this to false if you want to create the universal analytics tracker with custom options.
-         * You can manually create the tracker by calling
-         * <pre> {@code 
+         * Set this to false if you want to create the universal analytics tracker with custom
+         * options. You can manually create the tracker by calling
+         * 
+         * <pre>
+         * {@code
          * analytics.create().go()
          * analytics.sendPageView().go();
-         * } </pre>
+         * }
+         * </pre>
+         * 
          * from your bootstrapper or entrypoint.
          * 
          * @param autoCreate
@@ -47,27 +51,32 @@ public class AnalyticsModule extends AbstractGinModule {
             this.autoCreate = autoCreate;
             return this;
         }
-        
+
         /**
          * By default the initial page view will be tracked.
+         * 
          * @param trackInitialPageView
          * @return Builder
          */
         public Builder trackInitialPageView(final boolean trackInitialPageView) {
-        	this.trackInitialPageView = trackInitialPageView;
-        	return this;
+            this.trackInitialPageView = trackInitialPageView;
+            return this;
         }
-        
+
         /**
-         * Analytics needs to load the script from www.google-analytics.com/analytics.js.<p>
+         * Analytics needs to load the script from www.google-analytics.com/analytics.js.
          * 
-         * This call can fail relatively often eg: because the user is in a country that blocks google,
-         * or if the user is running an extension that blocks third party scripts.<p>
+         * <p>
+         * This call can fail relatively often eg: because the user is in a country that blocks
+         * google, or if the user is running an extension that blocks third party scripts.
          * 
-         * Set the fallbackPath to automatically proxy the analytics calls via your own server.<p>
+         * <p>
+         * Set the fallbackPath to automatically proxy the analytics calls via your own server.
          * 
+         * <p>
          * For this to work you must set up a proxy on your server using:
          * {@link com.arcbees.analytics.server.AnalyticsProxyModule}
+         * 
          * @param fallbackPath
          * @return Builder
          */
@@ -75,13 +84,15 @@ public class AnalyticsModule extends AbstractGinModule {
             this.fallbackPath = fallbackPath;
             return this;
         }
-        
+
         public AnalyticsModule build() {
-            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions, trackInitialPageView, fallbackPath);
+            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions,
+                    trackInitialPageView, fallbackPath);
         }
 
         /**
          * Set this to true if you want uncaught exceptions to be tracked.
+         * 
          * @param trackUncaughtExceptions
          * @return Builder
          */
@@ -94,13 +105,12 @@ public class AnalyticsModule extends AbstractGinModule {
     private final String userAccount;
     private final boolean autoCreate;
     private final boolean trackUncaughtExceptions;
-	private final boolean trackInitialPageView;
-	private final String fallbackPath;
+    private final boolean trackInitialPageView;
+    private final String fallbackPath;
 
-    private AnalyticsModule(final String userAccount,
-            final boolean autoCreate,
-            final boolean trackUncaughtExceptions,
-            final boolean trackInitialPageView, final String fallbackPath) {
+    private AnalyticsModule(final String userAccount, final boolean autoCreate,
+            final boolean trackUncaughtExceptions, final boolean trackInitialPageView,
+            final String fallbackPath) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
         this.trackUncaughtExceptions = trackUncaughtExceptions;
