@@ -32,7 +32,7 @@ public class AnalyticsOptions {
     /**
      * Allows you to set options in the AppTracking Category.
      */
-    public AppTrackingOptions apptrackingOptions() {
+    public AppTrackingOptions appTrackingOptions() {
         return new AppTrackingOptions(getOptionsCallback());
     }
 
@@ -179,7 +179,7 @@ public class AnalyticsOptions {
      * Set Options for tracking a traffic sources. This can be used to track the source of user
      * traffic.
      */
-    public TrafficsourcesOptions trafficsourcesOptions() {
-        return new TrafficsourcesOptions(getOptionsCallback());
+    public TrafficSourcesOptions trafficSourcesOptions() {
+        return new TrafficSourcesOptions(getOptionsCallback());
     }
 }

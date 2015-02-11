@@ -16,8 +16,8 @@
 
 package com.arcbees.analytics.shared.options;
 
-public class TrafficsourcesOptions extends AnalyticsOptions {
-    TrafficsourcesOptions(OptionsCallback<?> optionsCallback) {
+public class TrafficSourcesOptions extends AnalyticsOptions {
+    TrafficSourcesOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
@@ -29,7 +29,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>content</code>
      **/
-    public TrafficsourcesOptions campaignContent(String campaignContent) {
+    public TrafficSourcesOptions campaignContent(String campaignContent) {
         putText("campaignContent", campaignContent);
         return this;
     }
@@ -42,7 +42,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>ID</code>
      **/
-    public TrafficsourcesOptions campaignId(String campaignId) {
+    public TrafficSourcesOptions campaignId(String campaignId) {
         putText("campaignId", campaignId);
         return this;
     }
@@ -55,7 +55,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>Blue Shoes</code>
      **/
-    public TrafficsourcesOptions campaignKeyword(String campaignKeyword) {
+    public TrafficSourcesOptions campaignKeyword(String campaignKeyword) {
         putText("campaignKeyword", campaignKeyword);
         return this;
     }
@@ -68,7 +68,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>organic</code>
      **/
-    public TrafficsourcesOptions campaignMedium(String campaignMedium) {
+    public TrafficSourcesOptions campaignMedium(String campaignMedium) {
         putText("campaignMedium", campaignMedium);
         return this;
     }
@@ -81,7 +81,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>(direct)</code>
      **/
-    public TrafficsourcesOptions campaignName(String campaignName) {
+    public TrafficSourcesOptions campaignName(String campaignName) {
         putText("campaignName", campaignName);
         return this;
     }
@@ -94,7 +94,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>(direct)</code>
      **/
-    public TrafficsourcesOptions campaignSource(String campaignSource) {
+    public TrafficSourcesOptions campaignSource(String campaignSource) {
         putText("campaignSource", campaignSource);
         return this;
     }
@@ -110,7 +110,7 @@ public class TrafficsourcesOptions extends AnalyticsOptions {
      * Default Value: document.referrer<br>
      * Example Value: <code>http://example.com</code>
      **/
-    public TrafficsourcesOptions documentReferrer(String documentReferrer) {
+    public TrafficSourcesOptions documentReferrer(String documentReferrer) {
         putText("referrer", documentReferrer);
         return this;
     }
