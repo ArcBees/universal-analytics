@@ -48,4 +48,35 @@ public class GeneralOptions extends AnalyticsOptions {
         putBoolean("forceSSL", forceSsl);
         return this;
     }
+
+    /**
+     * Optional. </p>
+     * <p>
+     *  Setting this to true, will instruct the client to use navigator.sendBeacon to send the hit.
+     *  This is useful in cases where you wish to track an event just before a user navigates away
+     *  from your site, without delaying the navigation.
+     *  If the browser does not support navigator.sendBeacon, the hit will be sent normally.
+     * </p>
+     * Default Value: false<br>
+     * Example Value: <code>true</code>
+     **/
+    public GeneralOptions useBeacon(boolean useBeacon) {
+        putBoolean("useBeacon", useBeacon);
+        return this;
+    }
+
+    /**
+     * Optional. </p>
+     * <p>
+     *  Indicates the data source of the hit.
+     *  Hits sent from analytics.js will have data source set to 'web';
+     *  hits sent from one of the mobile SDKs will have data source set to 'app'.
+     * </p>
+     * Default Value: None<br>
+     * Example Value: <code>'crm'</code>
+     **/
+    public GeneralOptions dataSource(String dataSource) {
+        putText("dataSource", dataSource);
+        return this;
+    }
 }

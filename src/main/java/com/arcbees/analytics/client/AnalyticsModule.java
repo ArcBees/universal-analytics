@@ -27,7 +27,7 @@ public class AnalyticsModule extends AbstractGinModule {
         private boolean trackInitialPageView = true;
         private String fallbackPath = "";
 
-        public Builder(final String userAccount) {
+        public Builder(String userAccount) {
             this.userAccount = userAccount;
         }
 
@@ -47,7 +47,7 @@ public class AnalyticsModule extends AbstractGinModule {
          * @param autoCreate
          * @return Builder
          */
-        public Builder autoCreate(final boolean autoCreate) {
+        public Builder autoCreate(boolean autoCreate) {
             this.autoCreate = autoCreate;
             return this;
         }
@@ -58,7 +58,7 @@ public class AnalyticsModule extends AbstractGinModule {
          * @param trackInitialPageView
          * @return Builder
          */
-        public Builder trackInitialPageView(final boolean trackInitialPageView) {
+        public Builder trackInitialPageView(boolean trackInitialPageView) {
             this.trackInitialPageView = trackInitialPageView;
             return this;
         }
@@ -80,7 +80,7 @@ public class AnalyticsModule extends AbstractGinModule {
          * @param fallbackPath
          * @return Builder
          */
-        public Builder setFallbackPath(final String fallbackPath) {
+        public Builder setFallbackPath(String fallbackPath) {
             this.fallbackPath = fallbackPath;
             return this;
         }
@@ -96,7 +96,7 @@ public class AnalyticsModule extends AbstractGinModule {
          * @param trackUncaughtExceptions
          * @return Builder
          */
-        public Builder trackUncaughtExceptions(final boolean trackUncaughtExceptions) {
+        public Builder trackUncaughtExceptions(boolean trackUncaughtExceptions) {
             this.trackUncaughtExceptions = trackUncaughtExceptions;
             return this;
         }
@@ -108,9 +108,9 @@ public class AnalyticsModule extends AbstractGinModule {
     private final boolean trackInitialPageView;
     private final String fallbackPath;
 
-    private AnalyticsModule(final String userAccount, final boolean autoCreate,
-            final boolean trackUncaughtExceptions, final boolean trackInitialPageView,
-            final String fallbackPath) {
+    private AnalyticsModule(String userAccount, boolean autoCreate,
+            boolean trackUncaughtExceptions, boolean trackInitialPageView,
+            String fallbackPath) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
         this.trackUncaughtExceptions = trackUncaughtExceptions;

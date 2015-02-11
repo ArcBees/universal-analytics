@@ -16,8 +16,8 @@
 
 package com.arcbees.analytics.shared.options;
 
-public class CustomOptions extends AnalyticsOptions {
-    CustomOptions(OptionsCallback<?> optionsCallback) {
+public class CustomDimensionsAndMetricsOptions extends AnalyticsOptions {
+    CustomDimensionsAndMetricsOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
@@ -31,7 +31,7 @@ public class CustomOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Usage: <code>CustomDimension(14, Sports)</code>
      **/
-    public CustomOptions customDimension(int dimension, String value) {
+    public CustomDimensionsAndMetricsOptions customDimension(int dimension, String value) {
         putText("dimension" + dimension, value);
         return this;
     }
@@ -45,7 +45,7 @@ public class CustomOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Usage: <code>CustomMetric(7, 47)</code>
      **/
-    public CustomOptions customMetric(int metric, int value) {
+    public CustomDimensionsAndMetricsOptions customMetric(int metric, int value) {
         putNumber("metric" + metric, value);
         return this;
     }

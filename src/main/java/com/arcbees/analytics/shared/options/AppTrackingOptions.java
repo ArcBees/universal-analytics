@@ -16,8 +16,8 @@
 
 package com.arcbees.analytics.shared.options;
 
-public class ApptrackingOptions extends AnalyticsOptions {
-    ApptrackingOptions(OptionsCallback<?> optionsCallback) {
+public class AppTrackingOptions extends AnalyticsOptions {
+    AppTrackingOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
@@ -29,7 +29,7 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>com.company.app</code>
      **/
-    public ApptrackingOptions applicationId(String applicationId) {
+    public AppTrackingOptions applicationId(String applicationId) {
         putText("appId", applicationId);
         return this;
     }
@@ -42,7 +42,7 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>com.platform.vending</code>
      **/
-    public ApptrackingOptions applicationInstallerId(String applicationInstallerId) {
+    public AppTrackingOptions applicationInstallerId(String applicationInstallerId) {
         putText("appInstallerId", applicationInstallerId);
         return this;
     }
@@ -55,7 +55,7 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>My App</code>
      **/
-    public ApptrackingOptions applicationName(String applicationName) {
+    public AppTrackingOptions applicationName(String applicationName) {
         putText("appName", applicationName);
         return this;
     }
@@ -68,7 +68,7 @@ public class ApptrackingOptions extends AnalyticsOptions {
      * Default Value: None<br>
      * Example Value: <code>1.2</code>
      **/
-    public ApptrackingOptions applicationVersion(String applicationVersion) {
+    public AppTrackingOptions applicationVersion(String applicationVersion) {
         putText("appVersion", applicationVersion);
         return this;
     }
