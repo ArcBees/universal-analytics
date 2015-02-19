@@ -39,7 +39,7 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     private Map<String, String> options = new HashMap<>();
 
     @Override
-    public void addHitCallback(final HitCallback hitCallback) {
+    public void addHitCallback(HitCallback hitCallback) {
         hitCallback.onCallback();
     }
 
@@ -58,27 +58,27 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     }
 
     @Override
-    public void onCallback(final String options) {
+    public void onCallback(String options) {
         try {
             final URL url = new URL(POST_URL + options);
             IOUtils.toString(url);
-        } catch (final IOException e) {
+        } catch (IOException e) {
             LOGGER.severe(e.getMessage());
         }
     }
 
     @Override
-    public void putBoolean(final String fieldName, final boolean value) {
-        putText(fieldName, value ? "1" :"0");
+    public void putBoolean(String fieldName, boolean value) {
+        putText(fieldName, value ? "1" : "0");
     }
 
     @Override
-    public void putNumber(final String fieldName, final double value) {
+    public void putNumber(String fieldName, double value) {
         putText(fieldName, value + "");
     }
 
     @Override
-    public void putText(final String fieldName, final String value) {
+    public void putText(String fieldName, String value) {
         if (value == null) {
             options.remove(ProtocolTranslator.getFieldName(fieldName));
         } else {
@@ -90,8 +90,10 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         try {
             return URLEncoder.encode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            LOGGER.log(Level.WARNING,
-                    "Unable to encode the analytics parameters to UTF-8. Falling back to no encoding.", e);
+            LOGGER.log(
+                    Level.WARNING,
+                    "Unable to encode the analytics parameters to UTF-8. Falling back to no encoding.",
+                    e);
 
             return value;
         }

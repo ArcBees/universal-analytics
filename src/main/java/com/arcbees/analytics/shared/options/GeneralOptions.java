@@ -17,33 +17,66 @@
 package com.arcbees.analytics.shared.options;
 
 public class GeneralOptions extends AnalyticsOptions {
-    GeneralOptions(final OptionsCallback<?> optionsCallback) {
+    GeneralOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * When present, the IP address of the sender will be anonymized.
      * </p>
-     * <p>When present, the IP address of the sender will be anonymized.</p>
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
-    public GeneralOptions anonymizeIp(final boolean anonymizeIp) {
+    public GeneralOptions anonymizeIp(boolean anonymizeIp) {
         putBoolean("anonymizeIp", anonymizeIp);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * By default, tracking beacons sent from https pages will be sent using https while beacons
+     * sent from http pages will be sent using http. Setting forceSSL to true will force http pages
+     * to also send all beacons using https.
      * </p>
-     * <p>By default, tracking beacons sent from https pages will be sent using https
-     * while beacons sent from http pages will be sent using http.
-     * Setting forceSSL to true will force http pages to also send all beacons using https.</p>
      * Default Value: true<br>
      * Example Value: <code>true</code>
      **/
-    public GeneralOptions forceSsl(final boolean forceSsl) {
+    public GeneralOptions forceSsl(boolean forceSsl) {
         putBoolean("forceSSL", forceSsl);
+        return this;
+    }
+
+    /**
+     * Optional. </p>
+     * <p>
+     *  Setting this to true, will instruct the client to use navigator.sendBeacon to send the hit.
+     *  This is useful in cases where you wish to track an event just before a user navigates away
+     *  from your site, without delaying the navigation.
+     *  If the browser does not support navigator.sendBeacon, the hit will be sent normally.
+     * </p>
+     * Default Value: false<br>
+     * Example Value: <code>true</code>
+     **/
+    public GeneralOptions useBeacon(boolean useBeacon) {
+        putBoolean("useBeacon", useBeacon);
+        return this;
+    }
+
+    /**
+     * Optional. </p>
+     * <p>
+     *  Indicates the data source of the hit.
+     *  Hits sent from analytics.js will have data source set to 'web';
+     *  hits sent from one of the mobile SDKs will have data source set to 'app'.
+     * </p>
+     * Default Value: None<br>
+     * Example Value: <code>'crm'</code>
+     **/
+    public GeneralOptions dataSource(String dataSource) {
+        putText("dataSource", dataSource);
         return this;
     }
 }

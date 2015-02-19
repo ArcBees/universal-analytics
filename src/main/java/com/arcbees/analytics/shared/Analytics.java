@@ -38,101 +38,116 @@ public interface Analytics {
      * Example: create("UA-XXXXXXX-X").go();<br>
      * create("UA-XXXXXXX-X").name("My Tracker").go() //create a custom named tracker
      */
-    CreateOptions create(final String userAccount);
+    CreateOptions create(String userAccount);
 
     /**
-     * Enable an analytics plugin.  This must be called immediately after create();
-     * If you are using plugins you should probably turn off autoCreate when building the
-     * UniversalAnalyticsModule and create your tracker manually in your bootstrapper or EntryPoint.
-     * eg:
-     * <pre> {@code 
+     * Enable an analytics plugin. This must be called immediately after create(); If you are using
+     * plugins you should probably turn off autoCreate when building the UniversalAnalyticsModule
+     * and create your tracker manually in your bootstrapper or EntryPoint. eg:
+     * 
+     * <pre>
+     * {@code
      * analytics.create().go()
      * analytics.enablePlugin(AnalyticsPlugin.DISPLAY);
      * analytics.enablePlugin(AnalyticsPlugin.ENHANCED_LINK_ATTRIBUTION);
      * analytics.sendPageView().go();
-     * } </pre>
+     * }
+     * </pre>
+     * 
      * @param plugin
      */
-    void enablePlugin(final AnalyticsPlugin plugin);
+    void enablePlugin(AnalyticsPlugin plugin);
 
     /**
-     * Used in conjuction with startTimingEvent to automatically setup and log timing events;
-     * Call endTimingEvent with the same timingCategory and timingVariableName as you used in startTimingEvent()
-     * to fire the event.
-     * Calling this method before calling startTimingEvent will silently fail.
+     * Used in conjuction with startTimingEvent to automatically setup and log timing events; Call
+     * endTimingEvent with the same timingCategory and timingVariableName as you used in
+     * startTimingEvent() to fire the event. Calling this method before calling startTimingEvent
+     * will silently fail.
      *
      * @param timingCategory
      * @param timingVariableName
      */
-    TimingOptions endTimingEvent(final String timingCategory, final String timingVariableName);
+    TimingOptions endTimingEvent(String timingCategory, String timingVariableName);
 
     /**
-     * Used in conjuction with startTimingEvent to automatically setup and log timing events;
-     * Call endTimingEvent with the same timingCategory and timingVariableName as you used in startTimingEvent()
-     * to fire the event.
-     * Calling this method before calling startTimingEvent will silently fail.
+     * Used in conjuction with startTimingEvent to automatically setup and log timing events; Call
+     * endTimingEvent with the same timingCategory and timingVariableName as you used in
+     * startTimingEvent() to fire the event. Calling this method before calling startTimingEvent
+     * will silently fail.
      *
      * @param timingCategory
      * @param timingVariableName
      */
-    TimingOptions endTimingEvent(final String trackerName, final String timingCategory, final String timingVariableName);
+    TimingOptions endTimingEvent(String trackerName, String timingCategory,
+            String timingVariableName);
 
     /**
      * send a specific HitType.
      *
      * @param hitType
-     * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#hit
-     * Example: send(HitType.PAGE_VIEW).go();
+     *            see
+     *            https://developers.google.com/analytics/devguides/collection/analyticsjs/field-
+     *            reference#hit Example: send(HitType.PAGE_VIEW).go();
      */
-    AnalyticsOptions send(final HitType hitType);
+    AnalyticsOptions send(HitType hitType);
 
     /**
      * send a specific HitType to a specific tracker.
      *
-     * @param trackerName the name of the tracker
+     * @param trackerName
+     *            the name of the tracker
      * @param hitType
-     * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#hit
-     * Example: send(HitType.PAGE_VIEW).go();
+     *            see
+     *            https://developers.google.com/analytics/devguides/collection/analyticsjs/field-
+     *            reference#hit Example: send(HitType.PAGE_VIEW).go();
      */
-    AnalyticsOptions send(final String trackerName, final HitType hitType);
+    AnalyticsOptions send(String trackerName, HitType hitType);
 
     /**
      * send an event.
      *
-     * @param category  the event category
-     * @param action the event action<br>
-     * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#events
-     * Example: sendEvent("button", "click").go();
+     * @param category
+     *            the event category
+     * @param action
+     *            the event action<br>
+     *            see
+     *            https://developers.google.com/analytics/devguides/collection/analyticsjs/field-
+     *            reference#events Example: sendEvent("button", "click").go();
      */
-    EventsOptions sendEvent(final String category, final String action);
+    EventsOptions sendEvent(String category, String action);
 
     /**
      * send an event to a specific tracker.
      *
-     * @param trackerName the name of the tracker
-     * @param category  the event category
-     * @param action the event action<br>
-     * see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#events
-     * Example: sendEvent("button", "click").go();
+     * @param trackerName
+     *            the name of the tracker
+     * @param category
+     *            the event category
+     * @param action
+     *            the event action<br>
+     *            see
+     *            https://developers.google.com/analytics/devguides/collection/analyticsjs/field-
+     *            reference#events Example: sendEvent("button", "click").go();
      */
-    EventsOptions sendEvent(final String trackerName, final String category, final String action);
+    EventsOptions sendEvent(String trackerName, String category, String action);
 
     /**
      * Track an exception to a specific tracker.
+     * 
      * @param trackerName
      * @return
      */
-    ExceptionOptions sendException(final String trackerName);
+    ExceptionOptions sendException(String trackerName);
 
     /**
      * Track an exception.
+     * 
      * @return
      */
     ExceptionOptions sendException();
 
     /**
-     * send a pageview to a specific tracker.
-     * Example: sendPageView().go();<br>
+     * send a pageview to a specific tracker. Example: sendPageView().go();<br>
      * sendPageView().documentPath("/foo").go(); //send a pageview for /foo
      */
     ContentOptions sendPageView();
@@ -140,70 +155,85 @@ public interface Analytics {
     /**
      * send a pageview to a specific tracker.
      *
-     * @param trackerName the name of the tracker
-     * Example: sendPageView();<br>
-     * sendPageView().documentPath("/foo").go(); //send a pageview for /foo
+     * @param trackerName
+     *            the name of the tracker Example: sendPageView();<br>
+     *            sendPageView().documentPath("/foo").go(); //send a pageview for /foo
      */
-    ContentOptions sendPageView(final String trackerName);
+    ContentOptions sendPageView(String trackerName);
 
     /**
      * send a social event.
      *
-     * @param socialNetwork the social network
-     * @param socialAction the action taken
-     * @param socialTarget the target of the action
-     * Example: sendSocial("facebook", "like", "http://www.example.com").go();<br>
+     * @param socialNetwork
+     *            the social network
+     * @param socialAction
+     *            the action taken
+     * @param socialTarget
+     *            the target of the action Example: sendSocial("facebook", "like",
+     *            "http://www.example.com").go();<br>
      */
-    SocialOptions sendSocial(final String socialNetwork, final String socialAction, final String socialTarget);
+    SocialOptions sendSocial(String socialNetwork, String socialAction,
+            String socialTarget);
 
     /**
      * send a social event to a specific tracker.
      *
-     * @param trackerName the name of the tracker
-     * @param socialNetwork the social network
-     * @param socialAction the action taken
-     * @param socialTarget the target of the action
-     * Example: sendSocial("facebook", "like", "http://www.example.com").go();<br>
+     * @param trackerName
+     *            the name of the tracker
+     * @param socialNetwork
+     *            the social network
+     * @param socialAction
+     *            the action taken
+     * @param socialTarget
+     *            the target of the action Example: sendSocial("facebook", "like",
+     *            "http://www.example.com").go();<br>
      */
-    SocialOptions sendSocial(final String trackerName, final String socialNetwork, final String socialAction, final String socialTarget);
+    SocialOptions sendSocial(String trackerName, String socialNetwork,
+            String socialAction, String socialTarget);
 
     /**
-     * send user timing information to the default tracker.
-     * this is used to analyze page speed.
+     * send user timing information to the default tracker. this is used to analyze page speed.
      *
-     * @param timingCategory - a category used to group related timing data
-     * @param timingVar - a string to identify the variable being recorded
-     * @param timingValue - the number of milliseconds of elapsed time.
-     * Example: sendTiming("jQuery", "Load Library", 20).go();<br>
+     * @param timingCategory
+     *            - a category used to group related timing data
+     * @param timingVar
+     *            - a string to identify the variable being recorded
+     * @param timingValue
+     *            - the number of milliseconds of elapsed time. Example: sendTiming("jQuery",
+     *            "Load Library", 20).go();<br>
      */
-    TimingOptions sendTiming(final String timingCategory, final String timingVar, final int timingValue);
+    TimingOptions sendTiming(String timingCategory, String timingVar,
+            int timingValue);
 
     /**
-     * send user timing information to a specific tracker.
-     * this is used to analyze page speed.
+     * send user timing information to a specific tracker. this is used to analyze page speed.
      *
-     * @param trackerName - the name of the tracker
-     * @param timingCategory - a category used to group related timing data
-     * @param timingVar - a string to identify the variable being recorded
-     * @param timingValue - the number of milliseconds of elapsed time.
-     * Example: sendTiming("jQuery", "Load Library", 20).go();<br>
+     * @param trackerName
+     *            - the name of the tracker
+     * @param timingCategory
+     *            - a category used to group related timing data
+     * @param timingVar
+     *            - a string to identify the variable being recorded
+     * @param timingValue
+     *            - the number of milliseconds of elapsed time. Example: sendTiming("jQuery",
+     *            "Load Library", 20).go();<br>
      */
-    TimingOptions sendTiming(final String trackerName, final String timingCategory, final String timingVar,
-            final int timingValue);
+    TimingOptions sendTiming(String trackerName, String timingCategory,
+            String timingVar, int timingValue);
 
     /**
-     * set options for all subsequent calls.
-     * Example: setGlobalSettings().anonymizeIp(true).go(); //anonymize ip addresses<br>
+     * set options for all subsequent calls. Example: setGlobalSettings().anonymizeIp(true).go();
+     * //anonymize ip addresses<br>
      */
     GeneralOptions setGlobalSettings();
 
     /**
-     * A handy shortcut for setting up an event you want to time.
-     * On its own this method does nothing.
-     * Call endTimingEvent with the same timingCategory and timingVariableName to fire the event.
+     * A handy shortcut for setting up an event you want to time. On its own this method does
+     * nothing. Call endTimingEvent with the same timingCategory and timingVariableName to fire the
+     * event.
      *
      * @param timingCategory
      * @param timingVariableName
      */
-    void startTimingEvent(final String timingCategory, final String timingVariableName);
+    void startTimingEvent(String timingCategory, String timingVariableName);
 }

@@ -16,35 +16,36 @@
 
 package com.arcbees.analytics.shared.options;
 
-public class CustomsOptions extends AnalyticsOptions {
-    CustomsOptions(final OptionsCallback<?> optionsCallback) {
+public class CustomDimensionsAndMetricsOptions extends AnalyticsOptions {
+    CustomDimensionsAndMetricsOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Each custom dimension has an associated index. There is a maximum of 20 custom dimensions
+     * (200 for Premium accounts). The name suffix must be a positive integer between 1 and 200,
+     * inclusive.
      * </p>
-     * <p>Each custom dimension has an associated index.
-     * There is a maximum of 20 custom dimensions (200 for Premium accounts).
-     * The name suffix must be a positive integer between 1 and 200, inclusive.</p>
      * Default Value: None<br>
      * Example Usage: <code>CustomDimension(14, Sports)</code>
      **/
-    public CustomsOptions customDimension(final int dimension, final String value) {
+    public CustomDimensionsAndMetricsOptions customDimension(int dimension, String value) {
         putText("dimension" + dimension, value);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Each custom metric has an associated index. There is a maximum of 20 custom metrics (200 for
+     * Premium accounts). The name suffix must be a positive integer between 1 and 200, inclusive.
      * </p>
-     * <p>Each custom metric has an associated index.
-     * There is a maximum of 20 custom metrics (200 for Premium accounts).
-     * The name suffix must be a positive integer between 1 and 200, inclusive.</p>
      * Default Value: None<br>
      * Example Usage: <code>CustomMetric(7, 47)</code>
      **/
-    public CustomsOptions customMetric(final int metric, final int value) {
+    public CustomDimensionsAndMetricsOptions customMetric(int metric, int value) {
         putNumber("metric" + metric, value);
         return this;
     }

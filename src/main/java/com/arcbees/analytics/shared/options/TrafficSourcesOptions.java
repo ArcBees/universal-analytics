@@ -16,95 +16,101 @@
 
 package com.arcbees.analytics.shared.options;
 
-public class TrafficsourcesOptions extends AnalyticsOptions {
-    TrafficsourcesOptions(final OptionsCallback<?> optionsCallback) {
+public class TrafficSourcesOptions extends AnalyticsOptions {
+    TrafficSourcesOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the campaign content.
      * </p>
-     * <p>Specifies the campaign content.</p>
      * Default Value: None<br>
      * Example Value: <code>content</code>
      **/
-    public TrafficsourcesOptions campaignContent(final String campaignContent) {
+    public TrafficSourcesOptions campaignContent(String campaignContent) {
         putText("campaignContent", campaignContent);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the campaign ID.
      * </p>
-     * <p>Specifies the campaign ID.</p>
      * Default Value: None<br>
      * Example Value: <code>ID</code>
      **/
-    public TrafficsourcesOptions campaignId(final String campaignId) {
+    public TrafficSourcesOptions campaignId(String campaignId) {
         putText("campaignId", campaignId);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the campaign keyword.
      * </p>
-     * <p>Specifies the campaign keyword.</p>
      * Default Value: None<br>
      * Example Value: <code>Blue Shoes</code>
      **/
-    public TrafficsourcesOptions campaignKeyword(final String campaignKeyword) {
+    public TrafficSourcesOptions campaignKeyword(String campaignKeyword) {
         putText("campaignKeyword", campaignKeyword);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the campaign medium.
      * </p>
-     * <p>Specifies the campaign medium.</p>
      * Default Value: None<br>
      * Example Value: <code>organic</code>
      **/
-    public TrafficsourcesOptions campaignMedium(final String campaignMedium) {
+    public TrafficSourcesOptions campaignMedium(String campaignMedium) {
         putText("campaignMedium", campaignMedium);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the campaign name.
      * </p>
-     * <p>Specifies the campaign name.</p>
      * Default Value: None<br>
      * Example Value: <code>(direct)</code>
      **/
-    public TrafficsourcesOptions campaignName(final String campaignName) {
+    public TrafficSourcesOptions campaignName(String campaignName) {
         putText("campaignName", campaignName);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the campaign source.
      * </p>
-     * <p>Specifies the campaign source.</p>
      * Default Value: None<br>
      * Example Value: <code>(direct)</code>
      **/
-    public TrafficsourcesOptions campaignSource(final String campaignSource) {
+    public TrafficSourcesOptions campaignSource(String campaignSource) {
         putText("campaignSource", campaignSource);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies which referral source brought traffic to a website. This value is also used to
+     * compute the traffic source. The format of this value is a URL. This field is initialized by
+     * the create command and is only set when the current hostname differs from the referrer
+     * hostname, unless the &#39;alwaysSendReferrer&#39; field is set to true.
      * </p>
-     * <p>Specifies which referral source brought traffic to a website.
-     * This value is also used to compute the traffic source.
-     * The format of this value is a URL.
-     * This field is initialized by the create command and is only set when the current
-     * hostname differs from the referrer hostname, unless the &#39;alwaysSendReferrer&#39; field is set to true.</p>
      * Default Value: document.referrer<br>
      * Example Value: <code>http://example.com</code>
      **/
-    public TrafficsourcesOptions documentReferrer(final String documentReferrer) {
+    public TrafficSourcesOptions documentReferrer(String documentReferrer) {
         putText("referrer", documentReferrer);
         return this;
     }

@@ -24,6 +24,7 @@ import com.arcbees.analytics.server.options.ServerOptionsCallback;
 import com.arcbees.analytics.server.options.TrackerNameOptionsCallback;
 import com.arcbees.analytics.shared.AnalyticsImpl;
 import com.arcbees.analytics.shared.AnalyticsPlugin;
+import com.arcbees.analytics.shared.GaAccount;
 import com.arcbees.analytics.shared.HitType;
 import com.arcbees.analytics.shared.options.AnalyticsOptions;
 import com.arcbees.analytics.shared.options.CreateOptions;
@@ -32,19 +33,19 @@ import com.arcbees.analytics.shared.options.TimingOptions;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 @Singleton
 public class ServerAnalytics extends AnalyticsImpl {
-    private final static Logger logger = Logger.getLogger(ServerAnalytics.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ServerAnalytics.class.getName());
 
     private final Provider<ServerOptionsCallback> serverOptionsCallbackProvider;
     private final Map<String, Long> timingEvents = new HashMap<>();
     private final Map<String, String> trackerNames = new HashMap<>();
 
     @Inject
-    ServerAnalytics(final Provider<ServerOptionsCallback> serverOptionsCallbackProvider,
-            @Named("gaAccount") final String userAccount) {
+    ServerAnalytics(
+            Provider<ServerOptionsCallback> serverOptionsCallbackProvider,
+            @GaAccount String userAccount) {
         super(userAccount);
 
         this.serverOptionsCallbackProvider = serverOptionsCallbackProvider;
@@ -55,39 +56,40 @@ public class ServerAnalytics extends AnalyticsImpl {
         return new AnalyticsOptions(new TrackerNameOptionsCallback() {
 
             @Override
-            public void onCallback(final String trackerName) {
+            public void onCallback(String trackerName) {
                 trackerNames.put(trackerName, userAccount);
-
             }
         }).createOptions();
     }
 
     @Override
-    public void enablePlugin(final AnalyticsPlugin plugin) {
+    public void enablePlugin(AnalyticsPlugin plugin) {
         // Noop this has no affect on the server
     }
 
     @Override
-    public TimingOptions endTimingEvent(final String trackerName, final String timingCategory,
-            final String timingVariableName) {
+    public TimingOptions endTimingEvent(String trackerName, String timingCategory,
+            String timingVariableName) {
         final String key = getTimingKey(timingCategory, timingVariableName);
         if (timingEvents.containsKey(key)) {
             return sendTiming(trackerName, timingCategory, timingVariableName,
                     (int) (System.currentTimeMillis() - timingEvents.remove(key)));
         }
 
-        logger.severe("Timing Event Ended before it was started: " + key);
+        LOGGER.severe("Timing Event Ended before it was started: " + key);
         return new AnalyticsOptions(new TrackerNameOptionsCallback() {
 
             @Override
-            public void onCallback(final String trackerName) {
-                //Do nothing a timing event was ended before it was started.  This is here just to stop a crash.
+            public void onCallback(String trackerName) {
+                // Do nothing a timing event was ended before it was started. This is here just to
+                // stop a
+                // crash.
             }
         }).timingOptions(timingCategory, timingVariableName, 0);
     }
 
     @Override
-    public AnalyticsOptions send(final String trackerName, final HitType hitType) {
+    public AnalyticsOptions send(String trackerName, HitType hitType) {
         final ServerOptionsCallback options = serverOptionsCallbackProvider.get();
         if (trackerName != null) {
             options.putText("tid", trackerNames.get(trackerName));
@@ -102,14 +104,15 @@ public class ServerAnalytics extends AnalyticsImpl {
         return new AnalyticsOptions(new TrackerNameOptionsCallback() {
 
             @Override
-            public void onCallback(final String trackerName) {
-                //Do nothing, this call is not valid on the server.
+            public void onCallback(String trackerName) {
+                // Do nothing, this call is not valid on the server.
             }
         }).generalOptions();
     }
 
     @Override
-    public void startTimingEvent(final String timingCategory, final String timingVariableName) {
-        timingEvents.put(getTimingKey(timingCategory, timingVariableName), System.currentTimeMillis());
+    public void startTimingEvent(String timingCategory, String timingVariableName) {
+        timingEvents.put(getTimingKey(timingCategory, timingVariableName),
+                System.currentTimeMillis());
     }
 }

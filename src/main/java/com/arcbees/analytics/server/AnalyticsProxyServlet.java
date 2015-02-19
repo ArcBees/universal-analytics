@@ -29,19 +29,19 @@ import com.arcbees.analytics.server.options.ServerOptionsCallback;
 
 @Singleton
 public class AnalyticsProxyServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private ServerOptionsCallbackProvider serverOptionsCallbackProvier;
 
-	private static final long serialVersionUID = 1L;
-	private ServerOptionsCallbackProvider serverOptionsCallbackProvier;
-	
-	@Inject
-	public AnalyticsProxyServlet(ServerOptionsCallbackProvider serverOptionsCallbackProvider) {
-		this.serverOptionsCallbackProvier = serverOptionsCallbackProvider;
-	}
+    @Inject
+    public AnalyticsProxyServlet(ServerOptionsCallbackProvider serverOptionsCallbackProvider) {
+        this.serverOptionsCallbackProvier = serverOptionsCallbackProvider;
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ServerOptionsCallback serverOptionsCallback = serverOptionsCallbackProvier.get();
-		String qString = serverOptionsCallback.getOptions() + "&" + req.getQueryString();
-		serverOptionsCallback.onCallback(qString);
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
+        ServerOptionsCallback serverOptionsCallback = serverOptionsCallbackProvier.get();
+        String qString = serverOptionsCallback.getOptions() + "&" + req.getQueryString();
+        serverOptionsCallback.onCallback(qString);
+    }
 }

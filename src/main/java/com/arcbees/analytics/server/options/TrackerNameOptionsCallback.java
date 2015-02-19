@@ -26,7 +26,7 @@ public abstract class TrackerNameOptionsCallback extends OptionsCallback<String>
     private Map<String, String> options = new HashMap<>();
 
     @Override
-    public void addHitCallback(final HitCallback hitCallback) {
+    public void addHitCallback(HitCallback hitCallback) {
         hitCallback.onCallback();
     }
 
@@ -36,17 +36,17 @@ public abstract class TrackerNameOptionsCallback extends OptionsCallback<String>
     }
 
     @Override
-    public void putBoolean(final String fieldName, final boolean value) {
+    public void putBoolean(String fieldName, boolean value) {
         putText(fieldName, value ? "1" : "0");
     }
 
     @Override
-    public void putNumber(final String fieldName, final double value) {
+    public void putNumber(String fieldName, double value) {
         putText(fieldName, value + "");
     }
 
     @Override
-    public void putText(final String fieldName, final String value) {
+    public void putText(String fieldName, String value) {
         options.put(fieldName, value);
     }
 }
