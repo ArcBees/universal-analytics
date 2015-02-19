@@ -184,8 +184,9 @@ public class ClientAnalytics extends AnalyticsImpl {
         if (preCalled !== undefined) {
             var that = this;
             $wnd[name] = function() {
-                $entry(that.@com.arcbees.analytics.client
-                    .ClientAnalytics::fallback(Lcom/google/gwt/core/client/JsArrayMixed;)(arguments));
+                // CHECKSTYLE_OFF
+                $entry(that.@com.arcbees.analytics.client.ClientAnalytics::fallback(Lcom/google/gwt/core/client/JsArrayMixed;)(arguments));
+                // CHECKSTYLE_ON
             };
             for (var i = 0; i < preCalled.length; i++) {
                 $wnd[name].apply(null, preCalled[i]);
