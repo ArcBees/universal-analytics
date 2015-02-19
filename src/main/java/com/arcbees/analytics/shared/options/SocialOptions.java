@@ -17,8 +17,11 @@
 package com.arcbees.analytics.shared.options;
 
 public class SocialOptions extends AnalyticsOptions {
-    SocialOptions(OptionsCallback<?> optionsCallback, String socialNetwork,
-            String socialAction, String socialActionTarget) {
+    SocialOptions(
+            OptionsCallback<?> optionsCallback,
+            String socialNetwork,
+            String socialAction,
+            String socialActionTarget) {
         super(optionsCallback);
 
         putText("socialNetwork", socialNetwork);

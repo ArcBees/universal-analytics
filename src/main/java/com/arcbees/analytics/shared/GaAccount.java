@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.analytics.client;
+package com.arcbees.analytics.shared;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -25,7 +25,7 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @BindingAnnotation
-@Target({ PARAMETER })
+@Target(PARAMETER)
 @Retention(RUNTIME)
-@interface GaAccount {
+public @interface GaAccount {
 }

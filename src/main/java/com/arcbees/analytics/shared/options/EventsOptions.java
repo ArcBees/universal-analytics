@@ -17,7 +17,9 @@
 package com.arcbees.analytics.shared.options;
 
 public class EventsOptions extends AnalyticsOptions {
-    EventsOptions(OptionsCallback<?> optionsCallback, String eventCategory,
+    EventsOptions(
+            OptionsCallback<?> optionsCallback,
+            String eventCategory,
             String eventAction) {
         super(optionsCallback);
 

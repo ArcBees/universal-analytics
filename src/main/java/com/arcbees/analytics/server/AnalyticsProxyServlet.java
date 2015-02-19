@@ -29,7 +29,6 @@ import com.arcbees.analytics.server.options.ServerOptionsCallback;
 
 @Singleton
 public class AnalyticsProxyServlet extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
     private ServerOptionsCallbackProvider serverOptionsCallbackProvier;
 

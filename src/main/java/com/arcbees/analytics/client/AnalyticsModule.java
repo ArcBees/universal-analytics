@@ -17,6 +17,7 @@
 package com.arcbees.analytics.client;
 
 import com.arcbees.analytics.shared.Analytics;
+import com.arcbees.analytics.shared.GaAccount;
 import com.google.gwt.inject.client.AbstractGinModule;
 
 public class AnalyticsModule extends AbstractGinModule {
@@ -108,8 +109,11 @@ public class AnalyticsModule extends AbstractGinModule {
     private final boolean trackInitialPageView;
     private final String fallbackPath;
 
-    private AnalyticsModule(String userAccount, boolean autoCreate,
-            boolean trackUncaughtExceptions, boolean trackInitialPageView,
+    private AnalyticsModule(
+            String userAccount,
+            boolean autoCreate,
+            boolean trackUncaughtExceptions,
+            boolean trackInitialPageView,
             String fallbackPath) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;

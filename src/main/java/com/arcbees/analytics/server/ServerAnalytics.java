@@ -24,6 +24,7 @@ import com.arcbees.analytics.server.options.ServerOptionsCallback;
 import com.arcbees.analytics.server.options.TrackerNameOptionsCallback;
 import com.arcbees.analytics.shared.AnalyticsImpl;
 import com.arcbees.analytics.shared.AnalyticsPlugin;
+import com.arcbees.analytics.shared.GaAccount;
 import com.arcbees.analytics.shared.HitType;
 import com.arcbees.analytics.shared.options.AnalyticsOptions;
 import com.arcbees.analytics.shared.options.CreateOptions;
@@ -32,7 +33,6 @@ import com.arcbees.analytics.shared.options.TimingOptions;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 @Singleton
 public class ServerAnalytics extends AnalyticsImpl {
@@ -43,8 +43,9 @@ public class ServerAnalytics extends AnalyticsImpl {
     private final Map<String, String> trackerNames = new HashMap<>();
 
     @Inject
-    ServerAnalytics(Provider<ServerOptionsCallback> serverOptionsCallbackProvider,
-            @Named("gaAccount") String userAccount) {
+    ServerAnalytics(
+            Provider<ServerOptionsCallback> serverOptionsCallbackProvider,
+            @GaAccount String userAccount) {
         super(userAccount);
 
         this.serverOptionsCallbackProvider = serverOptionsCallbackProvider;

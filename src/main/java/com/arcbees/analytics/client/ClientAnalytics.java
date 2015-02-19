@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 
 import com.arcbees.analytics.shared.AnalyticsImpl;
 import com.arcbees.analytics.shared.AnalyticsPlugin;
+import com.arcbees.analytics.shared.GaAccount;
 import com.arcbees.analytics.shared.HitType;
 import com.arcbees.analytics.shared.ProtocolTranslator;
 import com.arcbees.analytics.shared.options.AnalyticsOptions;
@@ -59,7 +60,9 @@ public class ClientAnalytics extends AnalyticsImpl {
     };
 
     @Inject
-    ClientAnalytics(@GaAccount String userAccount, @AutoCreate boolean autoCreate,
+    ClientAnalytics(
+            @GaAccount String userAccount,
+            @AutoCreate boolean autoCreate,
             @TrackInitialPageView boolean trackInitialPageView,
             @FallbackPath String fallbackPath) {
         super(userAccount);
@@ -192,7 +195,7 @@ public class ClientAnalytics extends AnalyticsImpl {
         return false;
     }-*/;
 
-    private native void nativeInit()/*-{
+    private native void nativeInit() /*-{
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function() {

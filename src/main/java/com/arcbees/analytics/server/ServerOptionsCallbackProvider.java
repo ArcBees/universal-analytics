@@ -37,6 +37,13 @@ import com.google.inject.name.Named;
 
 @Singleton
 public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOptionsCallback> {
+    private static final String[] ipForwardHeaders = {
+            "X-Forwarded-For",
+            "Proxy-Client-IP",
+            "WL-Proxy-Client-IP",
+            "HTTP_CLIENT_IP",
+            "HTTP_X_FORWARDED_FOR"};
+
     private static final int ANALYTICS_VERSION = 1;
     private static final String COOKIE_VALUE_KEY = "_uaCookie";
     private final String userAccount;
@@ -107,23 +114,14 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
     }
 
     private static String getClientIpAddr(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
+        String ip = null;
+        for (String forwardHeader: ipForwardHeaders) {
+            ip = request.getHeader(forwardHeader);
+            if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
+                return ip;
+            }
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_CLIENT_IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        return ip;
+        return request.getRemoteAddr();
     }
 
     @Override

@@ -32,7 +32,9 @@ public class UncaughtExceptionTracker implements UncaughtExceptionHandler {
 
     @Override
     public void onUncaughtException(final Throwable e) {
-        analytics.sendException().exceptionDescription("Uncaught Exception: " + e.getMessage())
-                .go();
+        analytics
+            .sendException()
+            .exceptionDescription("Uncaught Exception: " + e.getMessage())
+            .go();
     }
 }
