@@ -30,10 +30,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.arcbees.analytics.server.options.ServerOptionsCallback;
+import com.arcbees.analytics.shared.GaAccount;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 @Singleton
 public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOptionsCallback> {
@@ -51,7 +51,8 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
     private final Provider<HttpServletRequest> requestProvider;
 
     @Inject
-    ServerOptionsCallbackProvider(@Named("gaAccount") String userAccount,
+    ServerOptionsCallbackProvider(
+            @GaAccount String userAccount,
             Provider<HttpServletRequest> requestProvider) {
         this.userAccount = userAccount;
         this.requestProvider = requestProvider;
