@@ -32,8 +32,8 @@ public class AnalyticsOptions {
     /**
      * Allows you to set options in the AppTracking Category.
      */
-    public ApptrackingOptions apptrackingOptions() {
-        return new ApptrackingOptions(getOptionsCallback());
+    public AppTrackingOptions appTrackingOptions() {
+        return new AppTrackingOptions(getOptionsCallback());
     }
 
     /**
@@ -52,10 +52,19 @@ public class AnalyticsOptions {
     }
 
     /**
-     * Allows you to set options for custom metrics.
+     * Allows you to set options for custom dimensions and metrics.
+     * @deprecated since 2.2. Use {@link #customDimensionsAndMetricsOptions()} instead.
      */
-    public CustomOptions customsOptions() {
-        return new CustomOptions(getOptionsCallback());
+    @Deprecated
+    public CustomDimensionsAndMetricsOptions customsOptions() {
+        return customDimensionsAndMetricsOptions();
+    }
+
+    /**
+     * Allows you to set options for custom dimensions and metrics.
+     */
+    public CustomDimensionsAndMetricsOptions customDimensionsAndMetricsOptions() {
+        return new CustomDimensionsAndMetricsOptions(getOptionsCallback());
     }
 
     /**
@@ -170,7 +179,7 @@ public class AnalyticsOptions {
      * Set Options for tracking a traffic sources. This can be used to track the source of user
      * traffic.
      */
-    public TrafficsourcesOptions trafficsourcesOptions() {
-        return new TrafficsourcesOptions(getOptionsCallback());
+    public TrafficSourcesOptions trafficSourcesOptions() {
+        return new TrafficSourcesOptions(getOptionsCallback());
     }
 }
