@@ -33,8 +33,7 @@ public class ServerAnalyticsModule extends ServletModule {
     @Override
     protected void configureServlets() {
         bindConstant().annotatedWith(GaAccount.class).to(userAccount);
-        bind(ServerOptionsCallback.class).toProvider(ServerOptionsCallbackProvider.class).in(
-                RequestScoped.class);
+        bind(ServerOptionsCallback.class).toProvider(ServerOptionsCallbackProvider.class).in(RequestScoped.class);
         bind(Analytics.class).to(ServerAnalytics.class).in(Singleton.class);
         filter("/*").through(ServerOptionsCallbackProvider.class);
     }

@@ -1,9 +1,6 @@
 #Universal Analytics
 A universal analytics implementation and service provider.
 
-Thanks to Richard Wallis (https://github.com/rdwallis) for his initial pull request against GWTP (https://github.com/ArcBees/GWTP/pull/521)
-See his repo here https://github.com/rdwallis/gwt-universal-analytics
-
 ##Install
 
 Add the following to your pom
@@ -41,14 +38,15 @@ Then in your entry point or bootstrapper(GWTP) call the following:
 
 ```
 analytics.create().go();
-analytics.enablePlugin(AnalyticsPlugin.DISPLAY); //Provides demographics information.
+analytics.enablePlugin(AnalyticsPlugin.DISPLAY); // (optional) Provides demographics information.
+analytics.sendPageView().go(); // (recommended) track the initial pageview
 ```
 
 ##Basic Usage
 
 Inject Analytics into the class you want to track events from.
 
-**REMEBER TO CALL GO()**
+**REMEMBER TO CALL GO()**
 
 Analytics uses a version of the builder pattern where you call the type of tracking method you want, then chain the options you need to the call followed by go().
 
@@ -80,9 +78,9 @@ A filter will automatically fill out the Measurement Protocol required fields fo
 
 `setGlobalOptions()` and `enablePlugin()` have no effect on server calls.
 
-If you're using multiple trackers then you should call `create().trackerName("My Tracker").go()` to create your tracker before making the tracker call.  All other options sent to create() on the server will be ignored.
+If you're using multiple trackers then you should call `create().trackerName("My Tracker").go()` once at the beginning of each request to create your secondary trackers before calling any analytics methods.  All other options sent to create() on the server will be ignored.
 
-If you're using SetCookieName() on the client then the automatic filter will not be able to keep the server and client in sync since it assumes that the cookie name is : _ga.  Raise an issue on this project if you need to set the cookie name for some reason.
+If you're setting a custom cookie name on the client then the automatic filter will not work correctly because it assumes that the cookie name is : _ga.  Raise an issue on this project if you need to set the cookie name for some reason.
 
 ##Timing Events
 
@@ -100,3 +98,13 @@ This will automatically create a timing event marking the difference between whe
 
 The category and variable names for the start and end calls must be exactly the same, or the call will have no effect.
 
+##Credits
+Thanks to Richard Wallis (https://github.com/rdwallis) for his initial pull request against GWTP (https://github.com/ArcBees/GWTP/pull/521)
+See his repo here https://github.com/rdwallis/gwt-universal-analytics
+
+##Thanks to
+[![Arcbees.com](http://i.imgur.com/HDf1qfq.png)](http://arcbees.com)
+
+[![Atlassian](http://i.imgur.com/BKkj8Rg.png)](https://www.atlassian.com/)
+
+[![IntelliJ](https://lh6.googleusercontent.com/--QIIJfKrjSk/UJJ6X-UohII/AAAAAAAAAVM/cOW7EjnH778/s800/banner_IDEA.png)](http://www.jetbrains.com/idea/index.html)
