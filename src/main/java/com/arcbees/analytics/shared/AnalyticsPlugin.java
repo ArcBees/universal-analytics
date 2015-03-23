@@ -18,23 +18,25 @@ package com.arcbees.analytics.shared;
 
 public enum AnalyticsPlugin {
     /**
-     * Add information about user's location and interests.
-     * You also need to turn on Enable Demographics and Interest Reports on
-     * the google analytics website to use this feature.
+     * Add information about user's location and interests. You also need to turn on Enable
+     * Demographics and Interest Reports on the google analytics website to use this feature.
      */
     DISPLAY("displayfeatures"),
-    
+
     /**
-     * You must also turn on enhanced link attribution on the google analytics website
-     * to use this feature.
-     * <p>You can tag your pages to implement an enhanced link-tracking functionality that lets you:</p>
+     * You must also turn on enhanced link attribution on the google analytics website to use this
+     * feature.
+     * <p>
+     * You can tag your pages to implement an enhanced link-tracking functionality that lets you:
+     * </p>
      *
      * <ul>
-     * <li>See separate information for multiple links on a page that all have the same destination. 
-     * For example, if there are two links on the same page that both lead to the <em>Contact Us</em> 
-     * page, then you see separate click information for each link.</li>
+     * <li>See separate information for multiple links on a page that all have the same destination.
+     * For example, if there are two links on the same page that both lead to the
+     * <em>Contact Us</em> page, then you see separate click information for each link.</li>
      * <br>
-     * <li>See when one page element has multiple destinations. For example, a <em>Search button</em> on your page is likely to lead to multiple destinations.</li>
+     * <li>See when one page element has multiple destinations. For example, a
+     * <em>Search button</em> on your page is likely to lead to multiple destinations.</li>
      * <br>
      * <li>Track buttons, menus, and actions driven by javascript.</li>
      * </ul>
@@ -43,12 +45,12 @@ public enum AnalyticsPlugin {
 
     private final String fieldName;
     private final String jsName;
-    
-    AnalyticsPlugin(final String fieldName) {
+
+    AnalyticsPlugin(String fieldName) {
         this(fieldName, null);
     }
 
-    AnalyticsPlugin(final String fieldName, final String jsName) {
+    AnalyticsPlugin(String fieldName, String jsName) {
         this.fieldName = fieldName;
         this.jsName = jsName;
     }
@@ -56,7 +58,7 @@ public enum AnalyticsPlugin {
     public String getFieldName() {
         return fieldName;
     }
-    
+
     public String getJsName() {
         return jsName;
     }

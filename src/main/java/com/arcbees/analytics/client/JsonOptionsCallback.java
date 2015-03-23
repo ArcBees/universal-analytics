@@ -25,10 +25,10 @@ import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 
-public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
+public abstract class JsonOptionsCallback extends OptionsCallback<JSONObject> {
     private JSONObject jsonObject;
 
-    public JSONOptionsCallback() {
+    public JsonOptionsCallback() {
         this.jsonObject = new JSONObject();
     }
 
@@ -60,6 +60,6 @@ public abstract class JSONOptionsCallback extends OptionsCallback<JSONObject> {
 
     @Override
     public void putText(final String fieldName, final String value) {
-        jsonObject.put(fieldName, value == null ? JSONNull.getInstance(): new JSONString(value));
+        jsonObject.put(fieldName, value == null ? JSONNull.getInstance() : new JSONString(value));
     }
 }

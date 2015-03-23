@@ -20,6 +20,9 @@
         <guice.version>3.0</guice.version>
         <gin.version>2.1.2</gin.version>
         <servlet-api.version>3.1.0</servlet-api.version>
+        <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
+        <checkstyle.version>6.2</checkstyle.version>
+        <arcbees-checkstyle.version>1.0</arcbees-checkstyle.version>
     </properties>
 
     <scm>
@@ -69,6 +72,44 @@
                     </execution>
                 </executions>
             </plugin>
+            
+              <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${maven-checkstyle-plugin.version}</version>
+                    <configuration>
+                        <configLocation>/checkstyle.xml</configLocation>
+                        <suppressionsLocation>/suppressions.xml</suppressionsLocation>
+                        <propertyExpansion>basedir=${basedir}</propertyExpansion>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <linkXRef>false</linkXRef>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    </configuration>
+
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>${checkstyle.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.arcbees</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>${arcbees-checkstyle.version}</version>
+                        </dependency>
+                    </dependencies>
+
+                    <executions>
+                        <execution>
+                            <id>validate</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>checkstyle</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
         </plugins>
     </build>
 

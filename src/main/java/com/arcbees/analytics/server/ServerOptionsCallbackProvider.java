@@ -30,13 +30,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.arcbees.analytics.server.options.ServerOptionsCallback;
+import com.arcbees.analytics.shared.GaAccount;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 @Singleton
 public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOptionsCallback> {
+    private static final String[] ipForwardHeaders = {
+            "X-Forwarded-For",
+            "Proxy-Client-IP",
+            "WL-Proxy-Client-IP",
+            "HTTP_CLIENT_IP",
+            "HTTP_X_FORWARDED_FOR"};
+
     private static final int ANALYTICS_VERSION = 1;
     private static final String COOKIE_VALUE_KEY = "_uaCookie";
     private final String userAccount;
@@ -44,20 +51,21 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
     private final Provider<HttpServletRequest> requestProvider;
 
     @Inject
-    ServerOptionsCallbackProvider(@Named("gaAccount") final String userAccount,
-            final Provider<HttpServletRequest> requestProvider) {
+    ServerOptionsCallbackProvider(
+            @GaAccount String userAccount,
+            Provider<HttpServletRequest> requestProvider) {
         this.userAccount = userAccount;
         this.requestProvider = requestProvider;
     }
 
     @Override
     public void destroy() {
-        //nothing to destoy
+        // nothing to destoy
     }
 
     @Override
-    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
         if ((request instanceof HttpServletRequest) && (response instanceof HttpServletResponse)) {
             doHttpFilter((HttpServletRequest) request, (HttpServletResponse) response, chain);
         } else {
@@ -65,8 +73,8 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
         }
     }
 
-    private void doHttpFilter(final HttpServletRequest request, final HttpServletResponse response,
-            final FilterChain chain) throws IOException, ServletException {
+    private void doHttpFilter(HttpServletRequest request, HttpServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
         String cookieValue = null;
         final Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -82,8 +90,8 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
 
         if (cookieValue == null) {
             final int hostLevel = request.getServerName().split("\\.").length;
-            cookieValue = "GA" + ANALYTICS_VERSION + "." + hostLevel + "." + random.nextInt(Integer.MAX_VALUE) + "."
-                    + (System.currentTimeMillis() / 1000);
+            cookieValue = "GA" + ANALYTICS_VERSION + "." + hostLevel + "."
+                    + random.nextInt(Integer.MAX_VALUE) + "." + (System.currentTimeMillis() / 1000);
             final Cookie cookie = new Cookie("_ga", cookieValue);
             cookie.setPath("/");
             cookie.setDomain("." + request.getServerName());
@@ -100,33 +108,25 @@ public class ServerOptionsCallbackProvider implements Filter, Provider<ServerOpt
         result.putText("v", ANALYTICS_VERSION + "");
         result.putText("tid", userAccount);
         result.putText("uip", getClientIpAddr(requestProvider.get()));
-        final String[] split = ((String) requestProvider.get().getAttribute(COOKIE_VALUE_KEY)).split("\\.");
+        final String[] split = ((String) requestProvider.get().getAttribute(COOKIE_VALUE_KEY))
+                .split("\\.");
         result.putText("cid", split[2] + "." + split[3]);
         return result;
     }
-    
-    private static String getClientIpAddr(HttpServletRequest request) {  
-        String ip = request.getHeader("X-Forwarded-For");  
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-            ip = request.getHeader("Proxy-Client-IP");  
-        }  
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-            ip = request.getHeader("WL-Proxy-Client-IP");  
-        }  
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-            ip = request.getHeader("HTTP_CLIENT_IP");  
-        }  
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-            ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
-        }  
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-            ip = request.getRemoteAddr();  
-        }  
-        return ip;  
-    }  
+
+    private static String getClientIpAddr(HttpServletRequest request) {
+        String ip = null;
+        for (String forwardHeader: ipForwardHeaders) {
+            ip = request.getHeader(forwardHeader);
+            if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
+                return ip;
+            }
+        }
+        return request.getRemoteAddr();
+    }
 
     @Override
-    public void init(final FilterConfig config) throws ServletException {
-        //nothing to init
+    public void init(FilterConfig config) throws ServletException {
+        // nothing to init
     }
 }

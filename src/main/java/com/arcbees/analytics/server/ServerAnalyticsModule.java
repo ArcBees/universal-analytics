@@ -26,7 +26,7 @@ import com.google.inject.servlet.ServletModule;
 public class ServerAnalyticsModule extends ServletModule {
     private final String userAccount;
 
-    public ServerAnalyticsModule(final String userAccount) {
+    public ServerAnalyticsModule(String userAccount) {
         this.userAccount = userAccount;
     }
 

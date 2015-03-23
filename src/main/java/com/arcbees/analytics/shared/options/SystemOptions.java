@@ -17,97 +17,99 @@
 package com.arcbees.analytics.shared.options;
 
 public class SystemOptions extends AnalyticsOptions {
-    SystemOptions(final OptionsCallback<?> optionsCallback) {
+    SystemOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the character set used to encode the page / document. This field is initialized by
+     * the create command.
      * </p>
-     * <p>Specifies the character set used to encode the page / document.
-     * This field is initialized by the create command.</p>
      * Default Value: UTF-8<br>
      * Example Value: <code>UTF-8</code>
      **/
-    public SystemOptions documentEncoding(final String documentEncoding) {
+    public SystemOptions documentEncoding(String documentEncoding) {
         putText("encoding", documentEncoding);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the flash version. This field is initialized by the create command.
      * </p>
-     * <p>Specifies the flash version.
-     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>10 1 r103</code>
      **/
-    public SystemOptions flashVersion(final String flashVersion) {
+    public SystemOptions flashVersion(String flashVersion) {
         putText("flashVersion", flashVersion);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies whether Java was enabled. This field is initialized by the create command.
      * </p>
-     * <p>Specifies whether Java was enabled.
-     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>true</code>
      **/
-    public SystemOptions javaEnabled(final boolean javaEnabled) {
+    public SystemOptions javaEnabled(boolean javaEnabled) {
         putBoolean("javaEnabled", javaEnabled);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the screen color depth. This field is initialized by the create command.
      * </p>
-     * <p>Specifies the screen color depth.
-     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>24-bits</code>
      **/
-    public SystemOptions screenColors(final String screenColors) {
+    public SystemOptions screenColors(String screenColors) {
         putText("screenColors", screenColors);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the screen resolution. This field is initialized by the create command.
      * </p>
-     * <p>Specifies the screen resolution.
-     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>800x600</code>
      **/
-    public SystemOptions screenResolution(final String screenResolution) {
+    public SystemOptions screenResolution(String screenResolution) {
         putText("screenResolution", screenResolution);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the language. This field is initialized by the create command.
      * </p>
-     * <p>Specifies the language.
-     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>en-us</code>
      **/
-    public SystemOptions userLanguage(final String userLanguage) {
+    public SystemOptions userLanguage(String userLanguage) {
         putText("language", userLanguage);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the viewable area of the browser / device. This field is initialized by the create
+     * command.
      * </p>
-     * <p>Specifies the viewable area of the browser / device.
-     * This field is initialized by the create command.</p>
      * Default Value: None<br>
      * Example Value: <code>123x456</code>
      **/
-    public SystemOptions viewportSize(final String viewportSize) {
+    public SystemOptions viewportSize(String viewportSize) {
         putText("viewportSize", viewportSize);
         return this;
     }

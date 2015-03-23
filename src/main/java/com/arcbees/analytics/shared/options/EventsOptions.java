@@ -17,7 +17,10 @@
 package com.arcbees.analytics.shared.options;
 
 public class EventsOptions extends AnalyticsOptions {
-    EventsOptions(final OptionsCallback<?> optionsCallback, final String eventCategory, final String eventAction) {
+    EventsOptions(
+            OptionsCallback<?> optionsCallback,
+            String eventCategory,
+            String eventAction) {
         super(optionsCallback);
 
         putText("eventCategory", eventCategory);
@@ -25,25 +28,27 @@ public class EventsOptions extends AnalyticsOptions {
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the event label.
      * </p>
-     * <p>Specifies the event label.</p>
      * Default Value: None<br>
      * Example Value: <code>Label</code>
      **/
-    public EventsOptions eventLabel(final String eventLabel) {
+    public EventsOptions eventLabel(String eventLabel) {
         putText("eventLabel", eventLabel);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the event value. Values must be non-negative.
      * </p>
-     * <p>Specifies the event value. Values must be non-negative.</p>
      * Default Value: None<br>
      * Example Value: <code>55</code>
      **/
-    public EventsOptions eventValue(final int eventValue) {
+    public EventsOptions eventValue(int eventValue) {
         putNumber("eventValue", eventValue);
         return this;
     }

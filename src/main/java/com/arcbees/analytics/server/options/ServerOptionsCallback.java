@@ -29,63 +29,17 @@ import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 
 import com.arcbees.analytics.shared.HitCallback;
+import com.arcbees.analytics.shared.ProtocolTranslator;
 import com.arcbees.analytics.shared.options.OptionsCallback;
 
 public class ServerOptionsCallback extends OptionsCallback<String> {
-    private static final Map<String, String> protocolMap = new HashMap<>();
-
-    static {
-        protocolMap.put("anonymizeIp", "aip");
-        protocolMap.put("referrer", "dr");
-        protocolMap.put("campaignName", "cn");
-        protocolMap.put("campaignSource", "cs");
-        protocolMap.put("campaignMedium", "cm");
-        protocolMap.put("campaignKeyword", "ck");
-        protocolMap.put("campaignContent", "cc");
-        protocolMap.put("campaignId", "ci");
-        protocolMap.put("screenResolution", "sr");
-        protocolMap.put("viewportSize", "vp");
-        protocolMap.put("encoding", "de");
-        protocolMap.put("screenColors", "sd");
-        protocolMap.put("language", "ul");
-        protocolMap.put("javaEnabled", "je");
-        protocolMap.put("flashVersion", "fl");
-        protocolMap.put("hitType", "t");
-        protocolMap.put("nonInteraction", "ni");
-        protocolMap.put("location", "dl");
-        protocolMap.put("hostname", "dh");
-        protocolMap.put("page", "dp");
-        protocolMap.put("title", "dt");
-        protocolMap.put("screenName", "cd");
-        protocolMap.put("linkid", "linkid");
-        protocolMap.put("appName", "an");
-        protocolMap.put("appId", "aid");
-        protocolMap.put("appVersion", "av");
-        protocolMap.put("appInstallerId", "aiid");
-        protocolMap.put("eventCategory", "ec");
-        protocolMap.put("eventAction", "ea");
-        protocolMap.put("eventLabel", "el");
-        protocolMap.put("eventValue", "ev");
-        protocolMap.put("socialNetwork", "sn");
-        protocolMap.put("socialAction", "sa");
-        protocolMap.put("socialTarget", "st");
-        protocolMap.put("timingCategory", "utc");
-        protocolMap.put("timingVar", "utv");
-        protocolMap.put("timingValue", "utt");
-        protocolMap.put("timingLabel", "utl");
-        protocolMap.put("exDescription", "exd");
-        protocolMap.put("exFatal", "exf");
-        protocolMap.put("expId", "xid");
-        protocolMap.put("expVar", "xvar");
-    }
-
     private static final Logger LOGGER = Logger.getLogger(ServerOptionsCallback.class.getName());
     private static final String POST_URL = "https://www.google-analytics.com/collect";
 
     private Map<String, String> options = new HashMap<>();
 
     @Override
-    public void addHitCallback(final HitCallback hitCallback) {
+    public void addHitCallback(HitCallback hitCallback) {
         hitCallback.onCallback();
     }
 
@@ -103,44 +57,32 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         return "?" + result.toString().substring(1);
     }
 
-    private String getProtocolFieldName(final String fieldName) {
-        if (fieldName.startsWith("metric")) {
-            return "cm" + fieldName.substring("metric".length());
-        } else if (fieldName.startsWith("dimension")) {
-            return "cd" + fieldName.substring("dimension".length());
-        } else if (protocolMap.containsKey(fieldName)) {
-            return protocolMap.get(fieldName);
-        } else {
-            return fieldName;
-        }
-    }
-
     @Override
-    public void onCallback(final String options) {
+    public void onCallback(String options) {
         try {
             final URL url = new URL(POST_URL + options);
             IOUtils.toString(url);
-        } catch (final IOException e) {
+        } catch (IOException e) {
             LOGGER.severe(e.getMessage());
         }
     }
 
     @Override
-    public void putBoolean(final String fieldName, final boolean value) {
-        putText(fieldName, value ? "1" :"0");
+    public void putBoolean(String fieldName, boolean value) {
+        putText(fieldName, value ? "1" : "0");
     }
 
     @Override
-    public void putNumber(final String fieldName, final double value) {
+    public void putNumber(String fieldName, double value) {
         putText(fieldName, value + "");
     }
 
     @Override
-    public void putText(final String fieldName, final String value) {
+    public void putText(String fieldName, String value) {
         if (value == null) {
-            options.remove(getProtocolFieldName(fieldName));
+            options.remove(ProtocolTranslator.getFieldName(fieldName));
         } else {
-            options.put(getProtocolFieldName(fieldName), value);
+            options.put(ProtocolTranslator.getFieldName(fieldName), value);
         }
     }
 
@@ -148,8 +90,10 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
         try {
             return URLEncoder.encode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            LOGGER.log(Level.WARNING,
-                    "Unable to encode the analytics parameters to UTF-8. Falling back to no encoding.", e);
+            LOGGER.log(
+                    Level.WARNING,
+                    "Unable to encode the analytics parameters to UTF-8. Falling back to no encoding.",
+                    e);
 
             return value;
         }

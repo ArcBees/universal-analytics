@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 ArcBees Inc.
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,19 +14,18 @@
  * the License.
  */
 
-package com.arcbees.analytics.shared;
+package com.arcbees.analytics.client;
 
-public enum HitType {
-    PAGE_VIEW("pageview"), SCREEN_VIEW("screenview"), EVENT("event"), TRANSACTION("transaction"), ITEM(
-            "item"), SOCIAL("social"), EXCEPTION("exception"), TIMING("timing");
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-    private final String fieldName;
+import com.google.inject.BindingAnnotation;
 
-    HitType(String fieldName) {
-        this.fieldName = fieldName;
-    }
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-    public String getFieldName() {
-        return fieldName;
-    }
+@BindingAnnotation
+@Target(PARAMETER)
+@Retention(RUNTIME)
+@interface FallbackPath {
 }

@@ -16,55 +16,59 @@
 
 package com.arcbees.analytics.shared.options;
 
-public class ApptrackingOptions extends AnalyticsOptions {
-    ApptrackingOptions(final OptionsCallback<?> optionsCallback) {
+public class AppTrackingOptions extends AnalyticsOptions {
+    AppTrackingOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Application identifier.
      * </p>
-     * <p>Application identifier.</p>
      * Default Value: None<br>
      * Example Value: <code>com.company.app</code>
      **/
-    public ApptrackingOptions applicationId(final String applicationId) {
+    public AppTrackingOptions applicationId(String applicationId) {
         putText("appId", applicationId);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Application installer identifier.
      * </p>
-     * <p>Application installer identifier.</p>
      * Default Value: None<br>
      * Example Value: <code>com.platform.vending</code>
      **/
-    public ApptrackingOptions applicationInstallerId(final String applicationInstallerId) {
+    public AppTrackingOptions applicationInstallerId(String applicationInstallerId) {
         putText("appInstallerId", applicationInstallerId);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the application name.
      * </p>
-     * <p>Specifies the application name.</p>
      * Default Value: None<br>
      * Example Value: <code>My App</code>
      **/
-    public ApptrackingOptions applicationName(final String applicationName) {
+    public AppTrackingOptions applicationName(String applicationName) {
         putText("appName", applicationName);
         return this;
     }
 
     /**
-     * Optional.
+     * Optional. </p>
+     * <p>
+     * Specifies the application version.
      * </p>
-     * <p>Specifies the application version.</p>
      * Default Value: None<br>
      * Example Value: <code>1.2</code>
      **/
-    public ApptrackingOptions applicationVersion(final String applicationVersion) {
+    public AppTrackingOptions applicationVersion(String applicationVersion) {
         putText("appVersion", applicationVersion);
         return this;
     }

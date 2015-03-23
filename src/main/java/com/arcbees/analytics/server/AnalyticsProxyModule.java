@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 ArcBees Inc.
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,19 +14,19 @@
  * the License.
  */
 
-package com.arcbees.analytics.shared;
+package com.arcbees.analytics.server;
 
-public enum HitType {
-    PAGE_VIEW("pageview"), SCREEN_VIEW("screenview"), EVENT("event"), TRANSACTION("transaction"), ITEM(
-            "item"), SOCIAL("social"), EXCEPTION("exception"), TIMING("timing");
+import com.google.inject.servlet.ServletModule;
 
-    private final String fieldName;
+public class AnalyticsProxyModule extends ServletModule {
+    private final String path;
 
-    HitType(String fieldName) {
-        this.fieldName = fieldName;
+    public AnalyticsProxyModule(String path) {
+        this.path = path;
     }
 
-    public String getFieldName() {
-        return fieldName;
+    @Override
+    protected void configureServlets() {
+        serve(path + "*").with(AnalyticsProxyServlet.class);
     }
 }
