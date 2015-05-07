@@ -24,6 +24,7 @@ public class AnalyticsModule extends AbstractGinModule {
     public static class Builder {
         private final String userAccount;
         private boolean autoCreate = true;
+        private boolean autoInject = true;
         private boolean trackUncaughtExceptions;
         private boolean trackInitialPageView = true;
         private String fallbackPath = "";
@@ -50,6 +51,17 @@ public class AnalyticsModule extends AbstractGinModule {
          */
         public Builder autoCreate(boolean autoCreate) {
             this.autoCreate = autoCreate;
+            return this;
+        }
+
+        /**
+         * Set this to false if you want to manually put the analytics.js script in your head section.
+         *
+         * @param autoInject
+         * @return Builder
+         */
+        public Builder autoInject(boolean autoInject) {
+            this.autoInject = autoInject;
             return this;
         }
 
@@ -87,7 +99,7 @@ public class AnalyticsModule extends AbstractGinModule {
         }
 
         public AnalyticsModule build() {
-            return new AnalyticsModule(userAccount, autoCreate, trackUncaughtExceptions,
+            return new AnalyticsModule(userAccount, autoCreate, autoInject, trackUncaughtExceptions,
                     trackInitialPageView, fallbackPath);
         }
 
@@ -105,6 +117,7 @@ public class AnalyticsModule extends AbstractGinModule {
 
     private final String userAccount;
     private final boolean autoCreate;
+    private final boolean autoInject;
     private final boolean trackUncaughtExceptions;
     private final boolean trackInitialPageView;
     private final String fallbackPath;
@@ -112,11 +125,13 @@ public class AnalyticsModule extends AbstractGinModule {
     private AnalyticsModule(
             String userAccount,
             boolean autoCreate,
+            boolean autoInject,
             boolean trackUncaughtExceptions,
             boolean trackInitialPageView,
             String fallbackPath) {
         this.userAccount = userAccount;
         this.autoCreate = autoCreate;
+        this.autoInject = autoInject;
         this.trackUncaughtExceptions = trackUncaughtExceptions;
         this.trackInitialPageView = trackInitialPageView;
         this.fallbackPath = fallbackPath;
@@ -126,6 +141,7 @@ public class AnalyticsModule extends AbstractGinModule {
     protected void configure() {
         bindConstant().annotatedWith(GaAccount.class).to(userAccount);
         bindConstant().annotatedWith(AutoCreate.class).to(autoCreate);
+        bindConstant().annotatedWith(AutoInject.class).to(autoInject);
         bindConstant().annotatedWith(TrackInitialPageView.class).to(trackInitialPageView);
         bindConstant().annotatedWith(FallbackPath.class).to(fallbackPath);
         bind(ClientAnalytics.class).asEagerSingleton();
