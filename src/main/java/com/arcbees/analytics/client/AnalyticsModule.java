@@ -99,8 +99,7 @@ public class AnalyticsModule extends AbstractGinModule {
         }
 
         public AnalyticsModule build() {
-            return new AnalyticsModule(userAccount, autoCreate, autoInject, trackUncaughtExceptions,
-                    trackInitialPageView, fallbackPath);
+            return new AnalyticsModule(this);
         }
 
         /**
@@ -115,38 +114,22 @@ public class AnalyticsModule extends AbstractGinModule {
         }
     }
 
-    private final String userAccount;
-    private final boolean autoCreate;
-    private final boolean autoInject;
-    private final boolean trackUncaughtExceptions;
-    private final boolean trackInitialPageView;
-    private final String fallbackPath;
+    private final Builder builder;
 
-    private AnalyticsModule(
-            String userAccount,
-            boolean autoCreate,
-            boolean autoInject,
-            boolean trackUncaughtExceptions,
-            boolean trackInitialPageView,
-            String fallbackPath) {
-        this.userAccount = userAccount;
-        this.autoCreate = autoCreate;
-        this.autoInject = autoInject;
-        this.trackUncaughtExceptions = trackUncaughtExceptions;
-        this.trackInitialPageView = trackInitialPageView;
-        this.fallbackPath = fallbackPath;
+    private AnalyticsModule(Builder builder) {
+        this.builder = builder;
     }
 
     @Override
     protected void configure() {
-        bindConstant().annotatedWith(GaAccount.class).to(userAccount);
-        bindConstant().annotatedWith(AutoCreate.class).to(autoCreate);
-        bindConstant().annotatedWith(AutoInject.class).to(autoInject);
-        bindConstant().annotatedWith(TrackInitialPageView.class).to(trackInitialPageView);
-        bindConstant().annotatedWith(FallbackPath.class).to(fallbackPath);
+        bindConstant().annotatedWith(GaAccount.class).to(builder.userAccount);
+        bindConstant().annotatedWith(AutoCreate.class).to(builder.autoCreate);
+        bindConstant().annotatedWith(AutoInject.class).to(builder.autoInject);
+        bindConstant().annotatedWith(TrackInitialPageView.class).to(builder.trackInitialPageView);
+        bindConstant().annotatedWith(FallbackPath.class).to(builder.fallbackPath);
         bind(ClientAnalytics.class).asEagerSingleton();
         bind(Analytics.class).to(ClientAnalytics.class);
-        if (trackUncaughtExceptions) {
+        if (builder.trackUncaughtExceptions) {
             bind(UncaughtExceptionTracker.class).asEagerSingleton();
         }
     }
