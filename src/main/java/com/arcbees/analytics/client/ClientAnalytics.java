@@ -63,13 +63,16 @@ public class ClientAnalytics extends AnalyticsImpl {
     ClientAnalytics(
             @GaAccount String userAccount,
             @AutoCreate boolean autoCreate,
+            @AutoInject boolean autoInject,
             @TrackInitialPageView boolean trackInitialPageView,
             @FallbackPath String fallbackPath) {
         super(userAccount);
 
         this.fallbackPath = fallbackPath;
 
-        init();
+        if (autoInject) {
+            init();
+        }
 
         if (autoCreate) {
             create().go();
