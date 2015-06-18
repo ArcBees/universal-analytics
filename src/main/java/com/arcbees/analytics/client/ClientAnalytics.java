@@ -209,7 +209,7 @@ public class ClientAnalytics extends AnalyticsImpl {
             a.async = 1;
             a.src = g;
             m.parentNode.insertBefore(a, m)
-        })($wnd, $doc, 'script', '//www.google-analytics.com/analytics.js',
+        })($wnd, $doc, 'script', 'https://www.google-analytics.com/analytics.js',
                 '__ua');
     }-*/;
 
