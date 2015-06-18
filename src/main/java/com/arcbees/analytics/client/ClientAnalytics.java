@@ -207,16 +207,9 @@ public class ClientAnalytics extends AnalyticsImpl {
             }, i[r].l = 1 * new Date();
             a = s.createElement(o), m = s.getElementsByTagName(o)[0];
             a.async = 1;
-            // If current protocol is "file" we are on mobile
-            // So we explicitly specify https protocol for the script's source link
-            if ($wnd.location.protocol === "file:") {
-            	// CHECKSTYLE_OFF
-                g = "https:" + g;
-                // CHECKSTYLE_ON
-            }
             a.src = g;
             m.parentNode.insertBefore(a, m)
-        })($wnd, $doc, 'script', '//www.google-analytics.com/analytics.js',
+        })($wnd, $doc, 'script', 'https://www.google-analytics.com/analytics.js',
                 '__ua');
     }-*/;
 
