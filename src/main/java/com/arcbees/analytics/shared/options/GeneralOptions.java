@@ -16,6 +16,8 @@
 
 package com.arcbees.analytics.shared.options;
 
+import com.arcbees.analytics.shared.Task;
+
 public class GeneralOptions extends AnalyticsOptions {
     GeneralOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
@@ -77,6 +79,25 @@ public class GeneralOptions extends AnalyticsOptions {
      **/
     public GeneralOptions dataSource(String dataSource) {
         putText("dataSource", dataSource);
+        return this;
+    }
+
+    /**
+     * <p>Disables a task.
+     * see:
+     * <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/tasks">Analytics Tasks</a>
+     * </p>
+     * <p>
+     * If you are serving Analytics from a non http or https site,
+     * eg because you are building a native app you need to disable
+     * the {@link Task.CHECK_PROTOCOL} task
+     * </p>
+     * <p>
+     * See also: <a href="http://dev.arcbees.com/ua/nativeApps.html">Analytics for Native Apps (Cordova etc..)</a>
+     * </p>
+     **/
+    public GeneralOptions disableTask(Task task) {
+        remove(task.getFunctionName());
         return this;
     }
 }

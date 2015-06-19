@@ -34,4 +34,8 @@ public abstract class OptionsCallback<T> {
     void doCallback() {
         onCallback(getOptions());
     }
+
+    public void remove(String fieldName) {
+        putText(fieldName, null);
+    }
 }

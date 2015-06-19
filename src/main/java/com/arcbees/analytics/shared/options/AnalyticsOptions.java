@@ -150,6 +150,10 @@ public class AnalyticsOptions {
         optionsCallback.putText(fieldName, value);
     }
 
+    void remove(String fieldName) {
+        optionsCallback.remove(fieldName);
+    }
+
     /**
      * Set Options for tracking a social event. In general you should let the analytics class set
      * this up for you with the sendSocial() method.
