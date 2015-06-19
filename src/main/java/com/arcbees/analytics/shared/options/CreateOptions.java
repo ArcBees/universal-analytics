@@ -16,6 +16,8 @@
 
 package com.arcbees.analytics.shared.options;
 
+import com.arcbees.analytics.shared.Storage;
+
 public class CreateOptions extends AnalyticsOptions {
     CreateOptions(OptionsCallback<?> optionsCallback) {
         super(optionsCallback);
@@ -190,6 +192,16 @@ public class CreateOptions extends AnalyticsOptions {
      **/
     public CreateOptions userId(String userId) {
         putText("userId", userId);
+        return this;
+    }
+
+    /**
+     * Sets the kind of storage to use.
+     * By default cookies will be used.
+     * @param storage - The type of storage.
+     */
+    public CreateOptions storage(Storage storage) {
+        putText("storage", storage.getValue());
         return this;
     }
 }
