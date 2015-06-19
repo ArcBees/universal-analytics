@@ -82,6 +82,16 @@ public abstract class AnalyticsImpl implements Analytics {
     }
 
     @Override
+    public ContentOptions sendScreenView() {
+        return sendScreenView(null);
+    }
+
+    @Override
+    public ContentOptions sendScreenView(String trackerName) {
+        return send(trackerName, HitType.SCREEN_VIEW).contentOptions();
+    }
+
+    @Override
     public SocialOptions sendSocial(String socialNetwork, String socialAction,
             String socialTarget) {
         return sendSocial(null, socialNetwork, socialAction, socialTarget);
