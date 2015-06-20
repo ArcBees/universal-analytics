@@ -42,6 +42,25 @@ analytics.enablePlugin(AnalyticsPlugin.DISPLAY); // (optional) Provides demograp
 analytics.sendPageView().go(); // (recommended) track the initial pageview
 ```
 
+##Mobile Install
+
+When running in mobile applications under `file:` protocol, there is no cookie for UA to store
+the data, thus there are some additional steps on mobile:
+1. Set autoCreate to false (instructions in "Advanced Install" section)
+2. Disable cookies storage
+3. Set a clientId (should represent a unique user)
+4. Disable protocol check (otherwise it aborts when protocol is not http/https)
+
+[More details here](https://developers.google.com/analytics/devguides/collection/analyticsjs/domains#disableCookies)
+
+It can be done as follows:
+
+```
+createOpts = analytics.create(trackerCode);
+createOpts.clientId('client_id').storage(Storage.NONE).go();
+analytics.setGlobalSettings().generalOptions().disableTask(Task.CHECK_PROTOCOL).go();
+```
+
 ##Basic Usage
 
 Inject Analytics into the class you want to track events from.
@@ -57,14 +76,24 @@ analytics.sendPageView().documentPath("/foo").go(); //track a pageview for page 
 analytics.sendEvent("button", "click").eventLabel("my label").go(); //send event with label
 ```
 
-If you want to change the global settings call setGlobalSettings in the same way. 
+If you want to change the global settings call setGlobalSettings in the same way.
 ```
 analytics.setGlobalSettings().anonymizeIp(true).go(); //anonymize ips
 ```
 
+##Mobile Usage
+
+When dealing with mobile analytics the [ScreenView
+events should be used instead of PageView](https://developers.google.com/analytics/devguides/collection/analyticsjs/screens).
+It's also mandatory to send `AppName` otherwise the realtime analytics won't work.
+Another useful information to send is the ScreenName.
+
+e.g.:
+```
+analytics.sendScreenView().screenName('current_page_name').appTrackingOptions().applicationName('my_app_name').go();
+```
+
 ##Server Side
-
-
 
 ```
 install(new ServerAnalyticsModule("UA-XXXXXX-X"));
