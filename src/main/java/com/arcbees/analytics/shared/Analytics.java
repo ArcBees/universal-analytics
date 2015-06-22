@@ -162,6 +162,22 @@ public interface Analytics {
     ContentOptions sendPageView(String trackerName);
 
     /**
+     * Send a screenview for mobile configured analytics. Should be used with screenName option.
+     * @see <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/screens">App/Screen UA</a>
+     * 
+     * Example: sendScreenView().screenName("my_screen_name").go();
+     */
+    ContentOptions sendScreenView();
+
+    /**
+     * Send a screenview to specific tracker. Should be used with screenName option.
+     * @see <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/screens">App/Screen UA</a>
+     * 
+     * Example: sendScreenView('my_tracker_name').screenName("my_screen_name").go();
+     */
+    ContentOptions sendScreenView(String trackerName);
+
+    /**
      * send a social event.
      *
      * @param socialNetwork
