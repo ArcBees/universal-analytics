@@ -16,7 +16,6 @@
 
 package com.arcbees.analytics.server;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -39,8 +38,6 @@ public class ServerAnalytics extends AnalyticsImpl {
     private static final Logger LOGGER = Logger.getLogger(ServerAnalytics.class.getName());
 
     private final Provider<ServerOptionsCallback> serverOptionsCallbackProvider;
-    private final Map<String, Long> timingEvents = new HashMap<>();
-    private final Map<String, String> trackerNames = new HashMap<>();
 
     @Inject
     ServerAnalytics(
@@ -53,6 +50,7 @@ public class ServerAnalytics extends AnalyticsImpl {
 
     @Override
     public CreateOptions create(final String userAccount) {
+        final Map<String, String> trackerNames = serverOptionsCallbackProvider.get().getTrackerNames();
         return new AnalyticsOptions(new TrackerNameOptionsCallback() {
 
             @Override
@@ -70,6 +68,7 @@ public class ServerAnalytics extends AnalyticsImpl {
     @Override
     public TimingOptions endTimingEvent(String trackerName, String timingCategory,
             String timingVariableName) {
+        Map<String, Long> timingEvents = serverOptionsCallbackProvider.get().getTimingEvents();
         final String key = getTimingKey(timingCategory, timingVariableName);
         if (timingEvents.containsKey(key)) {
             return sendTiming(trackerName, timingCategory, timingVariableName,
@@ -91,6 +90,7 @@ public class ServerAnalytics extends AnalyticsImpl {
     @Override
     public AnalyticsOptions send(String trackerName, HitType hitType) {
         final ServerOptionsCallback options = serverOptionsCallbackProvider.get();
+        final Map<String, String> trackerNames = options.getTrackerNames();
         if (trackerName != null) {
             options.putText("tid", trackerNames.get(trackerName));
         }
@@ -112,6 +112,7 @@ public class ServerAnalytics extends AnalyticsImpl {
 
     @Override
     public void startTimingEvent(String timingCategory, String timingVariableName) {
+        Map<String,Long> timingEvents = serverOptionsCallbackProvider.get().getTimingEvents();
         timingEvents.put(getTimingKey(timingCategory, timingVariableName),
                 System.currentTimeMillis());
     }

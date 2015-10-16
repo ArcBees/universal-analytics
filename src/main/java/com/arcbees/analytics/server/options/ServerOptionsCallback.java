@@ -23,6 +23,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +37,9 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     private static final Logger LOGGER = Logger.getLogger(ServerOptionsCallback.class.getName());
     private static final String POST_URL = "https://www.google-analytics.com/collect";
 
-    private Map<String, String> options = new HashMap<>();
+    private Map<String, String> options = new ConcurrentHashMap<>();
+    private final Map<String, Long> timingEvents = new HashMap<>();
+    private final Map<String, String> trackerNames = new HashMap<>();
 
     @Override
     public void addHitCallback(HitCallback hitCallback) {
@@ -97,5 +100,13 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
 
             return value;
         }
+    }
+
+    public Map<String, Long> getTimingEvents() {
+        return timingEvents;
+    }
+
+    public Map<String, String> getTrackerNames() {
+        return trackerNames;
     }
 }
