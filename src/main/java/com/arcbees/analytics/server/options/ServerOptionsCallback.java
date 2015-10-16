@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,8 +37,8 @@ public class ServerOptionsCallback extends OptionsCallback<String> {
     private static final String POST_URL = "https://www.google-analytics.com/collect";
 
     private Map<String, String> options = new ConcurrentHashMap<>();
-    private final Map<String, Long> timingEvents = new HashMap<>();
-    private final Map<String, String> trackerNames = new HashMap<>();
+    private final Map<String, Long> timingEvents = new ConcurrentHashMap<>();
+    private final Map<String, String> trackerNames = new ConcurrentHashMap<>();
 
     @Override
     public void addHitCallback(HitCallback hitCallback) {
