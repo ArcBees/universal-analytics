@@ -16,14 +16,14 @@
 
 package com.arcbees.analytics.server.options;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.arcbees.analytics.shared.HitCallback;
 import com.arcbees.analytics.shared.options.OptionsCallback;
 
 public abstract class TrackerNameOptionsCallback extends OptionsCallback<String> {
-    private Map<String, String> options = new HashMap<>();
+    private Map<String, String> options = new ConcurrentHashMap<>();
 
     @Override
     public void addHitCallback(HitCallback hitCallback) {
